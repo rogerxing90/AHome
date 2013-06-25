@@ -1,0 +1,65 @@
+﻿@{
+    Layout = null;
+}
+<div class="header">
+    <div class="top_side">
+        <ul>
+            <li id="liLogin"><a href='/Member/MemberLogin.htm'>登录</a> | </li>
+            <li>@Html.ActionLink("注册","RegisterMember","Member") </li>
+            <li>|<a href='/Member/MemberInfo.htm'><label id="lbUserNameInfo"></label>个人信息</a></li>
+            <li>|<a href='/Member/Collection.htm'>我的收藏夹</a> </li>
+            <li>|<a href='/Member/ShopingCart.htm'>我的购物车</a> </li>
+            <li>|<a href='/Member/OrderManage.htm'>我的订单</a> </li>
+            <li>|<a href='/Comments/WebComment.htm'>总站留言</a> </li>
+            <li>|<a href='/Search/SearchProduct.aspx'>找找看</a> </li>
+            <li id="liLogout">|<a id="A2" href='/Member/Data/GetMemberInfo.ashx?method=MemberLogout'>安全退出</a></li>
+        </ul>
+    </div>
+    <div class="nav">
+        <ul id="sddm">
+            <li id="home">@Html.ActionLink("首  页", "Index", "Home")</li>
+            <li>@Html.ActionLink("工艺概况", "Index", "Home")</li>
+            <li>@Html.ActionLink("工艺知识", "Index", "Home", new { id="technology"})
+                <div id="tecList" />
+            </li>
+            <li>@Html.ActionLink("作品展览", "Index", "Home", new { id="exhibition"})
+                <div id="exhList" />
+            </li>
+            <li>@Html.ActionLink("非遗作品", "Index", "Home", new { id="heritage"})
+                <div id="herList" />
+            </li>
+            <li>@Html.ActionLink("新闻中心", "Index", "Home", new { id = "newsCenter" })
+                <div id="newsList" />
+            </li>
+            <li>@Html.ActionLink("大师风采", "Index", "Home")</li>
+            <li>@Html.ActionLink("企业展示", "Index", "Home")</li>
+            <li>@Html.ActionLink("联系我们", "Index", "Home")</li>
+
+@*            <li><a href='/Default.htm'>首&nbsp;&nbsp;页</a> </li>
+            <li><a href='/CraftKnowledge/technology.htm'>工艺概况</a></li>
+            <li><a href='/CraftKnowledge/CraftKnowledgeList.aspx' onmouseover="mopen('m1')"
+                onmouseout="mclosetime()">工艺知识</a>
+                <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                </div>
+            </li>
+            <li><a href='/Product/ProductShow.aspx' onmouseover="mopen('m4')"
+                onmouseout="mclosetime()">作品展览</a>
+                <div id="m4" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                </div>
+            </li>
+            <li><a href='/Product/NongeneticProduct.htm' onmouseover="mopen('m3')"
+                onmouseout="mclosetime()">非遗作品</a>
+                <div id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                </div>
+            </li>
+            <li><a href='/News/NewsList.aspx' onmouseover="mopen('m2')" onmouseout="mclosetime()">新闻中心</a>
+                <div id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+                </div>
+            </li>
+            <li><a href='/Master/MasterList.aspx'>大师风采</a></li>
+            <li><a href='/Company/CompanyList.aspx'>企业展示</a></li>
+
+            <li><a href='/AboutUs.htm'>联系我们</a></li>*@
+        </ul>
+    </div>
+</div>
