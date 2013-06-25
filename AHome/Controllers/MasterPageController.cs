@@ -26,7 +26,7 @@ namespace AHome.Controllers
 
         public string CheckLoginStatus()
         {
-            string UserName = Session["UserName"].ToString();
+            //string UserName = Session["UserName"].ToString();
 
             return string.Empty;
         }
