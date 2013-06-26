@@ -1,36 +1,9 @@
-﻿var timeout         = 200;
-var closetimer		= 0;
-var ddmenuitem = 0;
-var jQueryItem = 0;
-
-function mopen(id)
-{
-    mcancelclosetime();
-    
-    if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
-
-    ddmenuitem = document.getElementById(id);
-    ddmenuitem.style.visibility = 'visible';
-}
-
-function mclose()
-{
-    if (ddmenuitem) ddmenuitem.style.visibility = 'hidden';
-}
-
-function mclosetime()
-{
-    closetimer = window.setTimeout(mclose, timeout);
-}
-
-function mcancelclosetime()
-{
-    if (closetimer)
-    {
-        window.clearTimeout(closetimer);
-        closetimer = null;
+﻿
+function setph(n) {
+    var tli = document.getElementById("ph1").getElementsByTagName("a");
+    var mli = document.getElementById("ph2").getElementsByTagName("ul");
+    for (i = 0; i < tli.length; i++) {
+        tli[i].className = i == n ? "ph_hover" : "";
+        mli[i].style.display = i == n ? "block" : "none";
     }
 }
-
-document.onclick = mclose;
-

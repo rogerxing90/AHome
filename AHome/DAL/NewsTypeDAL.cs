@@ -6,9 +6,8 @@ using AHome.Models;
 
 namespace AHome.DAL
 {
-    public class NewsTypeDAL
+    public class NewsTypeDAL : BaseDAL
     {
-        private RogerContext db = new RogerContext();
         /// <summary>
         /// 列出tableName所有的实体信息
         /// </summary>

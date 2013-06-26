@@ -6,10 +6,8 @@ using AHome.Models;
 
 namespace AHome.DAL
 {
-    public class CraftTypeDAL
+    public class CraftTypeDAL : BaseDAL
     {
-        private RogerContext db = new RogerContext();
-
         public List<CraftType> ListAll()
         {
             List<CraftType> cragtTypes = new List<CraftType>();

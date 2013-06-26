@@ -3,46 +3,341 @@
 }
 
 
+
 @section featured {
-    <section class="featured">
+    @*    <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>@ViewBag.Title.</h1>
                 <h2>@ViewBag.Message</h2>
             </hgroup>
-@*            <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
-            </p>*@
+
         </div>
-    </section>
+    </section>*@
 }
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
 
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
 
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>
 
+
+
+    <div class="left_side">
+        <form id="fLogin">
+            <div class="logo_bottom">
+            </div>
+            <div class="login">
+                <h4>用户登录</h4>
+                <div class="lg_table" id="divNotLogin">
+                    <table class="table1" width="198" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td width="40" align="right">用户名
+                            </td>
+                            <td width="108" align="center">
+                                <input type="text" id="txtUserName" name="txtUserName" />
+                            </td>
+                            <td width="50" rowspan="2">
+                                <a href="#" id="aLogin">
+                                    <img src='/images/login.png' alt="登录" /></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">密码
+                            </td>
+                            <td align="center">
+                                <input type="password" name="txtPwd" id="txtPwd" />
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="border">
+                    </div>
+                    <table class="table2" width="190" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td width="90">
+                                <a href="#">
+                                    <img src='/images/lg_forget.png' alt="忘记密码" /></a>
+                            </td>
+                            <td width="100">
+                                <a href="#">
+                                    <img src='/images/zhuce.png' alt="注册" /></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="cbUserName" id="cbUserName" /><span>记住用户名</span>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="cbPwd" id="cbPwd" /><span>记住密码</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="lg_table" id="divIsLogin">
+                    <table id="tbIsLogin" class="table1" width="198" cellpadding="0" cellspacing="0"
+                        border="0">
+                        <tr>
+                            <td class="style1" style="height: 90px">
+                                <font style="color: Red">欢迎您回来!</font>
+                                <br />
+                                &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 尊敬的的<font style="color: Red"><label id="lbUserName"></label></font>用户!&nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" class="style2">
+                                <a href='/Member/MemberInfo.htm'>查看个人信息</a>&nbsp; | <a id="A1" href='/Member/Data/GetMemberInfo.ashx?method=MemberLogout'>退出</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </form>
+        <div class="enter enter1">
+            <a href='/Master/MasterLogin.htm'>
+                <img src='/images/master.png' alt="大师入口" title="大师入口" /></a>
+        </div>
+        <div class="enter enter2">
+            <a href='/Company/CompanyLogin.htm'>
+                <img src='/images/company.png' alt="企业入口" title="企业入口" /></a>
+        </div>
+        <div class="paihang">
+            <h3>
+                <p class="hide">
+                    推荐排行榜
+                </p>
+                <p>
+                    <a href="#">更多</a>
+                </p>
+            </h3>
+            <ul class="ph_ul" id="ph1">
+                <li><a href='/Master/MasterList.aspx' onmouseover="setph(0);" class="ph_hover">大师推荐</a></li>
+                <li><a href='/Product/ProductShow.aspx' onmouseover="setph(1);">工艺品推荐</a></li>
+                <li><a href='/Company/CompanyList.aspx' onmouseover="setph(2);">企业推荐</a></li>
+            </ul>
+            <div class="ph_p" id="ph2">
+            </div>
+        </div>
+        <div class="question">
+            <h3>
+                <p class="hide">
+                    参与调查
+                </p>
+            </h3>
+            <table width="200">
+                <tr>
+                    <td colspan="2">
+                        <b>Q.</b><span>您最喜欢以下哪种工艺品？</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" /><span>泥塑</span>
+                    </td>
+                    <td>
+                        <input type="radio" /><span>木雕</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" /><span>陶瓷</span>
+                    </td>
+                    <td>
+                        <input type="radio" /><span>石雕</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#">
+                            <img src='/images/sumbit.gif' alt="提交" /></a>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <img src='/images/see.gif' alt="查看结果" /></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="search">
+            <div class="search_thing">
+                <table width="225">
+                    <tr>
+                        <td height="25">
+                            <select name="select" class="select">
+                                <option>木雕</option>
+                                <option>泥塑</option>
+                                <option>陶瓷</option>
+                            </select>
+                        </td>
+                        <td height="25">
+                            <input type="text" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <a href="#">
+                                <img src='/images/search.png' alt="搜索" /></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="high_search">
+                            <a href='/Search/SearchKnowledge.aspx'>前往高级搜索>></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+   @* <div class="right_side">
+
+        <div class="show_pic">
+            <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="760"
+                height="302">
+                <param name="movie" value="fl/banner.swf" />
+                <param name="quality" value="high" />
+                <param name="wmode" value="opaque" />
+                <param name="swfversion" value="9.0.45.0" />
+                <param name="expressinstall" value="js/expressInstall.swf" />
+                <embed src="fl/banner.swf" quality="high" width="760" height="302" type="application/x-shockwave-flash"
+                    wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>
+                <div>
+                    <h4>此页面上的内容需要较新版本的 Adobe Flash Player。</h4>
+                    <p>
+                        <a href="http://www.adobe.com/go/getflashplayer">
+                            <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif"
+                                alt="获取 Adobe Flash Player" width="112" height="33" /></a>
+                    </p>
+                </div>
+            </object>
+        </div>
+        <div class="rs_nr">
+            <div class="news">
+                <div class="r_s_title1">
+                    <p class="hide">
+                        工艺新闻
+                    </p>
+                    <a href='/News/NewsList.aspx'>
+                        <img src="images/more.png" /></a>
+                </div>
+                <div class="r_s_p">
+                    <div class="gk_pic">
+                        <img src="images/gynews.png" alt="工艺新闻" />
+                    </div>
+                    <p>
+                        潮州工艺品历史悠久，人文积淀深厚,闻名全国的就有大吴泥塑、潮州刺绣、潮州陶瓷和金漆木雕
+                    </p>
+                </div>
+                <div class="r_s_list">
+                    <ul id="ulNews">
+                    </ul>
+                </div>
+            </div>
+            <div class="knowleage">
+                <div class="r_s_title2">
+                    <p class="hide">
+                        工艺知识
+                    </p>
+                    <a href='/CraftKnowledge/CraftKnowledgeList.aspx'>
+                        <img src="images/more.png" /></a>
+                </div>
+                <div class="r_s_p">
+                    <div class="gk_pic">
+                        <img src="images/gyknowleage.png" alt="工艺知识" />
+                    </div>
+                    <p>
+                        潮州工艺品历史悠久，人文积淀深厚,闻名全国的就有大吴泥塑、潮州刺绣、潮州陶瓷和金漆木雕
+                    </p>
+                </div>
+                <div class="r_s_list">
+                    <ul id="ulCraftKnowledge">
+                    </ul>
+                </div>
+            </div>
+            <div class="company">
+                <div class="r_s_title3">
+                    <p class="hide">
+                        企业展示
+                    </p>
+                    <a href='/Company/CompanyList.aspx'>
+                        <img src="images/more.png" /></a>
+                </div>
+                <div class="r_s_p">
+                    <div class="gk_pic">
+                        <img src="images/gycompany.png" alt="企业展示" />
+                    </div>
+                    <p>
+                        潮州工艺品历史悠久，人文积淀深厚,闻名全国的就有大吴泥塑、潮州刺绣、潮州陶瓷和金漆木雕
+                    </p>
+                </div>
+                <div class="r_s_list">
+                    <ul id="ulCompany">
+                    </ul>
+                </div>
+            </div>
+            <div class="master" id="divMaster">
+                <div class="r_s_title4">
+                    <p class="hide">
+                        大师展示
+                    </p>
+                    <a href='/Master/MasterList.aspx'>
+                        <img src="images/more.png" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="pro_show">
+            <h3 class="hide">工艺品展示</h3>
+            <div class="rollbox">
+                <div class="rollbox_left" onmousedown="ISL_GoDown()" onmouseup="ISL_StopDown()" onmouseout="ISL_StopDown()">
+                </div>
+                <div class="cont" id="ISL_Cont">
+                    <div class="scrcont">
+
+                        <div id="List1">
+                            <div class="pic">
+                                <a href="#" target="_blank" class="pic_a">
+                                    <img src="images/loading.gif" alt="pic1" /></a>
+                            </div>
+                            <div class="pic">
+                                <a href="#" target="_blank" class="pic_a">
+                                    <img src="images/loading.gif" alt="pic1" /></a>
+                            </div>
+                            <div class="pic">
+                                <a href="#" target="_blank" class="pic_a">
+                                    <img src="images/loading.gif" alt="pic1" /></a>
+                            </div>
+                            <div class="pic">
+                                <a href="#" target="_blank" class="pic_a">
+                                    <img src="images/loading.gif" alt="pic1" /></a>
+                            </div>
+                            <div class="pic">
+                                <a href="#" target="_blank" class="pic_a">
+                                    <img src="images/loading.gif" alt="pic1" /></a>
+                            </div>
+                            <div class="pic">
+                                <a href="#" target="_blank" class="pic_a">
+                                    <img src="images/loading.gif" alt="pic1" /></a>
+                            </div>
+                        </div>
+                        <div id="List2">
+                        </div>
+                    </div>
+                </div>
+                <div class="rollbox_right" onmousedown="ISL_GoUp()" onmouseup="ISL_StopUp()" onmouseout="ISL_StopUp()">
+                </div>
+            </div>
+        </div>
+
+    </div>*@
+
+
+
+@section scripts{
+    <script src="~/Scripts/Roger/pic_turn.js" type="text/javascript"></script>
+    <script src="~/Scripts/AjaxJs/Default.js" type="text/javascript"></script>@*加载中间内容信息*@
+    <script>
+        $(function () {
+            //加载中间内容信息,一下函数均在Default.js中定义
+            //GetTopNews();
+            //GetCraftKnowledge();
+            //GetTopMasterInfo();
+            //GetTopCompanyInfo();
+            //GetTopProduct();
+        });
+    </script>
+}

@@ -33,6 +33,14 @@ namespace AHome.Models
             };
             craftTypes.ForEach(s => context.CraftTypes.Add(s));
 
+            var members = new List<Member> 
+            {
+                new Member(){ UserName = "roger", Password = "123456", States="1", Email = "rogerxing90@gmail.com"},
+                new Member(){ UserName = "frank", Password = "123456", States="0", Email = "text@gmail.com"}
+            
+            };
+            members.ForEach(s => context.Members.Add(s));
+
             context.SaveChanges();
         }
     }

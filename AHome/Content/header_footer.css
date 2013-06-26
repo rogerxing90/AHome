@@ -106,11 +106,16 @@ body {
 
 
 .footer {                 /*尾部*/
-	width:1000px;
+	/*width:1000px;
 	height:80px;
 	padding-top:67px;
 	position: absolute;
 	bottom: 0;
+	overflow:hidden;
+	background:url(../images/foot.png) no-repeat;*/
+    width:1000px;
+	height:80px;
+	padding-top:67px;
 	overflow:hidden;
 	background:url(../images/foot.png) no-repeat;
 }

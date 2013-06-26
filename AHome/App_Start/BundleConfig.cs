@@ -11,10 +11,12 @@ namespace AHome
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
 
+                        "~/Scripts/Roger/main_nav.js",
                         "~/Scripts/Roger/nav.js",
+                        "~/Scripts/Roger/onLoad.js",
+                        //Ajax js
                         "~/Scripts/AjaxJs/MasterPage.js",
-                        "~/Scripts/Roger/onLoad.js"
-                        
+                        "~/Scripts/AjaxJs/Left_Top_Down.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
@@ -48,6 +50,8 @@ namespace AHome
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+
         }
     }
 }

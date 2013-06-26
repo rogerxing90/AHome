@@ -11,5 +11,6 @@ namespace AHome.Models
         public DbSet<News> News { get; set; }
         public DbSet<NewsType> NewsTypes { get; set; }
         public DbSet<CraftType> CraftTypes { get; set; }
+        public DbSet<Member> Members { get; set; }
     }
 }

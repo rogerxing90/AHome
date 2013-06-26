@@ -55,7 +55,7 @@ table
     border-spacing: 0;
 }
 
-textarea, button, input,
+textarea, button, input
 {
     margin: 0;
     padding: 0;
