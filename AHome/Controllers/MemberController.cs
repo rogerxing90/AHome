@@ -234,5 +234,24 @@ namespace AHome.Controllers
             }
         }
 
+        /// <summary>
+        /// 安全退出
+        /// </summary>
+        /// <param name="context"></param>
+        public void MemberLogout()
+        {
+            string UserName = (string)Session["UserName"];
+            if (!Tools.IsNullOrEmpty(UserName))
+            {
+                //如果session存在,清除session
+                Session.Remove("UserName");
+                Session.Remove("UserId");
+            }
+            //清除cookies
+            CookieHelper.ClearCookie("UserName");
+            CookieHelper.ClearCookie("Pwd");
+            //页面跳转
+            JScript.AlertAndRedirect("安全退出成功!欢迎下次前来访问!", "/Home/Index");
+        }
     }
 }
