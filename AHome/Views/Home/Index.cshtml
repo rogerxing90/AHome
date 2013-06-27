@@ -20,171 +20,171 @@
 
 
 
-    <div class="left_side">
-        <form id="fLogin">
-            <div class="logo_bottom">
-            </div>
-            <div class="login">
-                <h4>用户登录</h4>
-                <div class="lg_table" id="divNotLogin">
-                    <table class="table1" width="198" cellpadding="0" cellspacing="0" border="0">
-                        <tr>
-                            <td width="40" align="right">用户名
-                            </td>
-                            <td width="108" align="center">
-                                <input type="text" id="txtUserName" name="txtUserName" />
-                            </td>
-                            <td width="50" rowspan="2">
-                                <a href="#" id="aLogin">
-                                    <img src='/images/login.png' alt="登录" /></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="right">密码
-                            </td>
-                            <td align="center">
-                                <input type="password" name="txtPwd" id="txtPwd" />
-                            </td>
-                        </tr>
-                    </table>
-                    <div class="border">
-                    </div>
-                    <table class="table2" width="190" cellpadding="0" cellspacing="0" border="0">
-                        <tr>
-                            <td width="90">
-                                <a href="#">
-                                    <img src='/images/lg_forget.png' alt="忘记密码" /></a>
-                            </td>
-                            <td width="100">
-                                <a href="#">
-                                    <img src='/images/zhuce.png' alt="注册" /></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="cbUserName" id="cbUserName" /><span>记住用户名</span>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="cbPwd" id="cbPwd" /><span>记住密码</span>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="lg_table" id="divIsLogin">
-                    <table id="tbIsLogin" class="table1" width="198" cellpadding="0" cellspacing="0"
-                        border="0">
-                        <tr>
-                            <td class="style1" style="height: 90px">
-                                <font style="color: Red">欢迎您回来!</font>
-                                <br />
-                                &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 尊敬的的<font style="color: Red"><label id="lbUserName"></label></font>用户!&nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="center" class="style2">
-                                <a href='/Member/MemberInfo.htm'>查看个人信息</a>&nbsp; | <a id="A1" href='/Member/Data/GetMemberInfo.ashx?method=MemberLogout'>退出</a>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </form>
-        <div class="enter enter1">
-            <a href='/Master/MasterLogin.htm'>
-                <img src='/images/master.png' alt="大师入口" title="大师入口" /></a>
+<div class="left_side">
+    <form id="fLogin">
+        <div class="logo_bottom">
         </div>
-        <div class="enter enter2">
-            <a href='/Company/CompanyLogin.htm'>
-                <img src='/images/company.png' alt="企业入口" title="企业入口" /></a>
-        </div>
-        <div class="paihang">
-            <h3>
-                <p class="hide">
-                    推荐排行榜
-                </p>
-                <p>
-                    <a href="#">更多</a>
-                </p>
-            </h3>
-            <ul class="ph_ul" id="ph1">
-                <li><a href='/Master/MasterList.aspx' onmouseover="setph(0);" class="ph_hover">大师推荐</a></li>
-                <li><a href='/Product/ProductShow.aspx' onmouseover="setph(1);">工艺品推荐</a></li>
-                <li><a href='/Company/CompanyList.aspx' onmouseover="setph(2);">企业推荐</a></li>
-            </ul>
-            <div class="ph_p" id="ph2">
-            </div>
-        </div>
-        <div class="question">
-            <h3>
-                <p class="hide">
-                    参与调查
-                </p>
-            </h3>
-            <table width="200">
-                <tr>
-                    <td colspan="2">
-                        <b>Q.</b><span>您最喜欢以下哪种工艺品？</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="radio" /><span>泥塑</span>
-                    </td>
-                    <td>
-                        <input type="radio" /><span>木雕</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="radio" /><span>陶瓷</span>
-                    </td>
-                    <td>
-                        <input type="radio" /><span>石雕</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="#">
-                            <img src='/images/sumbit.gif' alt="提交" /></a>
-                    </td>
-                    <td>
-                        <a href="#">
-                            <img src='/images/see.gif' alt="查看结果" /></a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="search">
-            <div class="search_thing">
-                <table width="225">
+        <div class="login">
+            <h4>用户登录</h4>
+            <div class="lg_table" id="divNotLogin">
+                <table class="table1" width="198" cellpadding="0" cellspacing="0" border="0">
                     <tr>
-                        <td height="25">
-                            <select name="select" class="select">
-                                <option>木雕</option>
-                                <option>泥塑</option>
-                                <option>陶瓷</option>
-                            </select>
+                        <td width="40" align="right">用户名
                         </td>
-                        <td height="25">
-                            <input type="text" value="" />
+                        <td width="108" align="center">
+                            <input type="text" id="txtUserName" name="txtUserName" />
+                        </td>
+                        <td width="50" rowspan="2">
+                            <a href="#" id="aLogin">
+                                <img src='/images/login.png' alt="登录" /></a>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td align="right">密码
+                        </td>
+                        <td align="center">
+                            <input type="password" name="txtPwd" id="txtPwd" />
+                        </td>
+                    </tr>
+                </table>
+                <div class="border">
+                </div>
+                <table class="table2" width="190" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td width="90">
                             <a href="#">
-                                <img src='/images/search.png' alt="搜索" /></a>
+                                <img src='/images/lg_forget.png' alt="忘记密码" /></a>
+                        </td>
+                        <td width="100">
+                            <a href="#">
+                                <img src='/images/zhuce.png' alt="注册" /></a>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="high_search">
-                            <a href='/Search/SearchKnowledge.aspx'>前往高级搜索>></a>
+                        <td>
+                            <input type="checkbox" name="cbUserName" id="cbUserName" /><span>记住用户名</span>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="cbPwd" id="cbPwd" /><span>记住密码</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="lg_table" id="divIsLogin">
+                <table id="tbIsLogin" class="table1" width="198" cellpadding="0" cellspacing="0"
+                    border="0">
+                    <tr>
+                        <td class="style1" style="height: 90px">
+                            <font style="color: Red">欢迎您回来!</font>
+                            <br />
+                            &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 尊敬的的<font style="color: Red"><label id="lbUserName"></label></font>用户!&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" class="style2">
+                            <a href='/Member/MemberInfo.htm'>查看个人信息</a>&nbsp; | <a id="A1" href='/Member/Data/GetMemberInfo.ashx?method=MemberLogout'>退出</a>
                         </td>
                     </tr>
                 </table>
             </div>
         </div>
+    </form>
+    <div class="enter enter1">
+        <a href='/Master/MasterLogin.htm'>
+            <img src='/images/master.png' alt="大师入口" title="大师入口" /></a>
     </div>
-   @* <div class="right_side">
+    <div class="enter enter2">
+        <a href='/Company/CompanyLogin.htm'>
+            <img src='/images/company.png' alt="企业入口" title="企业入口" /></a>
+    </div>
+    <div class="paihang">
+        <h3>
+            <p class="hide">
+                推荐排行榜
+            </p>
+            <p>
+                <a href="#">更多</a>
+            </p>
+        </h3>
+        <ul class="ph_ul" id="ph1">
+            <li><a href='/Master/MasterList.aspx' onmouseover="setph(0);" class="ph_hover">大师推荐</a></li>
+            <li><a href='/Product/ProductShow.aspx' onmouseover="setph(1);">工艺品推荐</a></li>
+            <li><a href='/Company/CompanyList.aspx' onmouseover="setph(2);">企业推荐</a></li>
+        </ul>
+        <div class="ph_p" id="ph2">
+        </div>
+    </div>
+    <div class="question">
+        <h3>
+            <p class="hide">
+                参与调查
+            </p>
+        </h3>
+        <table width="200">
+            <tr>
+                <td colspan="2">
+                    <b>Q.</b><span>您最喜欢以下哪种工艺品？</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" /><span>泥塑</span>
+                </td>
+                <td>
+                    <input type="radio" /><span>木雕</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" /><span>陶瓷</span>
+                </td>
+                <td>
+                    <input type="radio" /><span>石雕</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#">
+                        <img src='/images/sumbit.gif' alt="提交" /></a>
+                </td>
+                <td>
+                    <a href="#">
+                        <img src='/images/see.gif' alt="查看结果" /></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="search">
+        <div class="search_thing">
+            <table width="225">
+                <tr>
+                    <td height="25">
+                        <select name="select" class="select">
+                            <option>木雕</option>
+                            <option>泥塑</option>
+                            <option>陶瓷</option>
+                        </select>
+                    </td>
+                    <td height="25">
+                        <input type="text" value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <a href="#">
+                            <img src='/images/search.png' alt="搜索" /></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="high_search">
+                        <a href='/Search/SearchKnowledge.aspx'>前往高级搜索>></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+@* <div class="right_side">
 
         <div class="show_pic">
             <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="760"

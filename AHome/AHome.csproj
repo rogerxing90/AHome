@@ -164,6 +164,7 @@
     <Compile Include="BLL\CraftTypeBLL.cs" />
     <Compile Include="BLL\MemberBLL.cs" />
     <Compile Include="BLL\NewsTypeBLL.cs" />
+    <Compile Include="BLL\ProvinceBLL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MasterPageController.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="DAL\CraftTypeDAL.cs" />
     <Compile Include="DAL\MemberDAL.cs" />
     <Compile Include="DAL\NewsTypeDAL.cs" />
+    <Compile Include="DAL\ProvinceDAL.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -181,12 +183,16 @@
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsType.cs" />
+    <Compile Include="Models\Province.cs" />
     <Compile Include="Models\RogerContext.cs" />
     <Compile Include="Models\RogerInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\CommonLibs\genders.txt" />
+    <Content Include="Admin\CommonLibs\national.txt" />
     <Content Include="Admin\css\validationEngine.jquery.css" />
+    <Content Include="Content\gr.css" />
     <Content Include="Content\header_footer.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\Style.css" />
@@ -246,6 +252,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="App_Data\DBCSVFile\Province.csv" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\120.jpg" />
     <Content Include="Images\alipay.gif" />
@@ -427,6 +434,8 @@
     <Content Include="Scripts\AjaxJs\Default.js" />
     <Content Include="Scripts\AjaxJs\Left_Top_Down.js" />
     <Content Include="Scripts\AjaxJs\MasterPage.js" />
+    <Content Include="Scripts\AjaxJs\MemberInfo.js" />
+    <Content Include="Scripts\AjaxJs\MemberLogin.js" />
     <Content Include="Scripts\AjaxJs\MemberZoneInfo.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -477,10 +486,10 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Member\RegisterMember.cshtml" />
+    <Content Include="Views\Member\MemberLogin.cshtml" />
+    <Content Include="Views\Member\MemberInfo.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

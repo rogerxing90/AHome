@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using Common;
 
 namespace AHome.Models
 {
@@ -35,11 +36,13 @@ namespace AHome.Models
 
             var members = new List<Member> 
             {
-                new Member(){ UserName = "roger", Password = "123456", States="1", Email = "rogerxing90@gmail.com"},
-                new Member(){ UserName = "frank", Password = "123456", States="0", Email = "text@gmail.com"}
+                new Member(){ UserName = "roger", Password = Tools.GetMD5("123456"), States="1", Email = "rogerxing90@gmail.com"},
+                new Member(){ UserName = "frank", Password = Tools.GetMD5("123456"), States="0", Email = "text@gmail.com"}
             
             };
             members.ForEach(s => context.Members.Add(s));
+
+
 
             context.SaveChanges();
         }

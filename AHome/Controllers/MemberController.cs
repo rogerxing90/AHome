@@ -20,6 +20,16 @@ namespace AHome.Controllers
             return View();
         }
 
+        public ActionResult MemberLogin()
+        {
+            return View();
+        }
+
+        public ActionResult MemberInfo()
+        {
+            return View();
+        }
+
         //Ajax
         public string CheckExistUserName()
         {
@@ -108,6 +118,119 @@ namespace AHome.Controllers
             {
                 //logger.Error("错误!", ex);
                 return errorString;
+            }
+        }
+
+        /// <summary>
+        /// 检查用户登录状态
+        /// </summary>
+        public string CheckLoginStatus()
+        {
+            string UserName = (string)Session["UserName"];
+            bool Status = false;
+            string jsonString;
+            if (!Tools.IsNullOrEmpty(UserName))
+            {
+                //如果session存在,直接返回用户状态
+                jsonString = bll.WriteJsonForReturn(true, UserName);
+            }
+            else
+            {
+                //用户自动登录状态检测
+                jsonString = bll.CheckLoginStatus(out Status);
+                //登录成功!
+                if (Status)
+                {
+                    Session["UserName"] = CookieHelper.GetCookieValue("UserName");
+                }
+
+
+            }
+            //如果登录成功,则把用户ID放在Session中
+            if (Status == true && Tools.IsNullOrEmpty(Session["UserId"]))
+            {
+                Session["UserId"] = bll.GetMemberId(UserName);
+            }
+
+            return jsonString;
+
+        }
+
+        //避免与上面MemberLogin重名出错
+        public string MemberAjaxLogin()
+        {
+            try
+            {
+                //获取数据
+                string Name = Request["Name"];
+                string Pwd = Request["Pwd"];
+                string IsSaveName = Request["cbName"];
+                string IsSavePwd = Request["cbPwd"];
+                //用户登录状态
+                bool Status = false;
+                //返回给客户端的json数据
+                string ReturnJson = "";
+                //sql注入检测
+                if (Tools.IsValidInput(ref Name, true) && (Tools.IsValidInput(ref Pwd, true)) && (Tools.IsValidInput(ref IsSaveName, true)) && (Tools.IsValidInput(ref IsSavePwd, true)))
+                {
+                    Member info = new Member();
+                    MemberBLL bll = new MemberBLL();
+                    info.UserName = Name;
+                    info.Password = Pwd;
+                    ReturnJson = bll.ReturnJson(info, out Status);
+                    if (Status) //如果成功登陆
+                    {
+                        //记住帐号和密码
+                        bll.RememberUserInfo(info, bll.GetRememberType(IsSaveName, IsSavePwd));
+
+                        //保存登录状态
+                        Session["UserName"] = info.UserName;
+                        //如果登录成功,则把用户ID放在Session中
+                        if (Tools.IsNullOrEmpty(Session["UserId"]))
+                        {
+                            Session["UserId"] = bll.GetMemberId(info.UserName);
+                        }
+                    }
+                }
+
+                return ReturnJson;
+            }
+            catch (Exception ex)
+            {
+                //logger.Error("会员登录出错!", ex);
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// 获取地区(省市联动)
+        /// </summary>
+        /// <param name="context"></param>
+        public string GetArea()
+        {
+            //省市联动(根据父级id获取子级)
+            string Pid = Request["CodeId"];
+            if (Tools.IsValidInput(ref Pid, true))
+            {
+                return new ProvinceBLL().GetAreaByJson(Pid);
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public string GetUserInfo()
+        {
+            string UserName = (string)Session["UserName"];
+            if (!Tools.IsNullOrEmpty(UserName))
+            {
+                //如果session存在,直接返回用户状态
+                return bll.GetMemberInfoByJson(UserName);
+            }
+            else
+            {
+                return string.Empty;
             }
         }
 

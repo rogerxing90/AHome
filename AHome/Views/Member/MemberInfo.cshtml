@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "会员信息";
+}
+
+@section css{
+    <link href="../Admin/css/validationEngine.jquery.css" rel="stylesheet" />
+    <link href="~/Content/gr.css" rel="stylesheet" />
+}
+
+<div class="left_side">
+    <div class="logo_bottom">
+    </div>
+    <div class="gr">
+        <div class="gr_title">
+            <h4>个人信息管理</h4>
+        </div>
+        <ul class="gr_ul">
+            <li><a href='<%=URLManage.GetURL("~/Member/MemberInfo","")%>'>修改个人信息</a></li>
+            <li><a href='<%=URLManage.GetURL("~/Member/ForgetSercret","")%>'>找回密码</a></li>
+            <li><a href='<%=URLManage.GetURL("~/Member/ChangeSercret","")%>'>修改密码</a></li>
+            <li><a href='<%=URLManage.GetURL("~/Member/Collection","")%>'>我的收藏夹</a></li>
+            <li><a href='<%=URLManage.GetURL("~/Member/ShopingCart","")%>'>我的购物车</a></li>
+            <li><a href='<%=URLManage.GetURL("~/Member/OrderManage","")%>'>订单管理</a></li>
+            <li><a href='<%=URLManage.GetURL("~/Member/ComfirmGetGoods","")%>'>收货管理</a></li>
+            <li><a href='<%=URLManage.GetURL("~/Member/ProductComment","")%>'>产品评价</a></li>
+
+
+        </ul>
+    </div>
+</div>
+
+<form id="form1">
+    <div class="zz">
+        <div class="xgmm">
+            <div class="xgmm_tt">
+                <h3>个人信息设置</h3>
+            </div>
+            <p class="xgmm_tip">
+                温馨提示您：内容填写完后请仔细核对。
+            </p>
+            <h4 class="grxx_h4">会员信息</h4>
+            <ul class="xgmm_ul grxx_ul1">
+                <li><span>用户名：</span><span><input type="text" id="txtUserName" name="txtUserName"
+                    disabled="disabled" /></span></li>
+                <li class="zhmm_radio"><span>性别：</span><input type="radio" id="Man" checked="checked" name="sex" />男<input
+                    type="radio" name="sex" id="Woman" />女</li>
+                <li><span>民族：</span><select id="selNational"></select></li>
+                <li><span>QQ：</span><input type="text" id="txtQQ" name="txtQQ" class="xgmm_text validate[required,custom[QQ]] text-input" /></li>
+                <li><span>E-mail：</span><input type="text" id="txtEmail" name="txtEmail" class="xgmm_text validate[required,custom[email]] text-input" disabled="disabled" />
+                    (已绑定 @*<a id="aChangeEmail" href="#" onclick="ChangeEmail()">更改</a>*@) </li>
+            </ul>
+            <h4 class="grxx_h4">地址设置</h4>
+            <ul class="xgmm_ul grxx_ul1">
+                <li><span>所在地区：</span>
+                    <select id="selProvince" name="selProvince" class="validate[required]" style="width: 100px">
+                    </select>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                    <select id="selCity" name="selCity" class="validate[required]" style="width: 100px">
+                    </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <select id="selCountry" name="selCountry" class="validate[required]" style="width: 100px">
+                    </select>
+                </li>
+                <li><span>街道地址：</span><input type="text" id="txtHomeBase" name="txtHomeBase" class="grxx_text1" />
+                    (不需要重复填写省市地区)</li>
+                <li><span>邮编：</span><input type="text" id="txtZipCode" name="txtZipCode" class="grxx_text2 validate[required,custom[Zipcode]] text-input" /></li>
+                <li><span>手机号码：</span><input type="text" id="txtMobilePhone" name="txtMobilePhone"
+                    class="xgmm_text validate[required,custom[Mobile]] text-input" /></li>
+                <li><span>电话号码：</span><input type="text"
+                    id="txtTelPhone" name="txtTelPhone" class="xgmm_text validate[required,custom[phone]] text-input" />
+                    (格式：区号-电话号码)</li>
+                <li class="xgmm_bt">
+                    <input type="button" id="btnUpdate" class="xgmm_bt1" onclick="Comit()" />@*<input type="reset" value="" class="xgmm_bt2" />*@</li>
+            </ul>
+        </div>
+    </div>
+</form>
+
+
+@section scripts{
+    <script src="~/Scripts/Roger/jquery.validationEngine.js" type="text/javascript"></script>
+    <script src="~/Scripts/languages/jquery.validationEngine-zh_CN.js" type="text/javascript"></script>
+    <script src="~/Scripts/AjaxJs/MemberInfo.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        //初始化函数均在MemberInfo.js中定义
+        $(function () {
+            $("#form1").validationEngine();
+            //省市数据初始化
+            GetProvince();
+            //获取民族信息
+            GetNation();
+            //绑定事件  
+            $("#selProvince").change(function () {
+                GetCity();
+            });
+            $("#selCity").change(function () {
+                GetCountry();
+            });
+            GetUserInfo();
+        });
+    </script>
+}

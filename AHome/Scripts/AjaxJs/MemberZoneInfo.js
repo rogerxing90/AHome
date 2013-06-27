@@ -129,7 +129,7 @@
        success: function(ReturnData) {
          var jsonInfo = $.parseJSON(ReturnData);
          if (jsonInfo.Status) {
-           alert("用户注册成功,请在一个小时内前往" + jsonInfo.Email + "激活邮箱!");
+           alert("用户注册成功,请在一个小时内前往" + jsonInfo.UserName + "激活邮箱!");
            window.location.href = "/Home/Index";
          } else {
            alert("注册失败!");
