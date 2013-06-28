@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace Common
 {
@@ -57,6 +58,7 @@ namespace Common
         public static string GetMD5(string s)
         {
             //md5加密
+            //该方法在.net framework中已废弃
             s = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(s, "md5").ToString();
 
             return s.ToLower().Substring(8, 16);
