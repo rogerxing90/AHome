@@ -9,8 +9,8 @@
 //在Left_Top_Down.js中定义
     //检测登录状态，第一次登录需要检测是否自动登录
 
-    //CheckLoginState();
-    //Login();
+    CheckLoginState();
+    Login();
     //TopRank();
 
 

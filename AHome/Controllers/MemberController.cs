@@ -27,6 +27,8 @@ namespace AHome.Controllers
 
         public ActionResult MemberInfo()
         {
+            string userName = Request["UserName"];
+
             return View();
         }
 

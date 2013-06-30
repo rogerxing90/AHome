@@ -13,6 +13,7 @@
 //}
 //登录 
 
+//Index页面左侧框的登录
 function Login() {
 
     $("#aLogin").click(function() {
@@ -39,7 +40,8 @@ function Login() {
             "cbPwd": cbPwd
         }
         $.ajax({
-            url: "/Member/Data/GetMemberInfo.ashx?method=MemberLogin",
+            //url: "/Member/Data/GetMemberInfo.ashx?method=MemberLogin",
+            url: "/Member/MemberAjaxLogin",
             type: "post",
             data: Data,
             success: function(ReturnData, status) {
@@ -67,18 +69,20 @@ function Login() {
 
 function CheckLoginState() {
     $.ajax({
-        url: '/Member/Data/GetMemberInfo.ashx?method=CheckLoginStatus',
+        url: '/Member/CheckLoginStatus',
         type: "post",
          success: function(data) {
              var jsonInfo = $.parseJSON(data);
              // alert(data);
              //同时记住账号和密码
              if (jsonInfo.Status && jsonInfo.UserName != "") {
+                 //Index页面
                  $("#divNotLogin").hide();
                  $("#divIsLogin").show();
+                 $("#lbUserName").text(jsonInfo.UserName);
+                 //NavBar页面
                  $("#liLogin").hide();
                  $("#liLogout").show();
-                 $("#lbUserName").text(jsonInfo.UserName);
                  $("#lbUserNameInfo").text(jsonInfo.UserName + "的");
 
              }

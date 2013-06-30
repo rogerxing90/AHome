@@ -82,6 +82,13 @@
     <script type="text/javascript">
         //初始化函数均在MemberInfo.js中定义
         $(function () {
+            //BUG_1
+            $("#liLogin").hide();
+            $("#liLogout").show();
+            $("#lbUserNameInfo").text('@Session["UserName"]' + "的");
+
+
+
             $("#form1").validationEngine();
             //省市数据初始化
             GetProvince();

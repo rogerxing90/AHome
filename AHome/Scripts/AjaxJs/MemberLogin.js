@@ -45,15 +45,20 @@
         success: function(ReturnData, status) {
           var jsonInfo = $.parseJSON(ReturnData);
           if (jsonInfo.Status) {
-            $("#liLogin").hide();
-            $("#liLogout").show();
-            $("#lbUserNameInfo").text(jsonInfo.UserName + "的");
+            //此处操作母版Dom，跳到MemberInfo页面后被重置。
+            //$("#liLogin").hide();
+            //$("#liLogout").show();
+            //$("#lbUserNameInfo").text(jsonInfo.UserName + "的");
+
+            //BUG_1 
             window.location.href = '/Member/MemberInfo';
           } else {
             alert("您输入的帐号或密码错误!也有可能您的帐号未邮箱激活!");
           }
 
-        }
+        },
+        error: function (ReturnData, status)
+        { }
 
       });
 
