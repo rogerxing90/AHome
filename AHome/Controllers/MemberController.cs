@@ -72,9 +72,9 @@ namespace AHome.Controllers
                     info.States = "0";
 
                     //加随机验证码
-                    //info.VCode = Guid.NewGuid().ToString("N");
+                    info.VCode = Guid.NewGuid().ToString("N");
                     //验证失效(1小时以内激活有效)
-                    //info.VTime = DateTime.Now.AddHours(1);
+                    info.VTime = DateTime.Now.AddHours(1);
 
                     //验证用户名
                     if (!bll.CheckExistUserName(info.UserName))
@@ -83,33 +83,40 @@ namespace AHome.Controllers
                     }
                     if (bll.AddNew(info))
                     {
-                        return bll.WriteJsonForReturn(true, info.Email);
+                        string activationUrl = Request.Url.Scheme + "://" + Request.Url.Authority + System.Web.VirtualPathUtility.ToAbsolute("~/Member/EmailChecking") + "?UserName=" + Server.UrlEncode(info.UserName) + "&YZM=" + info.VCode;
+                        string body = "尊敬的" + info.UserName + "用户:请点击些链接激活:";
+                        body += "<a href=" + activationUrl + ">" + activationUrl + "</a>";
+
+                        SMTP smtp = new SMTP(info.Email);
+                    if (smtp.sendemail("用户激活",body))
+
+                        //RogerSMTP roger = new RogerSMTP(info.Email, "用户激活", body);
+                        //if (roger.Send())
+                    {
+                            return bll.WriteJsonForReturn(true, Tools.GetEmail(info.Email));
+                        }
+                        else
+                        {
+                            return errorString;
+                        }
+                        //SMTP smtp = new SMTP(info.Email);
+                        ////激活网址生成
+                        //string webpath = Request.Url.Scheme + "://" + Request.Url.Authority + System.Web.VirtualPathUtility.ToAbsolute("~/Member/EmailChecking.aspx") + "?UserName=" + Server.UrlEncode(info.UserName) + "&YZM=" + info.VCode;
+                        ////发送激活邮件
+                        //if (smtp.Activation(webpath, info.UserName))
+                        //{
+                        //    return bll.WriteJsonForReturn(true, Tools.GetEmail(info.Email));
+
+                        //}
+                        //else
+                        //{
+                        //    return errorString;
+                        //}
                     }
                     else
                     {
                         return errorString;
                     }
-                    //if (bll.AddNew(info) > 0)
-                    //{
-                    //    SMTP smtp = new SMTP(info.Email);
-                    //    //激活网址生成
-                    //    string webpath = context.Request.Url.Scheme + "://" + context.Request.Url.Authority + System.Web.VirtualPathUtility.ToAbsolute("~/Member/EmailChecking.aspx") + "?UserName=" + context.Server.UrlEncode(info.username) + "&YZM=" + info.VCode;
-                    //    //发送激活邮件
-                    //    if (smtp.Activation(webpath, info.username))
-                    //    {
-
-                    //        context.Response.Write(bll.WriteJsonForReturn(true, Tools.GetEmail(info.Email)));
-
-                    //    }
-                    //    else
-                    //    {
-                    //        context.Response.Write(bll.WriteJsonForReturn(false, ""));
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    context.Response.Write(bll.WriteJsonForReturn(false, ""));
-                    //}
                 }
                 else
                 {
@@ -254,6 +261,75 @@ namespace AHome.Controllers
             CookieHelper.ClearCookie("Pwd");
             //页面跳转
             JScript.AlertAndRedirect("安全退出成功!欢迎下次前来访问!", "/Home/Index");
+        }
+
+
+        public string ForgetPwd()
+        {
+            string returnJsonString =string.Empty;
+            string UserName = Request["UserName"];
+            //string CheckCode = Request["CheckCode"];
+            string Email = Request["Email"];
+            //验证码校验
+            //if (!CheckCode.Equals(Session["checkcode"].ToString()))
+            //{
+            //    returnJsonString = bll.WriteJsonForReturn(false, "验证码不正确!");
+            //}
+            //字符串sql注入检测
+            if (Tools.IsValidInput(ref UserName, true) && Tools.IsValidInput(ref Email, true))
+            {
+                //获取用户邮箱
+
+                //邮箱和用户名状态(正确与否)
+                bool status = bll.CheckUserNameAndEmail(UserName, Email);
+                //随机生成一个6位的新密码
+                string NewPwd = bll.CreateNewPwd();
+                if (!string.IsNullOrEmpty(Email) && status && bll.UpdatePwd(UserName, NewPwd))
+                {
+                    SMTP smtp = new SMTP(Email);
+                    if (smtp.sendemail("潮州工艺品平台", "尊敬的" + UserName + "用户:恭喜您,您在" + DateTime.Now.ToString() + "使用找回密码功能重置密码,您的密码:" + NewPwd + ",请尽快修改密码并妥善保管!"))
+                    {
+                        returnJsonString = bll.WriteJsonForReturn(true, Tools.GetEmail(Email));
+                    }
+                    else
+                    {
+                        returnJsonString = bll.WriteJsonForReturn(false, "邮箱发送失败!");
+                    }
+                }
+                else
+                {
+                    returnJsonString = bll.WriteJsonForReturn(false, "用户名或邮箱不正确!");
+                }
+
+
+            }
+            else
+            {
+                returnJsonString = bll.WriteJsonForReturn(false, "输入非法内容!");
+            }
+
+            return returnJsonString;
+        }
+
+        /// <summary>
+        /// 激活帐号
+        /// </summary>
+        /// <returns></returns>
+        public string ActivationMemberNumber()
+        {
+            //注意要对url解码
+            string UserName = Server.UrlDecode(Request["UserName"]);
+
+            string VCode = Request["VCode"];
+            //激活
+            if (Tools.IsValidInput(ref UserName, true) && Tools.IsValidInput(ref VCode, true))
+            {
+                return bll.WriteJsonForReturn(bll.ActivationMemberNumber(UserName, VCode), ""); ;
+            }
+            else
+            {
+                return bll.WriteJsonForReturn(false, "");
+            }
         }
     }
 }

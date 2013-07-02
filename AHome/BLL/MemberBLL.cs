@@ -13,6 +13,7 @@ namespace AHome.BLL
 {
     public class MemberBLL
     {
+        private MemberDAL mdal = new MemberDAL();
         /// <summary>
         /// 检验用户名是否存在
         /// </summary>
@@ -20,7 +21,7 @@ namespace AHome.BLL
         /// <returns></returns>
         public bool CheckExistUserName(string userName)
         {
-            return new MemberDAL().GetSpecifiedUserNameCount(userName) == 0;
+            return mdal.GetSpecifiedUserNameCount(userName) == 0;
         }
 
         /// <summary>
@@ -30,7 +31,7 @@ namespace AHome.BLL
         /// <returns>执行状态</returns>
         public bool AddNew(Member model)
         {
-            return new MemberDAL().AddNew(model);
+            return mdal.AddNew(model);
         }
 
         #region 为用户登录写入json数据
@@ -82,7 +83,7 @@ namespace AHome.BLL
             else
             {
                 //查找该用户真实密码,并进行md5加密
-                string password = new MemberDAL().GetPassword(UserName);
+                string password = mdal.GetPassword(UserName);
                 //如果两次密码相同则可以自动登陆了
                 if (password != Pwd)
                 {
@@ -97,7 +98,7 @@ namespace AHome.BLL
 
         public string GetMemberId(string username)
         {
-            return new MemberDAL().GetMemberId(username);
+            return mdal.GetMemberId(username);
         }
 
         #region 用户登录
@@ -109,7 +110,7 @@ namespace AHome.BLL
         public bool MemberLogin(Member info)
         {
             info.Password = Tools.GetMD5(info.Password);
-            return new MemberDAL().MemberLogin(info);
+            return mdal.MemberLogin(info);
         }
         #endregion
 
@@ -212,7 +213,7 @@ namespace AHome.BLL
         public string GetMemberInfoByJson(string UserName)
         {
             bool Status = false;
-            Member info = new MemberDAL().GetMemberInfo(UserName);
+            Member info = mdal.GetMemberInfo(UserName);
             if (info != null)
             {
                 Status = true;
@@ -274,6 +275,91 @@ namespace AHome.BLL
                 jsonWriter.WriteEndObject();
             }
             return json.ToString();
+        }
+        #endregion
+
+        #region 检查用户名和邮箱
+        /// <summary>
+        /// 检查用户名和邮箱
+        /// </summary>
+        /// <param name="UserName">用户名</param>
+        /// <param name="Email">邮箱</param>
+        /// <returns></returns>
+        public bool CheckUserNameAndEmail(string UserName, string Email)
+        {
+            Member info = mdal.GetMemberInfo(UserName);
+            return Email == info.Email;
+        }
+        #endregion
+
+        #region 随机生成一个6位的密码
+        /// <summary>
+        /// 随机生成一个6位的密码
+        /// </summary>
+        /// <returns></returns>
+        public string CreateNewPwd()
+        {
+            string Pwd = "";
+            Random ran = new Random(DateTime.Now.Second);
+            for (int i = 0; i < 6; i++)
+            {
+                Pwd += ran.Next(1, 10);
+            }
+            return Pwd;
+        }
+        #endregion
+
+        #region 修改密码
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="UserName">用户名</param>
+        /// <param name="Pwd">密码</param>
+        /// <returns></returns>
+        public bool UpdatePwd(string UserName, string Pwd)
+        {
+            return mdal.UpdatePassword(UserName, Tools.GetMD5(Pwd));
+        }
+
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="UserName">用户名</param>
+        /// <param name="oldPwd">旧密码</param>
+        /// <param name="newPwd">新密码</param>
+        /// <returns></returns>
+        public bool UpdatePassword(string UserName, string oldPwd, string newPwd)
+        {
+            string Pwd = mdal.GetPassword(UserName);
+            if (Pwd == Tools.GetMD5(oldPwd))
+            {
+                //加密并且更新
+                return mdal.UpdatePassword(UserName, Tools.GetMD5(newPwd));
+            }
+            return false;
+        }
+        #endregion
+
+        #region 验证用户信息
+        /// <summary>
+        /// 验证用户信息
+        /// </summary>
+        /// <param name="UserName">用户名</param>
+        /// <param name="GuidInfo">guid随机码</param>
+        public bool ActivationMemberNumber(string UserName, string GuidInfo)
+        {
+            //获取过期时间
+            DateTime dt = mdal.GetMemberVTime(UserName, GuidInfo);
+            //如果已经过期
+            if (dt < DateTime.Now)
+            {
+                return false;
+            }
+            else
+            {
+                //激活帐号
+                return mdal.ActivationMemberStatus(UserName);
+            }
         }
         #endregion
     }

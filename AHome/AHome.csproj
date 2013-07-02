@@ -457,6 +457,7 @@
     <Content Include="Scripts\Roger\nav.js" />
     <Content Include="Scripts\Roger\onLoad.js" />
     <Content Include="Scripts\Roger\pic_turn.js" />
+    <Content Include="Scripts\Roger\queryUrlParams.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -490,6 +491,7 @@
     <Content Include="Views\Member\RegisterMember.cshtml" />
     <Content Include="Views\Member\MemberLogin.cshtml" />
     <Content Include="Views\Member\MemberInfo.cshtml" />
+    <Content Include="Views\Member\EmailChecking.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

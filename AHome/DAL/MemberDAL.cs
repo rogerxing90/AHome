@@ -18,6 +18,8 @@ namespace AHome.DAL
             return db.Members.Count(s => s.UserName == username);
         }
 
+        
+
         public bool AddNew(Member member) 
         {
             try
@@ -30,7 +32,6 @@ namespace AHome.DAL
             {
                 return false;
             }
-
         }
         /// <summary>
         /// 根据username获取password
@@ -89,6 +90,65 @@ namespace AHome.DAL
         public bool MemberLogin(Member info)
         {
             return db.Members.Count(s => s.UserName == info.UserName && s.Password == info.Password && s.States == "1") > 0;
+        }
+        #endregion
+
+        #region 修改密码
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="UserName">用户名</param>
+        /// <param name="Password">密码</param>
+        /// <returns></returns>
+        public bool UpdatePassword(string UserName, string Password)
+        {
+            try
+            {
+                Member updateM = GetMemberInfo(UserName);
+                updateM.Password = Password;
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region 根据用户名和随即验证码查找用户激活帐号的过期时间
+        /// <summary>
+        /// 根据用户名和随即验证码查找用户激活帐号的过期时间
+        /// </summary>
+        /// <param name="UserName">用户名</param>
+        /// <param name="VCode">激活码</param>
+        /// <returns></returns>
+        public DateTime GetMemberVTime(string UserName, string VCode)
+        {
+            return (DateTime)db.Members.First(s => s.UserName == UserName && s.VCode == VCode).VTime;
+        }
+        #endregion
+
+        #region 激活帐号
+        /// <summary>
+        /// 激活帐号
+        /// </summary>
+        /// <param name="UserName">用户名</param>
+        /// <returns></returns>
+        public bool ActivationMemberStatus(string UserName)
+        {
+            try
+            {
+                Member member = GetMemberInfo(UserName);
+                member.States = "1";
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
         #endregion
     }

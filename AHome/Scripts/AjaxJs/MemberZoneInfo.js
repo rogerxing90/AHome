@@ -27,7 +27,7 @@
 
  function EmailChecking() {
    $.ajax({
-     url: "Data/GetMemberInfo.ashx?method=ActivationMemberNumber",
+     url: "/Member/ActivationMemberNumber",
      type: "post",
      data: Data,
      success: function(ReturnData) {
@@ -49,18 +49,18 @@
 
  function ForgetSercret() {
    $.ajax({
-     url: "Data/GetMemberInfo.ashx?method=ForgetPwd",
+     url: "/Member/ForgetPwd",
      data: {
-       "UserName": $("#txtUserName").val(),
-       "CheckCode": $("#txtCheckCode").val(),
-       "Email": $("#txtEmail").val()
+         "UserName": $("#txtUserNameFS").val(),
+       "CheckCode": $("#txtEmailFS").val(),
+       "Email": $("#txtEmailFS").val()
      },
      type: "post",
      success: function(text) {
        var dataJson = $.parseJSON(text);
        if (dataJson.Status) {
          alert("发送成功!您的密码已经发送到" + dataJson.UserName + "邮箱中");
-         window.location.href = "MemberLogin.aspx";
+         window.location.href = "/Member/MemberLogin";
        } else {
          alert("找回失败!" + dataJson.UserName);
        }
