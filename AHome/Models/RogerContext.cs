@@ -13,5 +13,8 @@ namespace AHome.Models
         public DbSet<CraftType> CraftTypes { get; set; }
         public DbSet<Member> Members { get; set; }
         public DbSet<Province> Provinces { get; set; }
+        public DbSet<Master> Masters { get; set; }
+        public DbSet<Master_cert> MasterCerts { get; set; }
+        public DbSet<Master_Type> MasterTypes { get; set; }
     }
 }

@@ -331,5 +331,26 @@ namespace AHome.Controllers
                 return bll.WriteJsonForReturn(false, "");
             }
         }
+
+        /// <summary>
+        /// 更改密码
+        /// </summary>
+        /// <param name="context"></param>
+        public string UpdatePwd()
+        {
+            string SessionUserName = (string)Session["UserName"];
+            string OldPWd = Request["txtOldPwd"];
+            string NewPwd = Request["txtNewPwd"];
+            if (string.IsNullOrEmpty(SessionUserName))
+            {
+                return bll.WriteJsonForReturn(false, "");
+            }
+            else
+            {
+
+                return bll.WriteJsonForReturn(bll.UpdatePassword(SessionUserName, OldPWd, NewPwd), SessionUserName);
+            }
+
+        }
     }
 }

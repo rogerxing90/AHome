@@ -161,16 +161,22 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="BLL\BLLUtil.cs" />
     <Compile Include="BLL\CraftTypeBLL.cs" />
+    <Compile Include="BLL\MasterBLL.cs" />
     <Compile Include="BLL\MemberBLL.cs" />
     <Compile Include="BLL\NewsTypeBLL.cs" />
     <Compile Include="BLL\ProvinceBLL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\MasterPageController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\CraftTypeDAL.cs" />
+    <Compile Include="DAL\MasterDAL.cs" />
     <Compile Include="DAL\MemberDAL.cs" />
     <Compile Include="DAL\NewsTypeDAL.cs" />
     <Compile Include="DAL\ProvinceDAL.cs" />
@@ -180,6 +186,9 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CraftType.cs" />
+    <Compile Include="Models\Master.cs" />
+    <Compile Include="Models\Master_cert.cs" />
+    <Compile Include="Models\Master_Type.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsType.cs" />
@@ -193,6 +202,7 @@
     <Content Include="Admin\CommonLibs\national.txt" />
     <Content Include="Admin\css\validationEngine.jquery.css" />
     <Content Include="Content\gr.css" />
+    <Content Include="Content\gs_ms.css" />
     <Content Include="Content\header_footer.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\Style.css" />
@@ -252,7 +262,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="App_Data\DBCSVFile\Province.csv" />
+    <Content Include="Areas\Admin\Views\Web.config" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\120.jpg" />
     <Content Include="Images\alipay.gif" />
@@ -433,7 +443,9 @@
     <Content Include="Images\zz_th.png" />
     <Content Include="Scripts\AjaxJs\Default.js" />
     <Content Include="Scripts\AjaxJs\Left_Top_Down.js" />
+    <Content Include="Scripts\AjaxJs\MasterInfo.js" />
     <Content Include="Scripts\AjaxJs\MasterPage.js" />
+    <Content Include="Scripts\AjaxJs\MasterRegister.js" />
     <Content Include="Scripts\AjaxJs\MemberInfo.js" />
     <Content Include="Scripts\AjaxJs\MemberLogin.js" />
     <Content Include="Scripts\AjaxJs\MemberZoneInfo.js" />
@@ -457,6 +469,7 @@
     <Content Include="Scripts\Roger\nav.js" />
     <Content Include="Scripts\Roger\onLoad.js" />
     <Content Include="Scripts\Roger\pic_turn.js" />
+    <Content Include="Scripts\Roger\PluginForm.js" />
     <Content Include="Scripts\Roger\queryUrlParams.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -492,8 +505,20 @@
     <Content Include="Views\Member\MemberLogin.cshtml" />
     <Content Include="Views\Member\MemberInfo.cshtml" />
     <Content Include="Views\Member\EmailChecking.cshtml" />
+    <Content Include="Views\Master\MasterLogin.cshtml" />
+    <Content Include="Views\Master\MasterInfo.cshtml" />
+    <Content Include="Views\Product\Product.cshtml" />
+    <Content Include="Views\Product\Master_MoreProduct.cshtml" />
+    <Content Include="Views\Master\MasterList.cshtml" />
+    <Content Include="Views\Master\MasterRegister.cshtml" />
+    <Content Include="Scripts\Roger\jquery.MultiFile.pack.js" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\DBCSVFile\" />
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

@@ -2,7 +2,7 @@
 
  function ChangeSercret() {
    $.ajax({
-     url: "Data/GetMemberInfo.ashx?method=UpdatePwd",
+     url: "/Member/UpdatePwd",
      data: {
        "txtOldPwd": $("#txtOldPwd").val(),
        "txtNewPwd": $("#txtNewPwd").val()
@@ -14,7 +14,7 @@
          alert("修改成功!");
        } else if (!dataJson.Status && dataJson.Data == '') {
          alert("未登录!");
-         window.location.replace("MemberLogin.aspx");
+         window.location.replace("/Member/MemberLogin");
        } else {
          alert("修改失败!");
        }

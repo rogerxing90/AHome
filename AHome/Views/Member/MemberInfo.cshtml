@@ -17,7 +17,7 @@
         <ul class="gr_ul">
             <li><a href='javascript:ShowMemberInfo()'>修改个人信息</a></li>
             <li><a href='javascript:ShowGetPwd()'>找回密码</a></li>
-            <li><a href='<%=URLManage.GetURL("~/Member/ChangeSercret","")%>'>修改密码</a></li>
+            <li><a href='javascript:ShowChangePwd()'>修改密码</a></li>
             <li><a href='<%=URLManage.GetURL("~/Member/Collection","")%>'>我的收藏夹</a></li>
             <li><a href='<%=URLManage.GetURL("~/Member/ShopingCart","")%>'>我的购物车</a></li>
             <li><a href='<%=URLManage.GetURL("~/Member/OrderManage","")%>'>订单管理</a></li>
@@ -88,13 +88,32 @@
                     <li class="xgmm_ul_li1"><span>用户名：</span><input type="text" class="xgmm_text" id="txtUserNameFS" /></li>
                     <li class="xgmm_ul_li1"><span>邮箱：</span><input type="text" class="xgmm_text" id="txtEmailFS" /></li>
                     @*<li class="zhmm_yz"><span>验证码：</span><input type="text" id="txtCheckCode" /><img src="../Admin/FileManage/VerifyChars.ashx" onclick="changeImg()" id="img" alt="验证码" /></li>*@
-                    <li><input type="button" class="xgmm_bt3" id="btnSend" /></li>
+                    <li>
+                        <input type="button" class="xgmm_bt3" id="btnSend" /></li>
                 </ul>
             </div>
         </div>
     </div>
 
     <div id="ChangeSercret">
+        <form id="changeSecretForm">
+            <div class="zz">
+                <div class="xgmm">
+                    <div class="xgmm_tt">
+                        <h3>修改密码</h3>
+                    </div>
+                    <p class="xgmm_tip">密码由6-15个字符组成，为了您账号的安全，禁止使用全数字或连续字符作为密码。</p>
+                    <ul class="xgmm_ul">
+                        <li class="xgmm_ul_li1"><span>当前密码：</span><input type="text" class="xgmm_text validate[required,custom[LoginPwd]]" name="txtOldPwd" id="txtOldPwd" />
+                        </li>
+                        <li><span>新密码：</span><input type="text" class="xgmm_text validate[required,custom[LoginPwd]]" id="txtNewPwd" /></li>
+                        <li><span>确认密码：</span><input type="text" class="xgmm_text validate[required,equals[txtNewPwd]]" id="txtConfirmPwd" /></li>
+                        <li class="xgmm_bt">
+                            <input type="button" class="xgmm_bt1" id="btnChangeSecret" /><input type="reset" value="" class="xgmm_bt2" /></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
     </div>
     <div id="Collection">
     </div>
@@ -119,6 +138,10 @@
 
         function ShowGetPwd() {
             $("#ForgetSercret").show().siblings().hide();
+        }
+
+        function ShowChangePwd() {
+            $("#ChangeSercret").show().siblings().hide();
         }
 
 
@@ -168,6 +191,20 @@
         $(function () {
             $("#btnSend").click(function () {
                 ForgetSercret();
+            });
+        });
+    </script>
+
+    @*ChangeSecret修改密码部分*@
+    <script type="text/javascript">
+        $(function () {
+            $("#changeSecretForm").validationEngine();
+            $("#btnChangeSecret").click(function () {
+                //如果验证不通过,就不提交
+                if (!$("#changeSecretForm").validationEngine('validate'))
+                    return;
+                //修改密码 在MemberZoneInfo.js中定义
+                ChangeSercret();
             });
         });
     </script>

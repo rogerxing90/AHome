@@ -1,0 +1,135 @@
+﻿@{
+    ViewBag.Title = "大师信息";
+}
+
+@section css{
+    <link href="~/Content/gs_ms.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="left_side">
+    <div class="logo_bottom">
+    </div>
+    <div class="enter1">
+        <a href="/Master/MasterLogin">
+            <img src='/images/master.png' alt="大师入口" title="大师入口" /></a>
+    </div>
+    <div class="enter2">
+        <a href="#">
+            <img src='/images/company.png' alt="企业入口" title="企业入口" /></a>
+    </div>
+    <div class="craft">
+        <h3 class="hide">工艺品分类</h3>
+        <ul id="CraftType">
+        </ul>
+    </div>
+    <div class="paihang">
+        <h3>
+            <p class="hide">
+                推荐排行榜
+            </p>
+            <p>
+                <a href="#">更多</a>
+            </p>
+        </h3>
+        <ul class="ph_ul" id="ph1">
+            <li><a href="#" onmouseover="setph(0);" class="ph_hover">大师推荐</a></li>
+            <li><a href="#" onmouseover="setph(1);">工艺品推荐</a></li>
+            <li><a href="#" onmouseover="setph(2);">企业推荐</a></li>
+        </ul>
+        <div class="ph_p" id="ph2">
+            <ul style="display: block;">
+                <li class="ph_li1"><a href="#" class="phplihover">周少君</a></li>
+                <li class="ph_li2"><a href="#">周少君</a></li>
+                <li class="ph_li3"><a href="#">周少君</a></li>
+                <li class="ph_li4"><a href="#">周少君</a></li>
+                <li class="ph_li5"><a href="#">周少君</a></li>
+            </ul>
+            <ul>
+                <li class="ph_li1"><a href="#" class="phplihover">大大个</a></li>
+                <li class="ph_li2"><a href="#">大大个</a></li>
+                <li class="ph_li3"><a href="#">大大个</a></li>
+                <li class="ph_li4"><a href="#">大大个</a></li>
+                <li class="ph_li5"><a href="#">大大个</a></li>
+            </ul>
+            <ul>
+                <li class="ph_li1"><a href="#" class="phplihover">小小粒</a></li>
+                <li class="ph_li2"><a href="#">小小粒</a></li>
+                <li class="ph_li3"><a href="#">小小粒</a></li>
+                <li class="ph_li4"><a href="#">小小粒</a></li>
+                <li class="ph_li5"><a href="#">小小粒</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="ms">
+    <div class="ms_top">
+        <div class="m_load">
+            <span><a href='/Default.htm'>首页</a> > <a href='/Master/MasterList'>大师风采</a> > 大师</span>
+        </div>
+        <div class="mst_c">
+            <ul class="mst_ul">
+                <li><a href="#" id="Master_Intro">
+                    <p class="hide">
+                        大师简介
+                    </p>
+                </a></li>
+                <li><a href="#" id="Master_Award">
+                    <p class="hide">
+                        获奖情况
+                    </p>
+                </a></li>
+                <li><a href="#" id="Master_Work">
+                    <p class="hide">
+                        大师作品
+                    </p>
+                </a></li>
+            </ul>
+            <div class="mst_img">
+                <img src="../images/master_img.png" id="imgMaster" />
+            </div>
+            <div class="mst_xx">
+                <table width="252" height="141" id="tbMasterInfo">
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="gs_nr" id="MasterContent">
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/Roger/queryUrlParams.js" type="text/javascript"></script>
+    <script src="~/Scripts/AjaxJs/MasterInfo.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        //获得大师id信息
+        var id = $.query.get("MasterId");
+        var ProductURL = '/Product/Product';
+        var Master_MoreProductURL = '/Product/Master_MoreProduct';
+        $(function () {
+
+            //初始化导航栏信息
+            $("#liLogin").hide();
+            $("#liLogout").show();
+            $("#lbUserNameInfo").text('@Session["UserName"]' + "的");
+
+
+
+            GetMasterInfo();
+            GetMasterIntro();
+            //绑定获取大师简介事件
+            $("#Master_Intro").click(function () {
+                GetMasterIntro();
+            });
+            $("#Master_Award").click(function () {
+                GetMasterReward();
+            });
+            $("#Master_Work").click(function () {
+                GetMasterWork();
+            });
+        });
+    </script>
+
+}
