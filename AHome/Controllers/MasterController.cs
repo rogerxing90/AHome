@@ -227,7 +227,7 @@ namespace AHome.Controllers
             string MasterId = Request["MasterId"];
             if (Tools.IsValidInput(ref MasterId, true))
             {
-                return masterBLL.GetMasterInfoForJson(MasterId);
+                return string.Empty;//masterBLL.GetMasterInfoForJson(MasterId);
             }
             else
             {

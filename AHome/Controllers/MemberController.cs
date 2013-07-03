@@ -32,6 +32,11 @@ namespace AHome.Controllers
             return View();
         }
 
+        public ActionResult EmailChecking()
+        {
+            return View();
+        }
+
         //Ajax
         public string CheckExistUserName()
         {
@@ -87,12 +92,12 @@ namespace AHome.Controllers
                         string body = "尊敬的" + info.UserName + "用户:请点击些链接激活:";
                         body += "<a href=" + activationUrl + ">" + activationUrl + "</a>";
 
-                        SMTP smtp = new SMTP(info.Email);
-                    if (smtp.sendemail("用户激活",body))
+                        //    SMTP smtp = new SMTP(info.Email);
+                        //if (smtp.sendemail("用户激活",body))
 
-                        //RogerSMTP roger = new RogerSMTP(info.Email, "用户激活", body);
-                        //if (roger.Send())
-                    {
+                        RogerSMTP roger = new RogerSMTP(info.Email, "用户激活", body);
+                        if (roger.Send())
+                        {
                             return bll.WriteJsonForReturn(true, Tools.GetEmail(info.Email));
                         }
                         else
@@ -266,7 +271,7 @@ namespace AHome.Controllers
 
         public string ForgetPwd()
         {
-            string returnJsonString =string.Empty;
+            string returnJsonString = string.Empty;
             string UserName = Request["UserName"];
             //string CheckCode = Request["CheckCode"];
             string Email = Request["Email"];
@@ -286,8 +291,10 @@ namespace AHome.Controllers
                 string NewPwd = bll.CreateNewPwd();
                 if (!string.IsNullOrEmpty(Email) && status && bll.UpdatePwd(UserName, NewPwd))
                 {
-                    SMTP smtp = new SMTP(Email);
-                    if (smtp.sendemail("潮州工艺品平台", "尊敬的" + UserName + "用户:恭喜您,您在" + DateTime.Now.ToString() + "使用找回密码功能重置密码,您的密码:" + NewPwd + ",请尽快修改密码并妥善保管!"))
+                    RogerSMTP roger = new RogerSMTP(Email, "潮州工艺品平台", "尊敬的" + UserName + "用户:恭喜您,您在" + DateTime.Now.ToString() + "使用找回密码功能重置密码,您的密码:" + NewPwd + ",请尽快修改密码并妥善保管!");
+                    if (roger.Send())
+                    //SMTP smtp = new SMTP(Email);
+                    //if (smtp.sendemail("潮州工艺品平台", "尊敬的" + UserName + "用户:恭喜您,您在" + DateTime.Now.ToString() + "使用找回密码功能重置密码,您的密码:" + NewPwd + ",请尽快修改密码并妥善保管!"))
                     {
                         returnJsonString = bll.WriteJsonForReturn(true, Tools.GetEmail(Email));
                     }

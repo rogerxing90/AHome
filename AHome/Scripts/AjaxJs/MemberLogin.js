@@ -41,7 +41,7 @@
       $.ajax({
         url: "/Member/MemberAjaxLogin",
         type: "post",
-        //data: Data,
+        data: Data,
         success: function(ReturnData, status) {
           var jsonInfo = $.parseJSON(ReturnData);
           if (jsonInfo.Status) {
