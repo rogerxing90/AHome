@@ -16,5 +16,7 @@ namespace AHome.Models
         public DbSet<Master> Masters { get; set; }
         public DbSet<Master_cert> MasterCerts { get; set; }
         public DbSet<Master_Type> MasterTypes { get; set; }
+        public DbSet<VMasterType> VMasterTypes { get; set; }
+        public DbSet<VProductCraftType> VProductCraftTypes { get; set; }
     }
 }

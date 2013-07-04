@@ -42,7 +42,7 @@ function CheckForm1() {
         if (IsCheck) {
             var Data = { "UserName": $("#txtUserName").val(), "Pwd": $("#txtPwd").val(), "Birthday": $("#txtBirthday").val(), "Name": $("#txtName").val(), "Sex": Sex, "MobilePhone": $("#txtMobilePhone").val(), "TelePhone": $("#txtTelePhone").val(), "Email": $("#txtEmail").val(), "QQ": $("#txtQQ").val(), "Introduce": $("#txtIntroduce").val(), "CheckCode": $("#txtCheckCode").val(), "Picturepath": $("#Picturepath").val() };
             $.ajax({
-                url: "/Member/SaveMasterInfo",
+                url: "/Master/SaveMasterInfo",
                 type: "post",
                 data: Data,
                 success: function (ReturnData) {

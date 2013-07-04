@@ -229,17 +229,75 @@ namespace AHome.Controllers
             return ReturnJson;
         }
 
+        /// <summary>
+        /// 获取大师基本信息
+        /// </summary>
+        /// <param name="context"></param>
         public string GetMasterInfo()
         {
             //获取大师id
             string MasterId = Request["MasterId"];
             if (Tools.IsValidInput(ref MasterId, true))
             {
-                return string.Empty;//masterBLL.GetMasterInfoForJson(MasterId);
+                return masterBLL.GetMasterInfoForJson(MasterId);
             }
             else
             {
-                return string.Empty;
+                return Tools.WriteJsonForReturn(false, "MasterId为空!");
+            }
+        }
+
+        /// <summary>
+        /// 获取大师简介信息
+        /// </summary>
+        /// <param name="context"></param>
+        public string GetMasterIntro()
+        {
+            //获取大师id
+            string MasterId = Request["MasterId"];
+            if (Tools.IsValidInput(ref MasterId, true))
+            {
+                return masterBLL.GetMasterIntroForJson(MasterId);
+            }
+            else
+            {
+                return Tools.WriteJsonForReturn(false, "MasterId为空!");
+            }
+        }
+
+        /// <summary>
+        /// 获取大师获奖信息
+        /// </summary>
+        /// <param name="context"></param>
+        public string GetMasterReward()
+        {
+            //获取大师id
+            string MasterId = Request["MasterId"];
+            if (Tools.IsValidInput(ref MasterId, true))
+            {
+                return masterBLL.GetMasterRewardForJson(MasterId);
+            }
+            else
+            {
+                return Tools.WriteJsonForReturn(false, "MasterId为空!");
+            }
+        }
+
+        /// <summary>
+        /// 获取大师作品信息
+        /// </summary>
+        /// <param name="context"></param>
+        public string GetMasterWork()
+        {
+            //获取大师id
+            string MasterId = Request["MasterId"];
+            if (Tools.IsValidInput(ref MasterId, true))
+            {
+                return new VProductCraftTypeBLL().GetMasterWorkForJson(MasterId);
+            }
+            else
+            {
+                return Tools.WriteJsonForReturn(false, "MasterId为空!");
             }
         }
 

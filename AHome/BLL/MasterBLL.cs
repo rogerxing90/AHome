@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using AHome.DAL;
 using AHome.Models;
 using Common;
+using Newtonsoft.Json;
 
 namespace AHome.BLL
 {
@@ -172,6 +175,176 @@ namespace AHome.BLL
         {
             return masterDAL.AddNew(model);
         }
+
+        #region 获取大师基本信息
+        /// <summary>
+        /// 获取大师基本信息
+        /// </summary>
+        /// <param name="id">大师id</param>
+        /// <returns></returns>
+        public string GetMasterInfoForJson(string id)
+        {
+            //加载状态
+            bool Status = false;
+            //获取大师类别信息
+            List<VMasterType> masterTypeList = new VMasterTypeDAL().ListAllById(id);
+            //拼接大师类别信息
+            StringBuilder sbTypeName = new StringBuilder();
+            foreach (var masterType in masterTypeList)
+            {
+                sbTypeName.Append(masterType.TypeName);
+
+                if (masterType != masterTypeList.Last())
+                {
+                    sbTypeName.Append(",");
+                }
+            }
+
+            int MasterId = Convert.ToInt32(id);
+            //获取大师基本信息
+            Master Info = masterDAL.Get(MasterId);
+
+            //转化为json格式
+            StringBuilder json = new StringBuilder();
+            StringWriter sw = new StringWriter(json);
+            using (JsonWriter jsonWriter = new JsonTextWriter(sw))
+            {
+                jsonWriter.Formatting = Formatting.Indented;
+                //判断数据读取状态
+                if (Info!=null)
+                {
+                    Status = true;
+                }
+                jsonWriter.WriteStartObject();
+                jsonWriter.WritePropertyName("Status");
+                jsonWriter.WriteValue(Status);
+                jsonWriter.WritePropertyName("Data");
+
+                jsonWriter.WriteStartArray();
+                jsonWriter.WriteStartObject();
+                jsonWriter.WritePropertyName("Name");
+                jsonWriter.WriteValue(Info.Name);
+                jsonWriter.WritePropertyName("Sex");
+                jsonWriter.WriteValue(Info.Sex == "1" ? "男" : "女");
+                jsonWriter.WritePropertyName("Birthday");
+                jsonWriter.WriteValue(Info.BirthDay.Value.ToShortDateString());
+                jsonWriter.WritePropertyName("PicturePath");
+                jsonWriter.WriteValue(Info.Picturepath);
+                jsonWriter.WritePropertyName("TypeName");
+                jsonWriter.WriteValue(sbTypeName.ToString());
+                jsonWriter.WriteEndObject();
+                jsonWriter.WriteEndArray();
+
+                jsonWriter.WriteEndObject();
+
+            }
+            return json.ToString();
+        }
+        #endregion
+
+        #region 获取大师简介信息
+        /// <summary>
+        /// 获取大师简介信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string GetMasterIntroForJson(string id)
+        {
+            //加载状态
+            bool Status = false;
+            int MasterId = Convert.ToInt32(id);
+            //获取大师基本信息
+            Master Info =  masterDAL.Get(MasterId);
+
+            //转化为json格式
+            StringBuilder json = new StringBuilder();
+            StringWriter sw = new StringWriter(json);
+            using (JsonWriter jsonWriter = new JsonTextWriter(sw))
+            {
+                jsonWriter.Formatting = Formatting.Indented;
+                //判断数据读取状态
+                if (Info != null)
+                {
+                    Status = true;
+                }
+                jsonWriter.WriteStartObject();
+                jsonWriter.WritePropertyName("Status");
+                jsonWriter.WriteValue(Status);
+                jsonWriter.WritePropertyName("Data");
+
+                jsonWriter.WriteStartArray();
+                jsonWriter.WriteStartObject();
+                jsonWriter.WritePropertyName("Introduction");
+                jsonWriter.WriteValue(Info.Introduction);
+                jsonWriter.WriteEndObject();
+                jsonWriter.WriteEndArray();
+
+                jsonWriter.WriteEndObject();
+
+            }
+            return json.ToString();
+        }
+        #endregion
+
+        #region 获取大师获奖信息
+        /// <summary>
+        /// 获取大师获奖信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string GetMasterRewardForJson(string id)
+        {
+            //加载状态
+            bool Status = false;
+            //获取大师荣誉证书
+            int MasterId = Convert.ToInt32(id);
+            IEnumerable<Master_cert> masterCertList = new Master_certDAL().ListAllById(MasterId);
+            //获取大师基本信息
+            Master Info = masterDAL.Get(MasterId);
+
+            //转化为json格式
+            StringBuilder json = new StringBuilder();
+            StringWriter sw = new StringWriter(json);
+            using (JsonWriter jsonWriter = new JsonTextWriter(sw))
+            {
+                jsonWriter.Formatting = Formatting.Indented;
+                //判断数据读取状态
+                if (Info!=null)
+                {
+                    Status = true;
+                }
+                jsonWriter.WriteStartObject();
+                jsonWriter.WritePropertyName("Status");
+                jsonWriter.WriteValue(Status);
+                jsonWriter.WritePropertyName("Data");
+
+                jsonWriter.WriteStartArray();
+                jsonWriter.WriteStartObject();
+                jsonWriter.WritePropertyName("Reward");
+                jsonWriter.WriteValue(Info.Reward);
+
+                jsonWriter.WritePropertyName("CertPicList");
+                jsonWriter.WriteStartArray();
+                foreach (Master_cert cert in masterCertList)
+                {
+                    jsonWriter.WriteStartObject();
+                    jsonWriter.WritePropertyName("CertName");
+                    jsonWriter.WriteValue(cert.Name);
+                    jsonWriter.WritePropertyName("CertPic");
+                    jsonWriter.WriteValue(cert.Picpath);
+                    jsonWriter.WriteEndObject();
+
+                }
+                jsonWriter.WriteEndArray();
+                jsonWriter.WriteEndObject();
+
+
+                jsonWriter.WriteEndObject();
+
+            }
+            return json.ToString();
+        }
+        #endregion
 
 
     }

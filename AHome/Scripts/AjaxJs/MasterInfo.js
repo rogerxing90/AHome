@@ -22,6 +22,7 @@ function GetMasterInfo() {
 
                 $("#tbMasterInfo").empty();
                 $("#tbMasterInfo").append(item);
+                //此处未实现FileManage
                 var src = "/Admin/FileManage/GetImg.ashx?method=GetMasterPic&type=medium&fileName=" + jsonData.Data[0].PicturePath;
                 $("#imgMaster").attr("src", src);
             }
@@ -32,8 +33,9 @@ function GetMasterInfo() {
 //获取大师简介信息
 function GetMasterIntro() {
     $.ajax({
-        url: "Data/MasterInfo.ashx?method=GetMasterIntro&MasterId=" + id,
+        url: "/Master/GetMasterIntro",
         type: "post",
+        data: { "MasterId": id },
         success: function (text) {
             var jsonData = $.parseJSON(text);
             if (jsonData.Status) {
@@ -48,8 +50,9 @@ function GetMasterIntro() {
 //获取大师荣誉信息
 function GetMasterReward() {
     $.ajax({
-        url: "Data/MasterInfo.ashx?method=GetMasterReward&MasterId=" + id,
+        url: "/Master/GetMasterReward",
         type: "post",
+        data: { "MasterId": id },
         success: function (text) {
             var jsonData = $.parseJSON(text);
             var item = '<h4>大师荣誉</h4>';
@@ -77,8 +80,9 @@ function GetMasterReward() {
 //获取大师产品信息
 function GetMasterWork() {
     $.ajax({
-        url: "Data/MasterInfo.ashx?method=GetMasterWork&MasterId=" + id,
+        url: "/Master/GetMasterWork",
         type: "post",
+        data: { "MasterId": id },
         success: function (text) {
             var jsonData = $.parseJSON(text);
             var item = '';

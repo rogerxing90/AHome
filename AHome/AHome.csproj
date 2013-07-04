@@ -168,6 +168,7 @@
     <Compile Include="BLL\MemberBLL.cs" />
     <Compile Include="BLL\NewsTypeBLL.cs" />
     <Compile Include="BLL\ProvinceBLL.cs" />
+    <Compile Include="BLL\VProductCraftTypeBLL.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
@@ -177,9 +178,12 @@
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\CraftTypeDAL.cs" />
     <Compile Include="DAL\MasterDAL.cs" />
+    <Compile Include="DAL\Master_certDAL.cs" />
     <Compile Include="DAL\MemberDAL.cs" />
     <Compile Include="DAL\NewsTypeDAL.cs" />
     <Compile Include="DAL\ProvinceDAL.cs" />
+    <Compile Include="DAL\VMasterTypeDAL.cs" />
+    <Compile Include="DAL\VProductCraftTypeDAL.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,6 +199,8 @@
     <Compile Include="Models\Province.cs" />
     <Compile Include="Models\RogerContext.cs" />
     <Compile Include="Models\RogerInitializer.cs" />
+    <Compile Include="Models\VMasterType.cs" />
+    <Compile Include="Models\VProductCraftType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -263,6 +269,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="App_Data\DBCSVFile\province_unicode.csv" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\120.jpg" />
     <Content Include="Images\alipay.gif" />
@@ -514,7 +521,6 @@
     <Content Include="Scripts\Roger\jquery.MultiFile.pack.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\DBCSVFile\" />
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />

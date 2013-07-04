@@ -73,5 +73,15 @@ namespace AHome.DAL
             db.Masters.Add(model);
             return db.SaveChanges();
         }
+
+        /// <summary>
+        /// 根据id获取tableName实体信息
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>执行状态</returns>
+        public Master Get(int id)
+        {
+            return db.Masters.First(s => s.Id == id);
+        }
     }
 }

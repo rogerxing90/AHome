@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.Entity;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using Common;
 
 namespace AHome.Models
 {
-    public class RogerInitializer : DropCreateDatabaseIfModelChanges<RogerContext>
+    public class RogerInitializer : DropCreateDatabaseAlways<RogerContext>
     {
         protected override void Seed(RogerContext context)
         {
@@ -30,6 +33,39 @@ namespace AHome.Models
             };
             members.ForEach(s => context.Members.Add(s));
 
+            var craftTypes = new List<CraftType>
+            {
+                new CraftType(){ Name="潮州木雕", level=1,Belongsid=-1, IsLeaf="0", FId ="F01" },
+                new CraftType(){ Name = "花木雕",level =2,Belongsid=1,IsLeaf="0",FId ="F0101" },
+                new CraftType(){ Name = "红花木雕",level =3,Belongsid=2,IsLeaf="0",FId ="F010101" },
+                new CraftType(){ Name = "潮州刺绣",level =1,Belongsid=-1,IsLeaf="1",FId ="F04" },
+                new CraftType(){ Name = "石雕",level =1,Belongsid=-1,IsLeaf="1",FId ="F05" },
+                new CraftType(){ Name = "大吴泥塑",level =1,Belongsid=-1,IsLeaf="1",FId ="F06" },
+                new CraftType(){ Name = "木雕",level =2,Belongsid=1,IsLeaf="0",FId ="F0102" },
+                new CraftType(){ Name = ",木雕1",level =3,Belongsid=7,IsLeaf="1",FId ="F010202" },
+            };
+            craftTypes.ForEach(s => context.CraftTypes.Add(s));
+
+            #region ==Sql读取工程下CSV文件导入到数据库中==
+
+            string path = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "App_Data\\DBCSVFile\\province_unicode.csv";
+
+            string sql = string.Format("BULK INSERT [Provinces] FROM '{0}' WITH( FIELDTERMINATOR =',', ROWTERMINATOR = '\n')", path);
+            DbParameter[] paras = new DbParameter[]
+            {
+                new SqlParameter("csvPath" , path),
+            };
+
+            string sql1 = "BULK INSERT [Provinces] FROM '" + @path + "' WITH( FIELDTERMINATOR =',', ROWTERMINATOR = '\n')";
+            try
+            {
+                context.Database.ExecuteSqlCommand(sql1,paras);
+            }
+            catch (Exception e)
+            {
+
+            }
+            #endregion
 
 
             context.SaveChanges();
