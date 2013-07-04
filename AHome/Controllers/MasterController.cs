@@ -192,11 +192,19 @@ namespace AHome.Controllers
                     }
                     if (masterBLL.AddNew(info) > 0)
                     {
-                        SMTP smtp = new SMTP(info.Email);
-                        //激活网址生成
+                         //激活网址生成
                         string webpath = Request.Url.Scheme + "://" + Request.Url.Authority + System.Web.VirtualPathUtility.ToAbsolute("~/MasterZone/EmailChecking.aspx") + "?UserName=" + Server.UrlEncode(info.Username) + "&YZM=" + info.VCode;
-                        //发送激活邮件
-                        if (smtp.Activation(webpath, info.Username))
+                        string body = "尊敬的" + info.Username + "用户:请点击些链接激活:";
+                        body += "<a href=" + webpath + ">" + webpath + "</a>";
+
+                        RogerSMTP roger = new RogerSMTP(info.Email, "大师用户激活", body);
+                        if (roger.Send())
+
+                        //SMTP smtp = new SMTP(info.Email);
+                        ////激活网址生成
+                        //string webpath = Request.Url.Scheme + "://" + Request.Url.Authority + System.Web.VirtualPathUtility.ToAbsolute("~/MasterZone/EmailChecking.aspx") + "?UserName=" + Server.UrlEncode(info.Username) + "&YZM=" + info.VCode;
+                        ////发送激活邮件
+                        //if (smtp.Activation(webpath, info.Username))
                         {
 
                             ReturnJson = Tools.WriteJsonForReturn(true, Tools.GetEmail(info.Email));

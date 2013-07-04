@@ -95,7 +95,7 @@ namespace AHome.Controllers
                         //    SMTP smtp = new SMTP(info.Email);
                         //if (smtp.sendemail("用户激活",body))
 
-                        RogerSMTP roger = new RogerSMTP(info.Email, "用户激活", body);
+                        RogerSMTP roger = new RogerSMTP(info.Email, "会员激活", body);
                         if (roger.Send())
                         {
                             return bll.WriteJsonForReturn(true, Tools.GetEmail(info.Email));

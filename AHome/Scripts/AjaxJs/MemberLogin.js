@@ -45,10 +45,6 @@
         success: function(ReturnData, status) {
           var jsonInfo = $.parseJSON(ReturnData);
           if (jsonInfo.Status) {
-            //此处操作母版Dom，跳到MemberInfo页面后被重置。
-            //$("#liLogin").hide();
-            //$("#liLogout").show();
-            //$("#lbUserNameInfo").text(jsonInfo.UserName + "的");
 
             //BUG_1 
             window.location.href = '/Member/MemberInfo';

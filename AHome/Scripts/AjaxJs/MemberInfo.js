@@ -1,4 +1,5 @@
-﻿//提交用户信息
+﻿//更改该文件默认Line ending  Windows crlf
+//提交用户信息
 
 function Comit() {
     //如果验证不通过,就不提交
