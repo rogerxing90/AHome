@@ -64,10 +64,10 @@ namespace AHome.DAL
         #endregion
 
         /// <summary>
-		/// 增加master
-		/// </summary>
-		/// <param name="model">tableName实体</param>
-		/// <returns>执行状态</returns>
+        /// 增加master
+        /// </summary>
+        /// <param name="model">tableName实体</param>
+        /// <returns>执行状态</returns>
         public int AddNew(Master model)
         {
             db.Masters.Add(model);
@@ -83,5 +83,41 @@ namespace AHome.DAL
         {
             return db.Masters.First(s => s.Id == id);
         }
+
+        #region 根据用户名和随即验证码查找用户激活帐号的过期时间
+        /// <summary>
+        /// 根据用户名和随即验证码查找用户激活帐号的过期时间
+        /// </summary>
+        /// <param name="UserName">用户名</param>
+        /// <param name="VCode">激活码</param>
+        /// <returns></returns>
+        public DateTime GetMasterVTime(string UserName, string VCode)
+        {
+            return db.Masters.First(s => s.Username == UserName && s.VCode == VCode).VTime;
+        }
+        #endregion
+
+        #region 激活大师帐号
+        /// <summary>
+        /// 激活帐号
+        /// </summary>
+        /// <param name="UserName">用户名</param>
+        /// <returns></returns>
+        public bool ActivationMasterStatus(string UserName)
+        {
+            try
+            {
+                db.Masters.First(s => s.Username == UserName).state = "1";
+                db.SaveChanges();
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+        #endregion
     }
 }

@@ -10,7 +10,7 @@ using Common;
 
 namespace AHome.Models
 {
-    public class RogerInitializer : DropCreateDatabaseAlways<RogerContext>
+    public class RogerInitializer : DropCreateDatabaseIfModelChanges<RogerContext>
     {
         protected override void Seed(RogerContext context)
         {
@@ -48,23 +48,26 @@ namespace AHome.Models
 
             #region ==Sql读取工程下CSV文件导入到数据库中==
 
-            string path = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "App_Data\\DBCSVFile\\province_unicode.csv";
+            //string path = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "App_Data\\DBCSVFile\\province_unicode.csv";
+            //string mySqlPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "App_Data\\DBCSVFile\\province_UTF8.csv";
+            ////string sql = string.Format("BULK INSERT [Provinces] FROM '{0}' WITH( FIELDTERMINATOR =',', ROWTERMINATOR = '\n')", path);
+            //string mysql = string.Format("load data local infile '{0}'  into table roger.provinces   fields terminated by ','    lines terminated by '\r\n'", mySqlPath);
+            //DbParameter[] paras = new DbParameter[]
+            //{
+            //    new SqlParameter("csvPath" , path),
+            //};
 
-            string sql = string.Format("BULK INSERT [Provinces] FROM '{0}' WITH( FIELDTERMINATOR =',', ROWTERMINATOR = '\n')", path);
-            DbParameter[] paras = new DbParameter[]
-            {
-                new SqlParameter("csvPath" , path),
-            };
+            //string sql1 = "BULK INSERT [Provinces] FROM '" + @path + "' WITH( FIELDTERMINATOR =',', ROWTERMINATOR = '\n')";
+            //try
+            //{
+            //    //context.Database.ExecuteSqlCommand(sql1,paras);
+                
+            //    context.Database.ExecuteSqlCommand(mysql);
+            //}
+            //catch (Exception e)
+            //{
 
-            string sql1 = "BULK INSERT [Provinces] FROM '" + @path + "' WITH( FIELDTERMINATOR =',', ROWTERMINATOR = '\n')";
-            try
-            {
-                context.Database.ExecuteSqlCommand(sql1,paras);
-            }
-            catch (Exception e)
-            {
-
-            }
+            //}
             #endregion
 
 

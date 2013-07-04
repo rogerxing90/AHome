@@ -161,7 +161,7 @@ function ChangePwd() {
 //邮箱验证
 function EmailChecking() {
     $.ajax({
-        url: "Data/MasterZoneInfo.ashx?method=ActivationMasterNumber",
+        url: "/Master/ActivationMasterNumber",
         type: "post",
         data: Data,
         success: function (ReturnData) {

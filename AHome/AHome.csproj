@@ -209,6 +209,7 @@
     <Content Include="Admin\css\validationEngine.jquery.css" />
     <Content Include="Content\gr.css" />
     <Content Include="Content\gs_ms.css" />
+    <Content Include="Content\gyp_guanli.css" />
     <Content Include="Content\header_footer.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\Style.css" />
@@ -270,6 +271,7 @@
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="App_Data\DBCSVFile\province_unicode.csv" />
+    <Content Include="App_Data\DBCSVFile\province_UTF8.csv" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\120.jpg" />
     <Content Include="Images\alipay.gif" />
@@ -519,6 +521,8 @@
     <Content Include="Views\Master\MasterList.cshtml" />
     <Content Include="Views\Master\MasterRegister.cshtml" />
     <Content Include="Scripts\Roger\jquery.MultiFile.pack.js" />
+    <Content Include="Views\Shared\_ZoneLayout.cshtml" />
+    <Content Include="Views\Master\EmailChecking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Controllers\" />

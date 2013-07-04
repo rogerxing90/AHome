@@ -12,7 +12,7 @@ namespace AHome.Controllers
     public class MasterController : Controller
     {
         private MasterBLL masterBLL = new MasterBLL();
-        //
+
         // GET: /MasterLogin/
 
         public ActionResult MasterLogin()
@@ -31,6 +31,11 @@ namespace AHome.Controllers
         }
 
         public ActionResult MasterList()
+        {
+            return View();
+        }
+
+        public ActionResult EmailChecking()
         {
             return View();
         }
@@ -193,7 +198,7 @@ namespace AHome.Controllers
                     if (masterBLL.AddNew(info) > 0)
                     {
                          //激活网址生成
-                        string webpath = Request.Url.Scheme + "://" + Request.Url.Authority + System.Web.VirtualPathUtility.ToAbsolute("~/MasterZone/EmailChecking.aspx") + "?UserName=" + Server.UrlEncode(info.Username) + "&YZM=" + info.VCode;
+                        string webpath = Request.Url.Scheme + "://" + Request.Url.Authority + System.Web.VirtualPathUtility.ToAbsolute("~/Master/EmailChecking") + "?UserName=" + Server.UrlEncode(info.Username) + "&YZM=" + info.VCode;
                         string body = "尊敬的" + info.Username + "用户:请点击些链接激活:";
                         body += "<a href=" + webpath + ">" + webpath + "</a>";
 
@@ -298,6 +303,27 @@ namespace AHome.Controllers
             else
             {
                 return Tools.WriteJsonForReturn(false, "MasterId为空!");
+            }
+        }
+
+        /// <summary>
+        /// 激活账号
+        /// </summary>
+        /// <returns></returns>
+        public string ActivationMasterNumber()
+        {
+            //注意要对url解码
+            string UserName = Server.UrlDecode(Request["UserName"]);
+
+            string VCode = Request["VCode"];
+            //激活
+            if (Tools.IsValidInput(ref UserName, true) && Tools.IsValidInput(ref VCode, true))
+            {
+                return Tools.WriteJsonForReturn(masterBLL.ActivationMasterNumber(UserName, VCode), ""); ;
+            }
+            else
+            {
+                return Tools.WriteJsonForReturn(false, "");
             }
         }
 

@@ -211,7 +211,7 @@ namespace AHome.BLL
             {
                 jsonWriter.Formatting = Formatting.Indented;
                 //判断数据读取状态
-                if (Info!=null)
+                if (Info != null)
                 {
                     Status = true;
                 }
@@ -227,7 +227,7 @@ namespace AHome.BLL
                 jsonWriter.WritePropertyName("Sex");
                 jsonWriter.WriteValue(Info.Sex == "1" ? "男" : "女");
                 jsonWriter.WritePropertyName("Birthday");
-                jsonWriter.WriteValue(Info.BirthDay.Value.ToShortDateString());
+                jsonWriter.WriteValue(Info.BirthDay.ToShortDateString());
                 jsonWriter.WritePropertyName("PicturePath");
                 jsonWriter.WriteValue(Info.Picturepath);
                 jsonWriter.WritePropertyName("TypeName");
@@ -254,7 +254,7 @@ namespace AHome.BLL
             bool Status = false;
             int MasterId = Convert.ToInt32(id);
             //获取大师基本信息
-            Master Info =  masterDAL.Get(MasterId);
+            Master Info = masterDAL.Get(MasterId);
 
             //转化为json格式
             StringBuilder json = new StringBuilder();
@@ -309,7 +309,7 @@ namespace AHome.BLL
             {
                 jsonWriter.Formatting = Formatting.Indented;
                 //判断数据读取状态
-                if (Info!=null)
+                if (Info != null)
                 {
                     Status = true;
                 }
@@ -343,6 +343,29 @@ namespace AHome.BLL
 
             }
             return json.ToString();
+        }
+        #endregion
+
+        #region 验证用户信息
+        /// <summary>
+        /// 验证用户信息
+        /// </summary>
+        /// <param name="UserName">用户名</param>
+        /// <param name="GuidInfo">guid随机码</param>
+        public bool ActivationMasterNumber(string UserName, string GuidInfo)
+        {
+            //获取过期时间
+            DateTime dt = masterDAL.GetMasterVTime(UserName, GuidInfo);
+            //如果已经过期
+            if (dt < DateTime.Now)
+            {
+                return false;
+            }
+            else
+            {
+                //激活帐号
+                return masterDAL.ActivationMasterStatus(UserName);
+            }
         }
         #endregion
 

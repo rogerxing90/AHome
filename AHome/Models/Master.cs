@@ -26,12 +26,12 @@ namespace AHome.Models
         public System.String appreciation { get; set; }
         public System.String website { get; set; }
         public System.String Reward { get; set; }
-        public System.DateTime? BirthDay { get; set; }
+        public System.DateTime BirthDay { get; set; }
         public System.String state { get; set; }
         public System.String state1 { get; set; }
         public System.Int64? hit { get; set; }
         public System.Int64? rank { get; set; }
         public System.String VCode { get; set; }
-        public System.DateTime? VTime { get; set; }
+        public System.DateTime VTime { get; set; }
     }
 }

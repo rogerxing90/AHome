@@ -1,0 +1,585 @@
+﻿body, p, ul, li, form, th, td,
+img
+{
+    border-style: none;
+    border-color: inherit;
+    border-width: medium;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+}
+
+body, button, input, select, textarea
+{
+    font: 12px/1.5 '宋体',tahoma, Srial, helvetica, sans-serif;
+}
+
+ul
+{
+    list-style: none;
+}
+
+a
+{
+    text-decoration: none;
+    color: #333;
+}
+
+    a:hover
+    {
+        text-decoration: none;
+        color: #F40;
+    }
+
+img
+{
+    border: 0px;
+}
+
+/*--------=======元素初始化======----------*/
+body
+{
+    width: 100%;
+    background: #FFF;
+}
+
+.rad
+{
+    color: #F00;
+    padding: 0 2px;
+}
+/*-----红色------*/
+
+.middle
+{
+    width: 960px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/*-------最顶部的样式-------*/
+.top_side
+{
+    width: 100%;
+    height: 30px;
+    background: #E0E0DF;
+}
+
+    .top_side p
+    {
+        height: 21px;
+        float: left;
+        padding-top: 9px;
+    }
+
+    .top_side ul
+    {
+        width: 187px;
+        height: 21px;
+        float: right;
+        padding-top: 9px;
+    }
+
+    .top_side li
+    {
+        float: left;
+    }
+
+        .top_side li a
+        {
+            padding: 0 5px;
+        }
+
+        .top_side li.ts_bg
+        {
+            padding-left: 20px;
+            background: url(../images/Zone/search.gif) no-repeat left;
+        }
+/*---------为LOGO预留位置---------*/
+.logo
+{
+    width: 215px;
+    height: 97px;
+    float: left;
+}
+
+.search
+{ /*搜索框*/
+    width: 320px;
+    height: 30px;
+    margin: 30px 60px 0 0;
+    float: right;
+    background: url(../images/Zone/search_bg.gif) repeat-x;
+}
+
+    .search td
+    {
+        height: 22px;
+        text-align: center;
+    }
+
+    .search input, .search select
+    {
+        border: solid 1px #D2D2D2;
+    }
+
+    .search select
+    {
+        width: 80px;
+        height: 22px;
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    .search input
+    {
+        width: 160px;
+        height: 20px;
+    }
+
+    .search a
+    {
+        display: block;
+        font-size: 12px;
+        font-weight: bold;
+        color: #FFF;
+    }
+/*=====菜单栏=======*/
+.nav
+{
+    width: 960px;
+    background: url(../images/Zone/nav.gif) repeat-x;
+    overflow: hidden;
+}
+
+    .nav ul
+    {
+        list-style: none;
+        height: 35px;
+        font-weight: bold;
+    }
+
+        .nav ul li
+        {
+            width: 99px;
+            height: 31px;
+            float: left;
+        }
+
+            .nav ul li a
+            {
+                display: block;
+                width: 59px;
+                line-height: 31px;
+                padding: 0 20px;
+                color: #333;
+                white-space: nowrap;
+                text-align: center;
+            }
+
+            .nav ul li.selected
+            {
+                background: url(../images/Zone/tab_left.gif) no-repeat;
+            }
+
+                .nav ul li.selected a
+                {
+                    color: #FFF;
+                    background: url(../images/Zone/tab_right.gif) right top no-repeat;
+                }
+
+            .nav ul li a:link, .nav ul li a:visited
+            {
+                color: ##294D07;
+            }
+
+.HackBox
+{
+    width: 820px;
+    font-size: 14px;
+    margin: 0 auto;
+}
+
+.tip
+{
+    width: 820px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.HackBox1 table
+{
+    float: left;
+}
+
+.HackBox td
+{
+    height: 40px;
+    text-align: right;
+}
+
+.HackBox1 .table11 input
+{
+    width: 180px;
+    height: 20px;
+    border: solid 1px #09C;
+}
+
+.HackBox1 input.button
+{
+    width: 70px;
+    height: 18px;
+}
+
+.HackBox1 .table12 input
+{
+    position: relative;
+    top: 2px;
+    margin-right: 5px;
+}
+
+.HackBox1 .table13 td
+{
+    text-align: left;
+}
+
+.HackBox1 .table13 select
+{
+    width: 120px;
+    font-size: 14px;
+}
+
+.text_box
+{
+    width: 820px;
+    margin-top: 20px;
+    float: left;
+}
+
+    .text_box p
+    {
+        width: 95px;
+        height: 32px;
+        padding: 10px 0 0 10px;
+        background: url(../images/Zone/b_03.gif) no-repeat right bottom;
+    }
+
+.tb
+{
+    width: 600px;
+    height: 300px;
+    margin: 1px auto;
+    overflow: hidden;
+}
+
+.HackBox2, .HackBox3, .HackBox6
+{
+    width: 960px;
+    margin: 30px 0;
+}
+
+    .HackBox2 table, .HackBox3 table, .HackBox6 table
+    {
+        width: 960px;
+        margin-right: 0px;
+    }
+
+    .HackBox2 th, .HackBox3 th, .HackBox6 th
+    {
+        height: 33px;
+        background: url(../images/Zone/th_bg.gif) repeat-x;
+    }
+
+    .HackBox2 td, .HackBox3 td, .HackBox6 td
+    {
+        text-align: center;
+        background: url(../images/Zone/td_line.gif) repeat-x bottom;
+    }
+
+    .HackBox2 td
+    {
+        height: 100px;
+    }
+
+.check
+{
+    position: relative;
+    top: 3px;
+    margin: 0 5px;
+}
+
+.HackBox2 img
+{
+    width: 50px;
+    height: 50px;
+    padding: 2px;
+    border: solid 1px #EEE;
+    float: left;
+}
+
+.HackBox2 a, .HackBox3 a, .HackBox6 a
+{
+    display: block;
+    margin: 7px 0;
+    color: #0C0;
+    font-size: 14px;
+}
+
+    .HackBox2 a:hover, .HackBox3 a:hover, .HackBox6 a:hover
+    {
+        color: #F00;
+    }
+
+.name
+{
+    width: 100px;
+    float: left;
+}
+
+    .name p
+    {
+        text-align: left;
+        margin: 3px 0 0 3px;
+    }
+
+.check_all
+{
+    width: 960px;
+    height: 30px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+    .check_all p
+    {
+        float: left;
+    }
+
+.quanxuan, .jilu, .quanxuan1, .jilu1, .jilu2
+{
+    height: 23px;
+    display: block;
+    padding: 5px 0 0 10px;
+    background: #E1E8DA;
+    border-top: solid 1px #CDD5C5;
+    border-bottom: solid 1px #CDD5C5;
+}
+
+.quanxuan
+{
+    width: 60px;
+}
+
+.quanxuan1
+{
+    width: 80px;
+}
+
+.jilu
+{
+    width: 690px;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.jilu1
+{
+    width: 794px;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.jilu2
+{
+    width: 820px;
+    padding-right: 10px;
+    text-align: right;
+}
+
+.HackBox2 .button, .HackBox3 .button, .HackBox6 .button
+{
+    width: 70px;
+    height: 28px;
+    margin: 1px 3px 0 3px;
+    background: url(../images/Zone/del.gif) no-repeat center;
+}
+
+.HackBox3 td, .HackBox6 td
+{
+    height: 140px;
+}
+
+.reward_img img
+{
+    width: 140px;
+    height: 100px;
+    padding: 3px;
+    border: solid 1px #ccc;
+}
+
+.HackBox3 .table32 td
+{
+    height: 60px;
+    background: none;
+}
+
+.HackBox3 .table32 .button2
+{
+    width: 50px;
+}
+
+.HackBox4 .table41 td
+{
+    height: 50px;
+}
+
+.HackBox4 .table41 input, .HackBox4 .table41_1 input
+{
+    width: 120px;
+    height: 20px;
+    border: solid 1px #09C;
+}
+
+.HackBox4 .master_img img
+{
+    width: 150px;
+    height: 150px;
+    padding: 3px;
+    margin: 5px 30px;
+    float: left;
+    display: inline;
+    border: solid 1px #ccc;
+}
+
+.HackBox4 .master_img input
+{
+    width: 160px;
+    float: left;
+    margin-left: 30px;
+    display: inline;
+}
+
+    .HackBox4 .master_img input.button
+    {
+        width: 50px;
+        margin-left: 10px;
+    }
+
+.HackBox4 .table41_1
+{
+    width: 715px;
+}
+
+.HackBox4 .auto_width input
+{
+    width: auto;
+    border: none;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+}
+
+.HackBox4 .table44 input, .HackBox3 .table32 input
+{
+    width: 200px;
+    border: solid 1px #09C;
+}
+
+.table63 .huifu p
+{
+    width: 250px;
+    text-align: left;
+    margin: 5px;
+}
+
+.table63 .huifu .hf_nr
+{
+    width: 230px;
+    display: block;
+    padding-left: 20px;
+}
+
+.table63 .pinglun p
+{
+    width: 340px;
+    margin: 5px 10px;
+    text-align: left;
+}
+
+.blue
+{
+    color: #00F;
+}
+
+.button3 input
+{
+    border: solid 1px #0066FF;
+}
+
+.footer
+{ /*尾部*/
+    border-top: solid 1px #9CA890;
+}
+
+.s_logo
+{
+    width: 182px;
+    height: 54px;
+    float: left;
+    margin: 15px 0 0 20px;
+    display: inline;
+    background: url(../images/Zone/s_logo.gif);
+}
+
+.s_nav
+{ /*--------=======副导航栏（位于尾部）========-----------*/
+    width: 350px;
+    height: 25px;
+    float: left;
+    margin: 15px 0 0 100px;
+    display: inline;
+}
+
+    .s_nav li
+    {
+        height: 25px;
+        float: left;
+        color: #ABABAB;
+    }
+
+        .s_nav li a
+        {
+            padding: 8px;
+            color: #A0A0A0;
+        }
+
+            .s_nav li a:hover
+            {
+                color: #2D2D2D;
+            }
+
+.foot
+{
+    width: 440px;
+    color: #A0A0A0;
+    padding-bottom: 10px;
+    margin-left: 50px;
+    float: left;
+    display: inline;
+}
+
+    .foot span
+    {
+        margin-left: 10px;
+        padding: 0;
+    }
+
+    .foot p
+    {
+        text-align: center;
+        margin-bottom: 3px;
+    }

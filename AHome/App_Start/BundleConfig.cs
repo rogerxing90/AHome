@@ -9,15 +9,16 @@ namespace AHome
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js",
-
+                        "~/Scripts/jquery-{version}.js"
+                        ));
+            bundles.Add(new ScriptBundle("~/bundles/layoutJs").Include(
                         "~/Scripts/Roger/main_nav.js",
                         "~/Scripts/Roger/nav.js",
                         "~/Scripts/Roger/onLoad.js",
                         //Ajax js
                         "~/Scripts/AjaxJs/MasterPage.js",
                         "~/Scripts/AjaxJs/Left_Top_Down.js"
-                        ));
+                ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
