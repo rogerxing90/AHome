@@ -30,10 +30,10 @@ function CheckUserName() {
 }
 function CheckForm1() {
     //还未添加上传图片功能
-    //if ($("#Picturepath").val() == '') {
-    //    alert("请上传头像!");
-    //}
-    //else {
+    if ($("#Picturepath").val() == '') {
+        alert("请上传头像!");
+    }
+    else {
         var Sex;
         if ($("#Man").attr("checked"))
             Sex = '1';
@@ -62,21 +62,38 @@ function CheckForm1() {
         else {
             alert("请验证用户名");
         }
-    //}
+    }
 }
 //图片上传
 function onUpload() {
 
     $(form1).ajaxSubmit({
-        url: '../Admin/FileManage/FileUpload.ashx?method=UpLoadMasterPic',
+        url: '/FileManage/UpLoadMasterPic',
         success: function (r) {
             var Json = eval("(" + r + ")");//(转义)解析json格式
             if (Json.status == "success") {
-                var src = "../Admin/FileManage/GetImg.ashx?method=GetMasterPic&type=small&fileName=" + Json.website;
-                $("#Picturepath").val(Json.website);//隐藏域设置图片的文件信息 
+                //var src = "../Admin/FileManage/GetImg.ashx?method=GetMasterPic&type=small&fileName=" + Json.website;
+                var src = Json.filePath;
+                $("#Picturepath").val(Json.fileName);//隐藏域设置图片的文件信息 
 
                 $('#imgpic').attr("src", src);//回调显示图片
                 $('input:file').MultiFile('reset');//一定要重置
+
+
+                //此处再调ajax，通过图片的filename获取图片路径
+                //var Data = { "type": "small", "fileName": Json.website };
+                //$.ajax({
+                //    url: '/Master/GetMasterPic',
+                //    type: "post",
+                //    data: Data,
+                //    success: function (path) {
+                //        var src = path;
+                //        $("#Picturepath").val(Json.website);//隐藏域设置图片的文件信息 
+
+                //        $('#imgpic').attr("src", src);//回调显示图片
+                //        $('input:file').MultiFile('reset');//一定要重置
+                //    }
+                //});
 
             }
             else {
