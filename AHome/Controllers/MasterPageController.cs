@@ -11,10 +11,24 @@ namespace AHome.Controllers
     {
         public string GetNewsTypes()
         {
-            //CacheStorage.ICacheStorage Cache = CacheStorage.CacheFactory.CreateCacheFactory();
-            string JsonData = new NewsTypeBLL().GetNewsTypeInfoForNewsByJson();
+            //创建缓存工厂
+            CacheStorage.ICacheStorage Cache = CacheStorage.CacheFactory.CreateCacheFactory();
+            string cache = Convert.ToString(Cache.Get("GetNewsType"));
+            string JsonData = "";//返回的json数据
+            if (string.IsNullOrEmpty(cache))//如果缓存为空
+            {
+
+                //读取数据并转化为json格式
+                JsonData = new NewsTypeBLL().GetNewsTypeInfoForNewsByJson();
+                //插入缓存(时间从配置文件中读取)
+                Cache.Insert("GetNewsType", JsonData, CacheManage.GetTimeConfig("NewsType"));
+
+            }
+            else
+            {
+                JsonData = cache;
+            }
             return JsonData;
-            //return View();
         }
 
         public string GetProductTypes()

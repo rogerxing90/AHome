@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <CacheSettings>
+    <Cache Name="NewsType" Day="0" Hour="2" Id="1" Title="新闻类别缓存" />
+    <Cache Name="ProductType" Day="0" Hour="2" Id="2" Title="产品类别缓存" />
+    <Cache Name="Nongenetic" Day="0" Hour="2" Id="3" Title="非遗作品缓存" />
+    <Cache Name="ProductShow" Day="0" Hour="2" Id="4" Title="产品展示缓存" />
+    <Cache Name="TopRankInfo" Day="0" Hour="2" Id="5" Title="排名信息缓存" />
+    <!--首页的中间内容默认配置-->
+    <Cache Name="DefaultContent" Day="1" Hour="3" Id="6" Title="首页内容缓存" />
+  </CacheSettings>
+  <Pay PayType="Alipay">
+    <!--支付宝-->
+    <Alipay v_mid="3" v_pwd="tzh">
+      <!--网关地址-->
+      <PayUrl>http://localhost:8082/AliPay/PayGate.ashx</PayUrl>
+    </Alipay>
+    <!--网银在线-->
+    <ChinaBank v_mid="3" v_pwd="tzh">
+      <!--网关地址-->
+      <PayUrl>http://localhost:8082/ChinaBank/PayGate.ashx</PayUrl>
+    </ChinaBank>
+  </Pay>
+</Root>

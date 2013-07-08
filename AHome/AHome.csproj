@@ -208,6 +208,7 @@
     <Content Include="Admin\CommonLibs\genders.txt" />
     <Content Include="Admin\CommonLibs\national.txt" />
     <Content Include="Admin\css\validationEngine.jquery.css" />
+    <Content Include="Config\CacheConfig.xml" />
     <Content Include="Content\gr.css" />
     <Content Include="Content\gs_ms.css" />
     <Content Include="Content\gyp_guanli.css" />
@@ -536,6 +537,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CacheStorage\CacheStorage.csproj">
+      <Project>{8c6dbafb-e8cc-4c93-ad66-d3a976c480ee}</Project>
+      <Name>CacheStorage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{13c7bcdc-cdc5-4354-b3b2-8a93231dc0cc}</Project>
       <Name>Common</Name>
