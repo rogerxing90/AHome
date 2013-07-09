@@ -1,0 +1,118 @@
+﻿@*@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}*@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>管理员登陆</title>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Admin/style.css" rel="stylesheet" />
+    <link href="~/Content/Admin/demo.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript">
+        function changeAuthCode() {
+            var num = new Date().getTime();
+            var rand = Math.round(Math.random() * 10000);
+            num = num + rand;
+            //if ($("#vdimgck")[0]) {
+            //    $("#vdimgck")[0].src = "FileManage/VerifyChars.ashx?tag=" + num;
+            //}
+            return false;
+        }
+
+        function onUserNamePwdValidation(e) {
+
+            if (e.value.length <= 0)
+                return false;
+
+            else
+                return true;
+
+
+        }
+
+        function Validsubmit() {
+            var uName = document.getElementById("username");
+            var uPwd = document.getElementById("userpass");
+
+            var vdcode = document.getElementById("vdcode");
+            if (onUserNamePwdValidation(uName) && onUserNamePwdValidation(uPwd) && onUserNamePwdValidation(vdcode)) {
+
+                // form1.submit();
+            }
+            else {
+                alert("帐号密码验证码不能为空");
+                return false;
+
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <h1></h1>
+            <ul class="nav">
+            </ul>
+        </div>
+        <div id="content">
+            <div class="left_main">
+                <h2>渠道信息</h2>
+                <ul class="news" id="qdkb_html" style="color: #FFFFFF;">
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;欢迎使用网站管理系统!</li>
+                </ul>
+                <div class="help_center">
+                    <h3><a href="###" target="_blank">帮助中心</a></h3>
+                    <p><strong>提供专业的技术问题解答</strong></p>
+                </div>
+                <div class="bbs">
+                    <h3><a href="##" target="_blank">技术支持</a></h3>
+                    <p><strong>联系方式:19591592514 田先生</strong></p>
+                </div>
+            </div>
+            <form name="form1" method="post" action="DealData/DealLogin.ashx?method=login">
+                <input type="hidden" name="gotopage" value="" />
+                <input type="hidden" name="dopost" value="login" />
+                <input name='adminstyle' type='hidden' value='newdedecms' />
+                <fieldset class="right_main">
+                    <legend>用户登录</legend>
+                    <dl class="setting">
+                        <dt>
+                            <label>用户名</label>
+                        </dt>
+                        <dd><span class="text_input">
+                            <input type="text" name="username" id="username" /></span></dd>
+                        <dt>
+                            <label>密　码</label>
+                        </dt>
+                        <dd><span class="text_input">
+                            <input type="password" name="userpass" id="userpass" /></span></dd>
+
+                        @*<dt>
+                            <label>验证码</label>
+                        </dt>
+                        <dd><span class="short_input">
+                            <input id="vdcode" type="text" style="text-transform: uppercase;" name="vdcode" /></span>
+                            <span class="yzm">
+                                <img id="vdimgck" align="absmiddle" onclick="this.src=this.src+'?'" style="cursor: pointer;" alt="看不清？点击更换" src="FileManage/VerifyChars.ashx" /></span>
+
+                        </dd>*@
+
+                        <dd>
+                            <input type="submit" name="sm1" class="login_btn" value="" />
+                        </dd>
+                    </dl>
+                </fieldset>
+            </form>
+        </div>
+        <div id="footer"></div>
+    </div>
+</body>
+</html>

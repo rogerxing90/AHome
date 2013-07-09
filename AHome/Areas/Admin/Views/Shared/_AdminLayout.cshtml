@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/gyp_guanli.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @RenderSection("css", required: false)
+</head>
+<body>
+    <div class="top_side">
+        <div class="middle">
+            <p>您好，<a href='/Master/MasterInfo'><label id="lblMasterName" />大师</a>！<a href='/Master/ChangePwd'>修改密码</a>&nbsp; <a id="A1" href='Master/MasterLogout'>安全退出</a></p>
+            <ul>
+                <li><a href='/Home/Index'>首页</a>|</li>
+
+                <li><a href='/Master/MasterInfo'>个人中心</a></li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="middle">
+        <div class="logo"></div>
+        <div class="search">
+            <table width="320" height="28" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="120">
+                        <select height="22px" width="120px">
+                            <option>产品名称</option>
+                            <option>产品类别</option>
+                        </select>
+                    </td>
+                    <td width="164">
+                        <input type="text" value="" id="txtcontent" runat="server" /></td>
+                    <td width="70"><a id="A2" href="#" runat="server">搜索</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="content middle">
+
+        @RenderBody()
+
+    </div>
+    <div class="footer middle">
+        <div class="s_logo"></div>
+        <div class="s_nav">
+            <ul>
+                <li><a href="#">在线留言</a>|</li>
+                <li><a href="#">联系我们</a>|</li>
+                <li><a href="#">关于我们</a>|</li>
+                <li><a href="#">企业信息</a>|</li>
+                <li><a href="#">招商合作</a></li>
+            </ul>
+        </div>
+        <div class="foot">
+            <p>
+                <span>广东省潮州</span> <span>2011 © All RIGHTS RESERVED. [版权所有] TZHSWEET</span>
+            </p>
+            <p>
+                <span>制作与维护：TZHSWEET</span><span>我的博客:http://www.cnblogs.com/mysweet/</span>
+            </p>
+        </div>
+    </div>
+    <script language="JavaScript">
+        //Switch Tab Effect
+        function switchTab(tabpage, tabid, show_n) {
+
+            //alert(show_n);
+            for (var i = 1; i < 7; i++) {
+                document.getElementById('HackBox' + i).style.display = "none";
+            }
+            document.getElementById(show_n).style.display = "block";
+
+            var oItem = document.getElementById(tabpage);
+            for (var i = 0; i < oItem.getElementsByTagName('li').length; i++) {
+                var x = oItem.getElementsByTagName('li')[i];
+                x.className = "";
+                var y = x.getElementsByTagName('a');
+            }
+            document.getElementById(tabid).className = "Selected";
+        }
+    </script>
+    <script type="text/javascript">
+        var NewsListURL = '<%=URLManage.GetURL("~/News/NewsList","")%>';
+        var CraftKnowledgeListURL = '<%=URLManage.GetURL("~/CraftKnowledge/CraftKnowledgeList","")%>';
+        var SearchProductURL = '<%=URLManage.GetURL("~/Product/SearchProduct","")%>';
+        $(function () {
+            CheckMasterLoginState();
+        });
+        //检测登录状态
+        function CheckMasterLoginState() {
+            $.ajax({
+                url: '/Master/CheckLoginStatus',
+                type: "post",
+                success: function (data) {
+                    var jsonInfo = $.parseJSON(data);
+                    // alert(data);
+                    //同时记住账号和密码
+                    if (jsonInfo.Status && jsonInfo.UserName != "") {
+                        $("#lblMasterName").text(jsonInfo.UserName);
+                    }
+                }
+            });
+        }
+
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
