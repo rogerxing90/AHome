@@ -45,15 +45,27 @@ namespace CacheStorage
             Updatekeys(key);
         }
         /// <summary>
-        /// 插入缓存
+        /// 插入缓存（滑动过期时间）
         /// </summary>
         /// <param name="key">key</param>
         /// <param name="value">value</param>
-        /// <param name="expiration">过期时间</param>
+        /// <param name="expiration">滑动过期时间</param>
         public void Insert(string key, object value, TimeSpan expiration)
         {
             Cache.Store(StoreMode.Set, key, value, expiration);
             Updatekeys(key);
+        }
+        /// <summary>
+        /// 插入缓存（多参数）
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="dateTimeExpiration"></param>
+        /// <param name="timeSpanExpiration"></param>
+        /// <param name="priority"></param>
+        public void Insert(string key, object value, DateTime dateTimeExpiration, TimeSpan timeSpanExpiration, System.Web.Caching.CacheItemPriority priority)
+        {
+            //只是为了继承接口，该方法不使用与Memcache
         }
         /// <summary>
         /// 根据key获取value
@@ -119,5 +131,8 @@ namespace CacheStorage
             Cache.Store(StoreMode.Set, "keys", keys);
         }
         #endregion
+
+
+
     }
 }

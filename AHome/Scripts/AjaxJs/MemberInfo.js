@@ -36,7 +36,7 @@ function Comit() {
 
 function GetNation() {
     $.ajax({
-        url: "../Admin/CommonLibs/national.txt",
+        url: "~/Content/CommonLibs/national.txt",
         dataType: "text",
         success: function (text) {
             //不安全的用法

@@ -1,18 +1,12 @@
-﻿@*@{
-    ViewBag.Title = "Login";
-    Layout = null;
-}*@
-
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <title>管理员登陆</title>
     <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/Admin/style.css" rel="stylesheet" />
-    <link href="~/Content/Admin/demo.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/CSS/style.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/CSS/demo.css" rel="stylesheet" />
 
     @Scripts.Render("~/bundles/jquery")
     <script type="text/javascript">
@@ -77,7 +71,9 @@
                     <p><strong>联系方式:19591592514 田先生</strong></p>
                 </div>
             </div>
-            <form name="form1" method="post" action="DealData/DealLogin.ashx?method=login">
+            @*<form name="form1" method="post" action="DealLogin">*@
+            @using (Html.BeginForm("DealLogin","Home"))
+            { 
                 <input type="hidden" name="gotopage" value="" />
                 <input type="hidden" name="dopost" value="login" />
                 <input name='adminstyle' type='hidden' value='newdedecms' />
@@ -110,7 +106,8 @@
                         </dd>
                     </dl>
                 </fieldset>
-            </form>
+@*</form>*@
+            }
         </div>
         <div id="footer"></div>
     </div>

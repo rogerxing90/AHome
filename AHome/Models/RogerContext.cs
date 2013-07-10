@@ -18,5 +18,8 @@ namespace AHome.Models
         public DbSet<Master_Type> MasterTypes { get; set; }
         public DbSet<VMasterType> VMasterTypes { get; set; }
         public DbSet<VProductCraftType> VProductCraftTypes { get; set; }
+        public DbSet<Web_User> Web_Users { get; set; }
+        public DbSet<Web_UserGroup> Web_UserGroups { get; set; }
+        public DbSet<Web_Sys_Function> Web_Sys_Functions { get; set; }
     }
 }

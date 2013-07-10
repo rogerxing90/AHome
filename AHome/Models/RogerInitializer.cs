@@ -71,6 +71,13 @@ namespace AHome.Models
             #endregion
 
 
+            var web_Users = new List<Web_User> 
+            {
+                new Web_User(){ LOGNAME="admin", PASSWORD="admin", STATE="1",
+                    GROUP= new Web_UserGroup(){ USERGROUP = "超级管理员", DESCRIPTION = "Super Administrator"}},
+            };
+            web_Users.ForEach(s => context.Web_Users.Add(s));
+
             context.SaveChanges();
         }
     }

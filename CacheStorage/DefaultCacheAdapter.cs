@@ -44,7 +44,7 @@ namespace CacheStorage
             context.Cache.Insert(key, value, null, expiration, TimeSpan.FromMinutes(20), CacheItemPriority.Normal, null);
         }
         /// <summary>
-        /// 添加缓存
+        /// 添加缓存(滑动过期时间)
         /// </summary>
         /// <param name="key">key</param>
         /// <param name="value">value</param>
@@ -53,6 +53,18 @@ namespace CacheStorage
         {
             context.Cache.Insert(key, value, null, DateTime.MaxValue, expiration, CacheItemPriority.Normal, null);
 
+        }
+        /// <summary>
+        /// 添加缓存(多参数)
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="dateTimeExpiration"></param>
+        /// <param name="timeSpanExpiration"></param>
+        /// <param name="priority"></param>
+        public void Insert(string key, object value, DateTime dateTimeExpiration, TimeSpan timeSpanExpiration, CacheItemPriority priority)
+        {
+            context.Cache.Insert(key, value, null, dateTimeExpiration, timeSpanExpiration, priority, null);
         }
         /// <summary>
         /// 获取当前缓存中key的值
