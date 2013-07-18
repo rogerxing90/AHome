@@ -11,7 +11,7 @@ namespace AHome.Models
         public System.String LOGNAME { get; set; }
         public System.String PASSWORD { get; set; }
         public System.String REALNAME { get; set; }
-        public Web_UserGroup GROUP { get; set; }
+        public virtual Web_UserGroup GROUP { get; set; }
         public System.String STATE { get; set; }
         public System.DateTime? REG_DATE { get; set; }
         public System.DateTime? LAST_LOG_DATE { get; set; }

@@ -8,6 +8,10 @@ namespace AHome.Models
 {
     public class RogerContext : DbContext
     {
+        public RogerContext()
+        {
+            this.Configuration.LazyLoadingEnabled = true;
+        }
         public DbSet<News> News { get; set; }
         public DbSet<NewsType> NewsTypes { get; set; }
         public DbSet<CraftType> CraftTypes { get; set; }
@@ -21,5 +25,8 @@ namespace AHome.Models
         public DbSet<Web_User> Web_Users { get; set; }
         public DbSet<Web_UserGroup> Web_UserGroups { get; set; }
         public DbSet<Web_Sys_Function> Web_Sys_Functions { get; set; }
+
+
+
     }
 }
