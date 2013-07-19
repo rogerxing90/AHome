@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace AHome.Models
 {
     public class Web_UserGroup
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public System.Int32 ID { get; set; }
         public System.String USERGROUP { get; set; }
         public System.String DESCRIPTION { get; set; }
@@ -16,5 +18,25 @@ namespace AHome.Models
 
         //此处表示一个usergoup包含多个user
         public virtual List<Web_User> Web_Users { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            Web_UserGroup target = obj as Web_UserGroup;
+            if (target != null)
+            {
+                return this.ID == target.ID;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return this.ID.GetHashCode();
+        }
+
     }
+
 }

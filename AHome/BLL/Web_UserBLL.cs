@@ -48,7 +48,7 @@ namespace AHome.BLL
                 {
                     jsonWriter.WriteStartObject();
                     jsonWriter.WritePropertyName("id");
-                    jsonWriter.WriteValue(funtion.FUNTION_ID);
+                    jsonWriter.WriteValue(funtion.ID);
                     jsonWriter.WritePropertyName("text");
                     jsonWriter.WriteValue(funtion.NAME);
                     jsonWriter.WritePropertyName("expanded");
@@ -57,7 +57,7 @@ namespace AHome.BLL
                     jsonWriter.WriteStartArray();
                     foreach (Web_Sys_Function func in userGroupFunctions)
                     {
-                        if ((int)func.FATHER_ID == funtion.FUNTION_ID)
+                        if ((int)func.FATHER_ID == funtion.ID)
                         {
 
                             jsonWriter.WriteStartObject();

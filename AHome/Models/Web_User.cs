@@ -17,5 +17,23 @@ namespace AHome.Models
         public System.DateTime? LAST_LOG_DATE { get; set; }
         public System.Int32? LOG_TIMES { get; set; }
         public System.String MEMO { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            Web_User target = obj as Web_User;
+            if (target != null)
+            {
+                return this.ID == target.ID;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return this.ID.GetHashCode();
+        }
     }
 }

@@ -1,20 +1,30 @@
 ﻿/**
-* jQuery MiniUI v3.0
+* jQuery MiniUI 2.0
 * 
-* Web Site : http://www.miniui.com
+* Licensed under the GPL terms and Commercial terms
+*
+* GPL License : http://www.opensource.org/licenses/gpl-license.php
 *
 * Commercial License : http://www.miniui.com/license
 *
-* Copyright(c) 2012 All Rights Reserved. Shanghai PusSoft Co., Ltd (上海普加软件有限公司) [ services@plusoft.com.cn ]. 
+* Copyright(c) 2012 All Rights Reserved. PusSoft Co., Ltd (上海普加软件) [ services@plusoft.com.cn ]. 
 * 
 */
 
 
-mini.locale = "zh_CN";
+mini.locale = "en-US";
 
 
 /* Date
 -----------------------------------------------------------------------------*/
+
+for (var id in mini) {
+    var clazz = mini[id];
+    if (clazz && clazz.prototype && clazz.prototype.isControl) {
+        clazz.prototype.requiredErrorText = "不能为空";
+    }
+}
+
 
 mini.dateInfo = {
     monthsLong: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
@@ -70,40 +80,6 @@ if (mini.Calendar) {
 }
 
 
-/* required | loadingMsg
------------------------------------------------------------------------------*/
-for (var id in mini) {
-    var clazz = mini[id];
-    if (clazz && clazz.prototype && clazz.prototype.isControl) {
-        clazz.prototype.requiredErrorText = "不能为空";
-        clazz.prototype.loadingMsg = "Loading...";
-    }
-
-}
-/* VTypes
------------------------------------------------------------------------------*/
-if (mini.VTypes) {
-    mini.copyTo(mini.VTypes, {
-        minDateErrorText: '不能小于日期 {0}',
-        maxDateErrorText: '不能大于日期 {0}',
-
-        uniqueErrorText: "字段不能重复",
-        requiredErrorText: "不能为空",
-        emailErrorText: "请输入邮件格式",
-        urlErrorText: "请输入URL格式",
-        floatErrorText: "请输入数字",
-        intErrorText: "请输入整数",
-        dateErrorText: "请输入日期格式 {0}",
-        maxLengthErrorText: "不能超过 {0} 个字符",
-        minLengthErrorText: "不能少于 {0} 个字符",
-        maxErrorText: "数字不能大于 {0} ",
-        minErrorText: "数字不能小于 {0} ",
-        rangeLengthErrorText: "字符长度必须在 {0} 到 {1} 之间",
-        rangeCharErrorText: "字符数必须在 {0} 到 {1} 之间",
-        rangeErrorText: "数字必须在 {0} 到 {1} 之间"
-    });
-}
-
 /* Pager
 -----------------------------------------------------------------------------*/
 if (mini.Pager) {
@@ -112,24 +88,10 @@ if (mini.Pager) {
         prevText: "上一页",
         nextText: "下一页",
         lastText: "尾页",
-        pageInfoText: "每页 {0} 条, 共 {1} 条"
+        pageSizeText: "每页记录数："
     });
 }
 
-/* DataGrid
------------------------------------------------------------------------------*/
-if (mini.DataGrid) {
-    mini.copyTo(mini.DataGrid.prototype, {
-        emptyText: "没有返回的数据"
-    });
-}
-
-if (mini.FileUpload) {
-    mini.FileUpload.prototype.buttonText = "浏览..."
-}
-if (mini.HtmlFile) {
-    mini.HtmlFile.prototype.buttonText = "浏览..."
-}
 
 /* Gantt
 -----------------------------------------------------------------------------*/

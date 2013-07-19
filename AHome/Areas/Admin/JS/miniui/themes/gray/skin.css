@@ -37,7 +37,7 @@ body a:hover.mini-button
 }
 body .mini-button-pressed, body a:hover.mini-button-pressed,
 body .mini-button-checked, body a:hover.mini-button-checked,
-body a.mini-button-popup, body a:hover.mini-button-popup
+body .mini-button-popup, body a:hover.mini-button-popup
 {
     background:#d5d5d5;     
 }
@@ -49,58 +49,82 @@ body .mini-button-disabled, body a:hover.mini-button-disabled
 }
 
 
-/*----------------------------------- textbox ----------------------------------*/
-.mini-textbox-border
-{
-    background:white;
-	border-color:#a5acb5;        
-}
-body .mini-textbox-focus .mini-textbox-border
-{
-    border-color: #7F7F7F;
-}
-
-
 /*----------------------------------- buttonedit ----------------------------------*/
 
+.mini-buttonedit-icon
+{
+    background:url(images/buttonedit/icon1.gif) no-repeat 0 -1px;
+}
 .mini-buttonedit-border
 {
-    background:white;
-	border-color:#a5acb5;      
+    border-color: #9DA0AA #C2C4CB #D9DAE0;
+    border-style: solid;
+    border-width: 1px;            
 }
-body .mini-buttonedit-focus .mini-buttonedit-border
+.mini-buttonedit-button, .mini-buttonedit-disabled .mini-buttonedit-button
 {
-    border-color: #7F7F7F;
-}
-.mini-buttonedit-button
-{
-	background:#E6E6E6 url(images/buttonedit/button.gif) repeat-x 50% 50%;		
-	border:#a5acb5 1px solid;   
-	padding:0;
+    background-color: #E6E6E6;
+    background-image: url(images/buttonedit/button.gif);
+    background-position: center top;
+    background-repeat: repeat-x;    
+    border: 1px solid #7F7F7F; 
 }
 .mini-buttonedit-button-hover,
-.mini-buttonedit-hover .mini-buttonedit-button
+.mini-buttonedit-hover .mini-buttonedit-popup
 {
-    background:#f2f2f2 url(images/buttonedit/hover.gif) repeat-x 0 0; 
-	border-color:#7F7F7F;
+    border: 1px solid #606060;
+    background:#f2f2f2 url(images/buttonedit/hover.gif) repeat-x 0 0;      
 }
-.mini-buttonedit-button-pressed,
-.mini-buttonedit-popup .mini-buttonedit-button
+body .mini-buttonedit-popup .mini-buttonedit-button, body .mini-buttonedit-popup a:hover.mini-buttonedit-pressed,
+.mini-buttonedit-pressed .mini-buttonedit-popup
 {
-	border-color:#7F7F7F;
-    background:#d5d5d5;	
+    border: 1px solid #606060;
+    background:#d5d5d5;
 }
-.mini-popupedit .mini-buttonedit-icon
+/* edit icons */
+
+.mini-buttonedit-icons-popup
 {
-    background:url(images/buttonedit/icon2.gif) no-repeat 60% 30%;
+    background:url(images/buttonedit/icon2.gif) no-repeat 0 -1px;
 }
-.mini-datepicker .mini-buttonedit-icon
+.mini-buttonedit-icons-date
 {
-    background:url(images/buttonedit/icon2.gif) no-repeat 60% 30%;
+    background:url(images/buttonedit/icon2.gif) no-repeat 0 -1px;
 }
 
-
-
+/* spin edit */
+body .mini-buttonedit tr .mini-buttonedit-spinButton
+{
+    background:none;
+    border: 1px solid #606060;
+}
+.mini-buttonedit-spin
+{   
+    background-color: #E6E6E6;
+    background-image: url(images/buttonedit/button.gif);
+    background-position: center top;
+    background-repeat: repeat-x; 
+}
+.mini-buttonedit-spinSplit
+{
+    display:block;
+}
+a:hover.mini-buttonedit-up, a:hover.mini-buttonedit-down
+{    
+    background:#f2f2f2 url(images/buttonedit/hover.gif) repeat-x 0 0;         
+}
+.mini-buttonedit-up span, .mini-buttonedit-down span
+{
+    background:url(images/buttonedit/icon3.gif) no-repeat -18px 0;
+}
+.mini-buttonedit-down span
+{    
+    background:url(images/buttonedit/icon3.gif) no-repeat 0px 0px;     
+}
+body .mini-buttonedit-button-pressed, body a:hover.mini-buttonedit-button-pressed
+{    
+    background:#ccc;
+}
 /*------------------------- panel -----------------------*/
 
 .mini-panel-border
@@ -139,25 +163,25 @@ body .mini-buttonedit-focus .mini-buttonedit-border
 }
 
 /*------------------- navbar ------------------*/
-.mini-outlookbar-border
+.mini-navbar-border
 {
     border:1px solid #A8A8A8;         
 }
-.mini-outlookbar-groupHeader
+.mini-navbar-groupHeader
 {
     background:#E0E0E0;    
 }
 /* view2 */
-.mini-outlookbar-view2 .mini-outlookbar-groupHeader
+.mini-navbar-view2 .mini-navbar-groupHeader
 {
     border:solid 1px #A8A8A8; 
 }
-.mini-outlookbar-view2 .mini-outlookbar-groupBody
+.mini-navbar-view2 .mini-navbar-groupBody
 {    
     background:#efefef;
 }
 /* view3 */
-.mini-outlookbar-view3 .mini-outlookbar-group
+.mini-navbar-view3 .mini-navbar-group
 {
     border:solid 1px #A8A8A8; 
 }
@@ -249,29 +273,6 @@ body .mini-buttonedit-focus .mini-buttonedit-border
     border-bottom:solid 1px #a0a0a0;
 }
 
-/*------------------- treegrid --------------------*/
-.mini-treegrid-border
-{
-    border-color:#9f9f9f;
-}
-
-.mini-treegrid-header
-{
-    border-bottom:none;
-}
-.mini-treegrid-headerInner
-{
-    background:#dcdcdc;
-}
-.mini-treegrid-selectedNode
-{
-	background:#a5a5a5;
-}
-.mini-treegrid-hoverNode
-{
-    background:#CFCFCF;
-}
-
 /*---------------------- calendar -----------------------------*/
 .mini-calendar
 {    
@@ -312,11 +313,7 @@ body .mini-buttonedit-focus .mini-buttonedit-border
 
 
 /*---------------------- tabs -----------------------------*/
-.mini-tabs-scrollCt
-{
-    border-color:#a8a8a8;
-    background:#F3F3F3;
-}
+
 .mini-tabs-leftButton, .mini-tabs-rightButton
 {
     border:solid 1px #7F7F7F;
@@ -414,7 +411,7 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
 
 /*---------------------- tree -----------------------------*/
 
-.mini-tree-node-hover .mini-tree-nodeshow
+.mini-tree-hottrack .mini-tree-node-hover
 {
     border:1px solid #888888;
     background:#f2f2f2;
@@ -427,13 +424,13 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
 }
 
 /*---------------------- grid -----------------------------*/
-.mini-grid-headerCell, .mini-grid-topRightCell
+.mini-grid-headerCell
 {
     background:#dcdcdc;
     border-right:#9f9f9f 1px solid;
     border-bottom:#9f9f9f 1px solid;
 }
-.mini-grid-footer, .mini-grid-pager
+.mini-grid-footer
 {
     background:#f2f2f2;
 }

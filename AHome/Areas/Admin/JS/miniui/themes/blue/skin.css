@@ -60,6 +60,7 @@
 .mini-toolbar
 {
     border:solid 1px #99bce8;
+    padding:5px;
     background:#f0f0f0 url(images/toolbar/toolbar.gif) repeat-x 0 0;
 }
 .separator
@@ -82,7 +83,7 @@ body a:hover.mini-button
 }
 body .mini-button-pressed, body a:hover.mini-button-pressed,
 body .mini-button-checked, body a:hover.mini-button-checked,
-body a.mini-button-popup, body a:hover.mini-button-popup
+body .mini-button-popup, body a:hover.mini-button-popup
 {
 	background:#bacee4 url(images/button/pressed.gif) repeat-x 0px 50%;	
 	border-color:#7a9ac4;
@@ -109,40 +110,98 @@ body .mini-textbox-focus .mini-textbox-border
 
 /*----------------------------------- buttonedit ----------------------------------*/
 
+.mini-buttonedit-icon
+{
+    background:url(images/buttonedit/icon1.gif) no-repeat 0 -1px;
+}
 .mini-buttonedit-border
 {
 	background:white url(images/buttonedit/text-bg.gif) repeat-x 0px top;
-	border-color:#b5b8c8;    
+	border:solid 1px #b5b8c8;    
+}
+.mini-buttonedit-button, .mini-buttonedit-disabled .mini-buttonedit-button
+{
+	background:url(images/buttonedit/btn.gif) repeat-x 0px 50%;		
+	border:#b5b8c8 1px solid;   
+}
+
+.mini-buttonedit-spinButton
+{
+    background:none;
+    border:1px solid transparent; 
+_border-color:tomato;
+_filter:chroma(color=tomato);
+}
+
+.mini-buttonedit-button-hover,
+.mini-buttonedit-hover td.mini-buttonedit-popup
+{
+    background:url(images/buttonedit/btn-hover.gif) repeat-x 0 50%;	
+	border:#80a4d0 1px solid;
+}
+
+body .mini-buttonedit-popup .mini-buttonedit-button, body .mini-buttonedit-popup a:hover.mini-buttonedit-pressed,
+.mini-buttonedit-pressed td.mini-buttonedit-popup
+{
+    background:url(images/buttonedit/btn-pressed.gif) repeat-x 0 50%;	
+	border:#80a4d0 1px solid;
+}
+body .mini-buttonedit-button-pressed, body a:hover.mini-buttonedit-button-pressed
+{
+    background:url(images/buttonedit/btn-pressed.gif) repeat-x 0 50%;	
+	border:#80a4d0 1px solid;
 }
 body .mini-buttonedit-focus .mini-buttonedit-border
 {
     border-color: #7eadd9;
 }
-.mini-buttonedit-button
+
+/* edit icons */
+.mini-buttonedit-icon
 {
-	background:url(images/buttonedit/btn.gif) repeat-x 0px 50%;		
-	border:#b5b8c8 1px solid;   
-	padding:0;
+    width:11px;
 }
-.mini-buttonedit-button-hover,
-.mini-buttonedit-hover .mini-buttonedit-button
+.mini-buttonedit-icons-popup
 {
-    background:url(images/buttonedit/btn-hover.gif) repeat-x 0 50%;	
-	border-color:#80a4d0;
+    background:url(images/buttonedit/arrow.gif) no-repeat -1px 0px;
 }
-.mini-buttonedit-button-pressed,
-.mini-buttonedit-popup .mini-buttonedit-button
+.mini-buttonedit-icons-date
 {
-    background:url(images/buttonedit/btn-pressed.gif) repeat-x 0 50%;	
-	border-color:#80a4d0;
+    background:url(images/buttonedit/arrow.gif) no-repeat -1px 0px;
 }
-.mini-popupedit .mini-buttonedit-icon
+
+.mini-datepicker .mini-buttonedit-popup
 {
-    background:url(images/buttonedit/arrow.gif) no-repeat  1px 2px;
+    border:solid 1px white;
+    background:none;  
 }
-.mini-datepicker .mini-buttonedit-icon
+
+
+/* spin edit */
+
+.mini-buttonedit-spin
+{   
+    background:none;    
+}
+.mini-buttonedit-spinSplit
 {
-    background:url(images/buttonedit/date.gif) no-repeat  1px 2px;
+    display:none;
+}
+a:hover.mini-buttonedit-up, a:hover.mini-buttonedit-down
+{    
+    background:none;
+}
+.mini-buttonedit-up span, .mini-buttonedit-down span
+{
+    background:url(images/buttonedit/arrow_up.gif) no-repeat 0px 0;   
+}
+.mini-buttonedit-down span
+{    
+    background:url(images/buttonedit/arrow_down.gif) no-repeat 0px 0px;        
+}
+body .mini-buttonedit-spin .mini-buttonedit-button-pressed, body .mini-buttonedit-spin a:hover.mini-buttonedit-button-pressed
+{    
+	border:none;
 }
 
 
@@ -181,7 +240,6 @@ body .mini-buttonedit-focus .mini-buttonedit-border
     background:url(images/tools/expand.gif) no-repeat 50% 50%;
 }
 
-
 /*----------------------------- window -------------------------*/
 .mini-window .mini-panel-header
 {
@@ -192,54 +250,53 @@ body .mini-buttonedit-focus .mini-buttonedit-border
     background:#D3E1F1;
 }
 
-
 /*------------------- navbar ------------------*/
-.mini-outlookbar-border
+.mini-navbar-border
 {
     border:1px solid #99bce8;         
 }
-.mini-outlookbar .mini-outlookbar-groupHeader
+.mini-navbar .mini-navbar-groupHeader
 {
     background:#d9e8fb url(images/navbar/header.gif) repeat-x 0 0;    
     border-color:#99bce8;
 }
-.mini-outlookbar .mini-outlookbar-groupTitle
+.mini-navbar .mini-navbar-groupTitle
 {
     color:Black;
     font-weight:normal;
 }
-.mini-outlookbar .mini-outlookbar-group 
+.mini-navbar .mini-navbar-group 
 {
     border-color:#99bce8;
 }
-.mini-outlookbar .mini-outlookbar-groupBody
+.mini-navbar .mini-navbar-groupBody
 {    
     border-color:#99bce8;
 }
 /* view2 */
-.mini-outlookbar-view2 .mini-outlookbar-groupHeader
+.mini-navbar-view2 .mini-navbar-groupHeader
 {
     border:solid 1px #99bce8; 
 }
-.mini-outlookbar-view2 .mini-outlookbar-groupBody
+.mini-navbar-view2 .mini-navbar-groupBody
 {    
     background:#fff;
 }
 /* view3 */
-.mini-outlookbar-view3 .mini-outlookbar-group
+.mini-navbar-view3 .mini-navbar-group
 {
     border:solid 1px #99bce8; 
 }
 
-.mini-outlookbar .mini-tools-collapse
+.mini-navbar .mini-tools-collapse
 {
     width:15px;	
 }
-.mini-outlookbar .mini-outlookbar-expand .mini-tools-collapse
+.mini-navbar .mini-navbar-expand .mini-tools-collapse
 {
     background:url(images/navbar/expand.gif) no-repeat 50% 50%;   
 }
-.mini-outlookbar .mini-outlookbar-collapse .mini-tools-collapse
+.mini-navbar .mini-navbar-collapse .mini-tools-collapse
 {
     background:url(images/navbar/collapse.gif) no-repeat 50% 50%;   
 }
@@ -397,57 +454,6 @@ body .mini-buttonedit-focus .mini-buttonedit-border
     border-bottom:solid 1px #a5acb5;
 }
 
-/*------------------- treegrid --------------------*/
-.mini-treegrid-border
-{
-    border-color:#98c0f4;
-}
-
-.mini-treegrid-header
-{
-    border-bottom:none;
-}
-.mini-treegrid-headerInner
-{
-    background:#E7EBEF url(images/treegrid/header.png) repeat-x 0 0;
-}
-.mini-treegrid td
-{
-    border-color:#d0d0d0;    
-}
-.mini-treegrid-header td
-{
-    border-color:#d0d0d0;
-}
-
-.mini-treegrid-selectedNode
-{
-	background:#cbdaf0;
-}
-.mini-treegrid-hoverNode
-{
-    background:#dfe8f6;
-}
-/*
-.mini-treegrid-expand .mini-treegrid-ec-icon
-{
-	background-image:url(images/treegrid/expand.gif);
-	background-position:50% 50%;
-}
-.mini-treegrid-collapse .mini-treegrid-ec-icon
-{
-	background-image:url(images/treegrid/collapse.gif);
-	background-position:50% 50%;
-}*/
-.mini-treegrid-leaf
-{
-    background-image:url(images/treegrid/file.png);
-}
-.mini-treegrid-folder
-{
-    background-image:url(images/treegrid/folder.gif);
-}
-
 /*---------------------- calendar -----------------------------*/
 .mini-calendar
 {    
@@ -492,12 +498,6 @@ body .mini-buttonedit-focus .mini-buttonedit-border
 }
     
 /*---------------------- tabs -----------------------------*/
-
-.mini-tabs-scrollCt
-{
-    border-color:#8CB2E2;
-    background:#f0f0f0 url(images/toolbar/toolbar.gif) repeat-x 0 0;
-}
 
 .mini-tabs-leftButton, .mini-tabs-rightButton
 {
@@ -597,7 +597,7 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
 /*---------------------- tree -----------------------------*/
 
 
-.mini-tree-node-hover .mini-tree-nodeshow
+.mini-tree-hottrack .mini-tree-node-hover
 {
     background:url(images/tree/button.gif) repeat-x 0px 50%;
 	border:solid 1px #b5afaf;		  
@@ -630,7 +630,7 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
 {
     background:url(images/grid/header.gif) repeat-x scroll left top #e2e4e6;
 }
-.mini-grid-headerCell, .mini-grid-topRightCell
+.mini-grid-headerCell
 {
     background:url(images/grid/header.gif) repeat-x scroll left top #e2e4e6;
     border-right:#c5c5c5 1px solid;
@@ -641,15 +641,10 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
     border-color:#d0d0d0;
     border-bottom-color:#d0d0d0;
 }
-.mini-grid-footer, .mini-grid-pager
+.mini-grid-footer
 {
     border-top:solid 1px #99bce8;    
     background:url(images/grid/footer.gif) repeat-x scroll left top #d4e2f1;
-}
-.mini-grid-columnproxy
-{
-    background:url(images/grid/header.gif) repeat-x scroll left top #e2e4e6;
-    border:#c5c5c5 1px solid;    
 }
 
 
@@ -660,22 +655,4 @@ body .mini-grid-row-hover, body .mini-grid-row-hover .mini-grid-frozenCell
 body .mini-grid-row-selected, body .mini-grid-row-selected .mini-grid-frozenCell
 {
     background:#dfe8f6;		
-}
-
-/*------------------- pager --------------------*/
-.mini-pager-first
-{    
-    background:url(images/pager/first.gif) no-repeat;
-}
-.mini-pager-prev
-{
-    background-image:url(images/pager/prev.gif);
-}
-.mini-pager-next
-{
-    background-image:url(images/pager/next.gif);
-}
-.mini-pager-last
-{
-    background-image:url(images/pager/last.gif);
 }

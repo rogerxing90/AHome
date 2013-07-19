@@ -1,11 +1,13 @@
 ﻿/**
-* jQuery MiniUI v3.0
+* jQuery MiniUI 2.0
 * 
-* Web Site : http://www.miniui.com
+* Licensed under the GPL terms and Commercial terms
+*
+* GPL License : http://www.opensource.org/licenses/gpl-license.php
 *
 * Commercial License : http://www.miniui.com/license
 *
-* Copyright(c) 2012 All Rights Reserved. Shanghai PusSoft Co., Ltd (上海普加软件有限公司) [ services@plusoft.com.cn ]. 
+* Copyright(c) 2012 All Rights Reserved. PusSoft Co., Ltd (上海普加软件) [ services@plusoft.com.cn ]. 
 * 
 */
 
@@ -52,6 +54,7 @@ mini.dateInfo = {
     clockType: 24
 };
 
+
 /* Calendar
 -----------------------------------------------------------------------------*/
 
@@ -70,47 +73,6 @@ if (mini.Calendar) {
 }
 
 
-/* required | loadingMsg
------------------------------------------------------------------------------*/
-for (var id in mini) {
-    var clazz = mini[id];
-    if (clazz && clazz.prototype && clazz.prototype.isControl) {
-        clazz.prototype.requiredErrorText = "不能为空";
-        clazz.prototype.loadingMsg = "Loading...";
-    }
-
-}
-
-/* VTypes
------------------------------------------------------------------------------*/
-mini.copyTo(mini.VTypes, {
-    minDateErrorText: 'Date can not be less than {0}',
-    maxDateErrorText: 'Date can not be greater than {0}',
-
-    uniqueErrorText: "This field is unique.",
-    requiredErrorText: "This field is required.",
-    emailErrorText: "Please enter a valid email address.",
-    urlErrorText: "Please enter a valid URL.",
-    floatErrorText: "Please enter a valid number.",
-    intErrorText: "Please enter only digits",
-    dateErrorText: "Please enter a valid date. Date format is {0}",
-    maxLengthErrorText: "Please enter no more than {0} characters.",
-    minLengthErrorText: "Please enter at least {0} characters.",
-    maxErrorText: "Please enter a value less than or equal to {0}.",
-    minErrorText: "Please enter a value greater than or equal to {0}.",
-    rangeLengthErrorText: "Please enter a value between {0} and {1} characters long.",
-    rangeCharErrorText: "Please enter a value between {0} and {1} characters long.",
-    rangeErrorText: "Please enter a value between {0} and {1}."
-});
-
-
-if (mini.FileUpload) {
-    mini.FileUpload.prototype.buttonText = "Browse..."
-}
-if (mini.HtmlFile) {
-    mini.HtmlFile.prototype.buttonText = "Browse..."
-}
-
 /* Pager
 -----------------------------------------------------------------------------*/
 
@@ -120,15 +82,7 @@ if (mini.Pager) {
         prevText: "Prev",
         nextText: "Next",
         lastText: "Last",
-        pageInfoText: "Pre page {0} records , all {1} records."
-    });
-}
-
-/* DataGrid
------------------------------------------------------------------------------*/
-if (mini.DataGrid) {
-    mini.copyTo(mini.DataGrid.prototype, {
-        emptyText: "No data returned."
+        pageSizeText: "Per page："
     });
 }
 

@@ -13,9 +13,6 @@
 .icon-save{
 	background:url(icons/save.gif) no-repeat;
 }
-.icon-close{
-	background:url(icons/cancel.gif) no-repeat;
-}
 .icon-cut{
 	background:url(icons/cut.png) no-repeat;
 }
@@ -38,8 +35,7 @@
 	background:url(icons/print.gif) no-repeat;
 }
 .icon-help{
-	background:url(icons/help.gif) no-repeat;
-	
+	background:url(icons/help.png) no-repeat;
 }
 .icon-undo{
 	background:url(icons/undo.gif) no-repeat;
@@ -66,7 +62,7 @@
 	background:url(icons/filter.gif) no-repeat;
 }
 .icon-find{
-	background:url(icons/find.png) no-repeat;
+	background:url(icons/find.gif) no-repeat;
 }
 .icon-folder{
 	background:url(icons/folder.gif) no-repeat;
@@ -75,16 +71,13 @@
 	background:url(icons/folder-open.gif) no-repeat;
 }
 .icon-lock{
-	background:url(icons/lock.png) no-repeat;
-}
-.icon-unlock{
-	background:url(icons/unlock.gif) no-repeat;
+	background:url(icons/lock.gif) no-repeat;
 }
 .icon-new{
 	background:url(icons/new.gif) no-repeat;
 }
 .icon-node{
-	background:url(icons/node.png) no-repeat;
+	background:url(icons/node.gif) no-repeat;
 }
 .icon-nowait{
 	background:url(icons/nowait.gif) no-repeat;
@@ -108,18 +101,11 @@
 	background:url(icons/upload.gif) no-repeat;
 }
 .icon-user{
-	background:url(icons/user.png) no-repeat;
+	background:url(icons/user.gif) no-repeat;
 }
 .icon-split{
 	background:url(icons/split.gif) no-repeat;
 }
 .icon-addfolder{
 	background:url(icons/addfolder.gif) no-repeat;
-}
-
-.icon-expand{
-	background:url(icons/expand.gif) no-repeat;
-}
-.icon-collapse{
-	background:url(icons/collapse.gif) no-repeat;
 }

@@ -15,7 +15,7 @@ body a:hover.mini-button
 }
 body .mini-button-pressed, body a:hover.mini-button-pressed,
 body .mini-button-checked, body a:hover.mini-button-checked,
-body a.mini-button-popup, body a:hover.mini-button-popup
+body .mini-button-popup, body a:hover.mini-button-popup
 {
 	background:#ffcf8b url(images/button/pressed.gif) repeat-x;	
 	border-top:solid 1px #608058;
@@ -26,52 +26,6 @@ body .mini-button-disabled, body a:hover.mini-button-disabled
     color:#808080;
     background:#cecece url(images/button/disabled.gif) repeat-x 0 0px;       
 }
-
-
-
-/*----------------------------------- textbox ----------------------------------*/
-.mini-textbox-border
-{
-    background:white;
-	border-color:#608058;        
-}
-body .mini-textbox-focus .mini-textbox-border
-{
-    border-color: #608058;
-}
-
-
-/*----------------------------------- buttonedit ----------------------------------*/
-
-.mini-buttonedit-border
-{
-    background:white;
-	border-color:#608058;      
-}
-body .mini-buttonedit-focus .mini-buttonedit-border
-{
-    border-color: #608058;
-}
-.mini-buttonedit-button
-{
-	background:url(images/buttonedit/btn.gif) no-repeat;		
-	border:#608058 1px solid; 
-	padding:0;
-}
-.mini-buttonedit-button-hover,
-.mini-buttonedit-hover .mini-buttonedit-button
-{
-    background:url(images/buttonedit/btn-hover.gif) repeat-x 0 50%;	
-	border:#608058 1px solid;
-}
-.mini-buttonedit-button-pressed,
-.mini-buttonedit-popup .mini-buttonedit-button
-{
-    background:url(images/buttonedit/btn-pressed.gif) repeat-x 0 50%;	
-	border:#608058 1px solid;
-}
-
-
 
 /*------------------------- menu --------------------------------*/
 .mini-menu
@@ -233,67 +187,165 @@ a:hover.mini-calendar-menu-year
 }
 
 /*------------------- navbar ------------------*/
-.mini-outlookbar
+.mini-navbar
 {
     border:1px solid #758d5e;
 }
-.mini-outlookbar-border
-{
-	border:1px solid #758d5e;
-}
-.mini-outlookbar .mini-outlookbar-groupHeader
+.mini-navbar .mini-navbar-groupHeader
 {
     background:#b5c48f url(images/navbar/header.gif) repeat-x 0 0;    
     border-color:#758d5e;
 }
-.mini-outlookbar .mini-outlookbar-groupTitle
+.mini-navbar .mini-navbar-groupTitle
 {
     color:Black;
     font-weight:normal;
 }
-.mini-outlookbar .mini-outlookbar-group 
+.mini-navbar .mini-navbar-group 
 {
     border-color:#99bce8;
 }
-.mini-outlookbar .mini-outlookbar-groupBody
+.mini-navbar .mini-navbar-groupBody
 {    
     border-color:#99bce8;
 }
 /* view2 */
-.mini-outlookbar-view2 .mini-outlookbar-groupHeader
+.mini-navbar-view2 .mini-navbar-groupHeader
 {
     border:solid 1px #758d5e; 
 }
-.mini-outlookbar-view2 .mini-outlookbar-groupBody
+.mini-navbar-view2 .mini-navbar-groupBody
 {    
     background:#e2e8c9;
     border:solid 1px #758d5e;
     border-top:0;
 }
 /* view3 */
-.mini-outlookbar-view3 .mini-outlookbar-group
+.mini-navbar-view3 .mini-navbar-group
 {
     border:solid 1px #99bce8; 
 }
 
-.mini-outlookbar .mini-tools-collapse
+.mini-navbar .mini-tools-collapse
 {
     width:15px;	
 }
-.mini-outlookbar .mini-outlookbar-expand .mini-tools-collapse
+.mini-navbar .mini-navbar-expand .mini-tools-collapse
 {
     background:url(images/navbar/expand.gif) no-repeat 50% 50%;   
 }
-.mini-outlookbar .mini-outlookbar-collapse .mini-tools-collapse
+.mini-navbar .mini-navbar-collapse .mini-tools-collapse
 {
     background:url(images/navbar/collapse.gif) no-repeat 50% 50%;   
 }
 
+/*----------------------------------- buttonedit ----------------------------------*/
+
+.mini-buttonedit-icon
+{
+    background:url(images/buttonedit/icon1.gif) no-repeat 0 -1px;
+}
+.mini-buttonedit-box
+{
+	background:white url(images/buttonedit/text-bg.gif) repeat-x 0px top;
+	border:solid 1px #608058;    
+}
+.mini-buttonedit-button, .mini-buttonedit-disabled .mini-buttonedit-button
+{
+	background:url(images/buttonedit/btn.gif) no-repeat;		
+	border:#608058 1px solid;
+}
+
+body .mini-buttonedit tr .mini-buttonedit-spinButton
+{
+    background:none;
+    border:0;
+}
+
+.mini-buttonedit-button-hover,
+.mini-buttonedit-hover .mini-buttonedit-popup
+{
+    background:url(images/buttonedit/btn-hover.gif) repeat-x 0 50%;	
+	border:#608058 1px solid;
+}
+
+body .mini-buttonedit-popup .mini-buttonedit-button, body .mini-buttonedit-popup a:hover.mini-buttonedit-pressed,
+.mini-buttonedit-pressed .mini-buttonedit-popup
+{
+    background:url(images/buttonedit/btn-pressed.gif) repeat-x 0 50%;	
+	border:#608058 1px solid;
+}
+body .mini-buttonedit-button-pressed, body a:hover.mini-buttonedit-button-pressed
+{
+    background:url(images/buttonedit/btn-pressed.gif) repeat-x 0 50%;	
+	border:#608058 1px solid;
+}
+body .mini-buttonedit-focus .mini-buttonedit-box
+{
+    border-color: #293e24;
+}
+
+/* edit icons */
+.mini-buttonedit-icon
+{
+    width:11px;
+}
+.mini-buttonedit-icons-popup
+{
+    background:url(images/buttonedit/arrow.gif) no-repeat -1px 0px;
+}
+.mini-buttonedit-icons-date
+{
+    background:url(images/buttonedit/arrow.gif) no-repeat -1px 0px;
+}
+
+/* spin edit */
+
+.mini-buttonedit-spin
+{   
+    background:none;    
+    height:17px;
+}
+.mini-buttonedit-spinSplit
+{
+    display:none;
+}
+a:hover.mini-buttonedit-up, a:hover.mini-buttonedit-down
+{    
+    background:#ffdda6 url(images/buttonedit/hover.gif) no-repeat ;
+}
+.mini-buttonedit-up, .mini-buttonedit-down{
+    background:#c6d3a4 url(images/buttonedit/arrowbg.gif) no-repeat ;
+    height:8px;
+    margin-bottom:1px;
+    border:#608058 1px solid;
+}
+.mini-buttonedit-up span, .mini-buttonedit-down span
+{
+    background:url(images/buttonedit/icon3.gif) no-repeat -6px -1px;    
+    margin:0;
+    width:14px;
+    left:0;
+    top:0;
+    height:6px;
+}
+.mini-buttonedit-down span
+{    
+    background:url(images/buttonedit/icon3.gif) no-repeat 3px 2px;        
+}
+body .mini-buttonedit-spin .mini-buttonedit-button-pressed, body .mini-buttonedit-spin a:hover.mini-buttonedit-button-pressed
+{    
+    background:#ffbc78 url(images/buttonedit/pressed.gif) no-repeat;	
+}
 
 /*----------------------- splitter -----------------------*/
 .mini-splitter
 {
     border:solid 1px #758d5e;     
+}
+.mini-splitter-handler
+{
+    background:url(images/splitter/splitter.gif) repeat-y;
 }
 .mini-splitter .mini-splitter-pane1{
     border-color:#758d5e;
@@ -389,61 +441,8 @@ a:hover.mini-calendar-menu-year
     border-bottom:solid 1px #608058;
 }
 
-/*------------------- treegrid --------------------*/
-.mini-treegrid-border
-{
-    border-color:#608058;
-}
-
-.mini-treegrid-header
-{
-    border-color:#608058;
-}
-.mini-treegrid-headerInner
-{
-    background:#b8c692 url(images/listbox/header.gif) repeat-x 0 0;  
-}
-.mini-treegrid td
-{
-    border-color:#a4b26d;    
-}
-.mini-treegrid-header td
-{
-    border-color:#e3f0bb;
-}
-
-.mini-treegrid-selectedNode
-{
-	background:#ffc076;
-}
-.mini-treegrid-hoverNode
-{
-    background:#e3f0bb;
-}
-/*
-.mini-treegrid-expand .mini-treegrid-ec-icon
-{
-	background-image:url(images/treegrid/expand.gif);
-}
-.mini-treegrid-collapse .mini-treegrid-ec-icon
-{
-	background-image:url(images/treegrid/collapse.gif);
-}*/
-.mini-treegrid-leaf
-{
-    background-image:url(images/treegrid/file.png);
-}
-.mini-treegrid-folder
-{
-    background-image:url(images/treegrid/folder.gif);
-}
-
 /*---------------------- tabs -----------------------------*/
-.mini-tabs-scrollCt
-{
-    border-color:#758d5e;
-    background:#f2f0e4 url(images/toolbar/header.gif) repeat-y 0 0;
-}
+
 .mini-tabs-leftButton, .mini-tabs-rightButton
 {
     border:solid 1px #b5afaf;
@@ -542,7 +541,7 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
 
 /*---------------------- tree -----------------------------*/
 
-.mini-tree-node-hover .mini-tree-nodeshow
+.mini-tree-hottrack .mini-tree-node-hover
 {	    
 	background:#ffeec2;
 	border:solid 1px #758d5e;		
@@ -552,7 +551,7 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
     background:#ffad55 url(images/tree/pressed.gif) repeat-x 0px 50%;
 	border:solid 1px #758d5e;	
 }
-/*
+
 .mini-tree-collapse .mini-tree-node-ecicon
 {
     background-image:url(images/tree/collapse.gif);
@@ -561,13 +560,16 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
 {
     background-image:url(images/tree/expand.gif);
 }
+/*treeline*/
 .mini-tree-treeLine .mini-tree-indent{
     background:transparent url(images/tree/treeline.gif) repeat-y 9px 0; 
 }
+/*leaf*/
 .mini-tree-treeLine .mini-tree-node-ecicon
 {
     background:transparent url(images/tree/treeNodeLine.gif) no-repeat -1px 0; 
 }
+/*has children*/
 .mini-tree-treeLine .mini-tree-expand .mini-tree-node-ecicon{
     background:transparent url(images/tree/expandLine.gif) no-repeat -4px -5px;
 }
@@ -606,20 +608,20 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
     background-position:40% 60%;
     background-image:url(images/tree/firstAndlastcollapse.gif);
 }
-*/
+
 
 
 
 /*------------------- grid --------------------*/
-.mini-grid-headerCell, .mini-grid-topRightCell
+.mini-grid-headerCell
 {
     background:#b8c692 url(images/grid/header.gif) repeat-x 0 0;
     border-right:#A5ACB5 1px solid;
     border-bottom:#A5ACB5 1px solid;
 }
-.mini-grid-footer, .mini-grid-pager
+.mini-grid-footer
 {
-    background:#cfd9a3;
+    background:#E7EAEE url(images/grid/footer.png) repeat-x 0 0;
 }
 .mini-grid-detailCell
 {    
@@ -639,6 +641,10 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
     border-right:#a4b26d 1px solid;
     border-bottom:#a4b26d 1px solid;    
 }
+.mini-grid-footer
+{
+    background:#cfd9a3;
+}
 .mini-grid-filterRow .mini-grid-table, .mini-grid-summaryRow .mini-grid-table {
     background: none repeat scroll 0 0 #eff4da;
 }
@@ -649,22 +655,4 @@ a:hover.mini-tabs-leftButton,a:hover.mini-tabs-rightButton
 /*------------------- popup --------------------*/
 .mini-popup{
     border:1px solid #608058;
-}
-
-/*------------------- pager --------------------*/
-.mini-pager-first
-{    
-    background:url(images/pager/first.gif) no-repeat;
-}
-.mini-pager-prev
-{
-    background-image:url(images/pager/prev.gif);
-}
-.mini-pager-next
-{
-    background-image:url(images/pager/next.gif);
-}
-.mini-pager-last
-{
-    background-image:url(images/pager/last.gif);
 }

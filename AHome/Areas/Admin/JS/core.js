@@ -22,34 +22,34 @@ function onIFrameLoad() {
 
     }
     //*******************修改部分**************************
-    var iframe = document.getElementById("mainframe");
+      var iframe = document.getElementById("mainframe");
     var src = "";
-    var url = iframe.contentWindow.location.href;
+     var url = iframe.contentWindow.location.href;
+    
+     window.location.hash = "src=" + url;
+   
+     //*******************修改部分**************************
+    
+     //url#src=...html
+    
+//    var iframe = document.getElementById("mainframe");
+//    var src = "";
+//    try {
+//        var url = iframe.contentWindow.location.href;
+//        var ss = url.split("/");
+//        var s1 = ss[ss.length - 2];
+//        if (s1 != "demo") {
+//            src = s1 + "/" + ss[ss.length - 1];
+//        } else {
+//            src = ss[ss.length - 1];
+//        }
+//    } catch (e) {
+//    }
+//    if (src && src != "overview.html") {
 
-    window.location.hash = "src=" + url;
+//        window.location.hash = "src=" + src;
 
-    //*******************修改部分**************************
-
-    //url#src=...html
-
-    //    var iframe = document.getElementById("mainframe");
-    //    var src = "";
-    //    try {
-    //        var url = iframe.contentWindow.location.href;
-    //        var ss = url.split("/");
-    //        var s1 = ss[ss.length - 2];
-    //        if (s1 != "demo") {
-    //            src = s1 + "/" + ss[ss.length - 1];
-    //        } else {
-    //            src = ss[ss.length - 1];
-    //        }
-    //    } catch (e) {
-    //    }
-    //    if (src && src != "overview.html") {
-
-    //        window.location.hash = "src=" + src;
-
-    //    }
+//    }
 }
 function onTabsActiveChanged(e) {
     if (this.activeIndex == 1) {
@@ -75,7 +75,7 @@ function onSkinChange(skin) {
     if (skinEl) {
         skinEl.parentNode.removeChild(skinEl);
     }
-    url = url;
+    url =  url;
     AddCSSLink("miniuiSkin", url, doc);
 
     if (win.mini) {
