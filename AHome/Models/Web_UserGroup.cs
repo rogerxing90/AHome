@@ -9,8 +9,8 @@ namespace AHome.Models
 {
     public class Web_UserGroup
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public System.Int32 ID { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public System.Int32 Group_ID { get; set; }
         public System.String USERGROUP { get; set; }
         public System.String DESCRIPTION { get; set; }
         //与实例不同，此处直接用外键，没有另外建表 WEB_USERGROUP_FUNCTIONS
@@ -24,7 +24,7 @@ namespace AHome.Models
             Web_UserGroup target = obj as Web_UserGroup;
             if (target != null)
             {
-                return this.ID == target.ID;
+                return this.Group_ID == target.Group_ID;
             }
             else
             {
@@ -34,7 +34,7 @@ namespace AHome.Models
 
         public override int GetHashCode()
         {
-            return this.ID.GetHashCode();
+            return this.Group_ID.GetHashCode();
         }
 
     }

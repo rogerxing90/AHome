@@ -18,7 +18,7 @@ namespace AHome.DAL
         {
             try
             {
-                return db.Web_Users.Include("GROUP").First(s => s.LOGNAME == user.LOGNAME && s.PASSWORD == user.PASSWORD && s.STATE == "1").GROUP.ID;
+                return db.Web_Users.Include("GROUP").First(s => s.LOGNAME == user.LOGNAME && s.PASSWORD == user.PASSWORD && s.STATE == "1").GROUP.Group_ID;
             }
             catch
             {

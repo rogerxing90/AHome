@@ -20,5 +20,12 @@ namespace AHome.DAL
             return list;
         }
         #endregion
+
+        public IEnumerable<Web_Sys_Function> GetAllFunctions(RogerContext dbParm)
+        {
+            List<Web_Sys_Function> list = new List<Web_Sys_Function>();
+            list = dbParm.Web_Sys_Functions.ToList();
+            return list;
+        }
     }
 }

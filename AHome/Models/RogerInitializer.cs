@@ -12,8 +12,11 @@ namespace AHome.Models
 {
     public class RogerInitializer : DropCreateDatabaseAlways<RogerContext>
     {
+        private RogerContext _context = new RogerContext();
+
         protected override void Seed(RogerContext context)
         {
+            _context = context;
             var newsTypes = new List<NewsType> 
             {
                 new NewsType(){ Name="First"},
@@ -71,13 +74,14 @@ namespace AHome.Models
             #endregion
 
 
+            //创建管理员User
             var web_Users = new List<Web_User> 
             {
                 new Web_User(){ LOGNAME="admin", PASSWORD="admin", STATE="1",
                     GROUP= GetGroupsByType(GroupType.SuperAdministrator).First()},
             };
             web_Users.ForEach(s => context.Web_Users.Add(s));
-
+            context.SaveChanges();
 
 
             //初始化Groups
@@ -89,7 +93,7 @@ namespace AHome.Models
                     context.Web_UserGroups.Add(group);
                 }
             }
-
+            context.SaveChanges();
 
             //初始化Functions
             var Web_Sys_Functions = GetFunctionsByGroupType(GroupType.All);
@@ -102,22 +106,30 @@ namespace AHome.Models
             }
 
             context.SaveChanges();
+
+            
+
+            //Web_UserGroups[0].Web_Sys_Functions = GetFunctionsByGroupType(GroupType.SuperAdministrator);
+            //Web_UserGroups[1].Web_Sys_Functions = GetFunctionsByGroupType(GroupType.Manager);
+            //context.SaveChanges();
+
+            
         }
 
         private List<Web_UserGroup> GetGroupsByType(GroupType type)
         {
             List<Web_UserGroup> groups = new List<Web_UserGroup>()
             {
-                new Web_UserGroup(){ ID=1, USERGROUP = "超级管理员", DESCRIPTION = "Super Administrator", Web_Sys_Functions=GetFunctionsByGroupType(GroupType.SuperAdministrator)},
-                //new Web_UserGroup(){ ID = 5, USERGROUP = "普通管理员",DESCRIPTION = "Manager", Web_Sys_Functions=GetFunctionsByGroupType(GroupType.Manager)},
-            };
+                new Web_UserGroup(){ Group_ID = 1, USERGROUP = "超级管理员", DESCRIPTION = "Super Administrator", Web_Sys_Functions=GetFunctionsByGroupType(GroupType.SuperAdministrator)},
+                //new Web_UserGroup(){ Group_ID = 2, USERGROUP = "普通管理员",DESCRIPTION = "Manager", Web_Sys_Functions= new List<Web_Sys_Function>()}
+            };//_context.Web_Sys_Functions.Where(f => f.ID == 101 || f.ID == 201).ToList()
 
             switch (type)
             {
                 case GroupType.SuperAdministrator:
-                    return groups.Where(s => s.ID == 1).ToList();
+                    return groups.Where(s => s.Group_ID == 1).ToList();
                 case GroupType.Manager:
-                    return groups.Where(s => s.ID == 2).ToList();
+                    return groups.Where(s => s.Group_ID == 2).ToList();
                 default:
                     return groups;
             }
@@ -138,9 +150,9 @@ namespace AHome.Models
                 new Web_Sys_Function() { ID = 9, NAME = "管理中心", FATHER_ID = 0, DESCRIPTION = "一级菜单" },
 
 
-                new Web_Sys_Function() { ID = 101, NAME = "管理员信息管理", URL = "Manage/UserInfo.html", FATHER_ID = 1, DESCRIPTION = "二级菜单"},
+                new Web_Sys_Function() { ID = 101, NAME = "管理员信息管理", URL = "/Admin/Manage/UserInfo", FATHER_ID = 1, DESCRIPTION = "二级菜单"},
                 new Web_Sys_Function() { ID = 201, NAME = "系统功能管理", URL = "Manage/UserInfo.html", FATHER_ID = 2, DESCRIPTION = "二级菜单" },
-                new Web_Sys_Function() { ID = 301, NAME = "用户组管理", URL = "Manage/UserInfo.html", FATHER_ID = 3, DESCRIPTION = "二级菜单" },
+                new Web_Sys_Function() { ID = 301, NAME = "用户组管理", URL = "/Admin/Manage/UserGroupInfo", FATHER_ID = 3, DESCRIPTION = "二级菜单" },
                 new Web_Sys_Function() { ID = 401, NAME = "用户组功能管理", URL = "Manage/UserInfo.html", FATHER_ID = 4, DESCRIPTION = "二级菜单" },
                 new Web_Sys_Function() { ID = 501, NAME = "产品类别管理", URL = "Manage/UserInfo.html", FATHER_ID = 5, DESCRIPTION = "二级菜单"},
                 new Web_Sys_Function() { ID = 502, NAME = "新闻类别管理", URL = "Manage/UserInfo.html", FATHER_ID = 5, DESCRIPTION = "二级菜单" },

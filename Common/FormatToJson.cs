@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace Common
 {
@@ -178,6 +179,76 @@ namespace Common
                 str = str.ToLower();
             }
             return str;
+        }
+
+        /// <summary>
+        /// 专门生成为MiniUi生成json数据(List->json)
+        /// </summary>
+        /// <typeparam name="T">泛型</typeparam>
+        /// <param name="list">实现了Ilist接口的list</param>
+        /// <param name="total">记录总数</param>
+        /// <param name="paramMaxMinAvg">这里放排序的参数例如,string para="\"maxAge\":37,\"avgAge\":27,\"minAge\":24"</param>
+        /// <returns></returns>
+        public static string MiniUiListToJson<T>(IList<T> list, int total, string paramMaxMinAvg)
+        {
+            StringBuilder Json = new StringBuilder();
+            Json.Append("{\"total\":" + total + ",");
+            if (!string.IsNullOrEmpty(paramMaxMinAvg))
+                Json.Append(paramMaxMinAvg);
+            Json.Append("\"data\":[");
+            if (list.Count > 0)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    T obj = Activator.CreateInstance<T>();
+                    PropertyInfo[] pi = obj.GetType().GetProperties();
+                    Json.Append("{");
+                    for (int j = 0; j < pi.Length; j++)
+                    {
+                        //注意这里要做非空判断,否则空值会发生异常
+                        if (Common.Tools.IsNullOrEmpty(pi[j].GetValue(list[i], null)))
+                        {
+
+                            Json.Append("\"" + pi[j].Name.ToString() + "\":" + "\"\"");
+                        }
+                        else
+                        {
+                            Type type = pi[j].GetValue(list[i], null).GetType();
+                            //List类型的不需要序列化
+                            if (!pi[j].PropertyType.FullName.Contains("List"))
+                            {
+                                Json.Append("\"" + pi[j].Name.ToString() + "\":" + StringFormat(pi[j].GetValue(list[i], null).ToString(), type));
+                            }
+                        }
+
+                        //去掉多余, 只算非List类型的数量
+                        int count = pi.Where(p => !p.PropertyType.FullName.Contains("List")).Count();
+                        if (j < count - 1)
+                        {
+                            Json.Append(",");
+                        }
+                    }
+                    Json.Append("}");
+                    if (i < list.Count - 1)
+                    {
+                        Json.Append(",");
+                    }
+                }
+            }
+            Json.Append("]}");
+            return Json.ToString();
+
+        }
+
+        /// <summary>
+        /// 序列化object类型
+        /// </summary>
+        /// <param name="obj">object类型</param>
+        /// <returns></returns>
+        public static string ScriptSerializationToJson(object obj)
+        {
+            return new JavaScriptSerializer().Serialize(obj);
+
         }
     }
 }

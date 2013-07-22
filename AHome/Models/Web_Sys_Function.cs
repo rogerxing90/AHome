@@ -16,7 +16,8 @@ namespace AHome.Models
         public System.Int32 FATHER_ID { get; set; }
         public System.String STATE { get; set; }
         public System.String DESCRIPTION { get; set; }
-        public virtual Web_UserGroup GROUP { get; set; }
+        // 一个Function可以属于多个Group
+        public virtual List<Web_UserGroup> GROUPS { get; set; }
 
         public override bool Equals(object obj)
         {

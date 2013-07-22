@@ -53,7 +53,7 @@ namespace AHome.Areas.Admin.Controllers
                         TimeSpan SessTimeOut = new TimeSpan(0, 0, 1, 0, 0);//取得Session的过期时间System.Web.HttpContext.Current.Session.Timeout(这里设置为1分钟)
                         Cache.Insert(user.LOGNAME, user.LOGNAME, DateTime.MaxValue, SessTimeOut, System.Web.Caching.CacheItemPriority.NotRemovable);//将值放入cache以方便单点登录
                         user.GROUP = new Web_UserGroup();
-                        user.GROUP.ID = groupID;
+                        user.GROUP.Group_ID = groupID;
                         Session["User"] = user;
                         //new czcraft.BLL.SystemLogBLL().SaveSystemLog("登录成功!");
 
@@ -105,7 +105,7 @@ namespace AHome.Areas.Admin.Controllers
             user.LOGNAME = "tianzhuanghu";
             user.PASSWORD = "tian815100";
             user.GROUP = new Web_UserGroup();
-            user.GROUP.ID = 1;
+            user.GROUP.Group_ID = 1;
 
             return new Web_UserBLL().GetMenuByJson(user);
  

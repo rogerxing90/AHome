@@ -163,6 +163,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageController.cs" />
     <Compile Include="BLL\BLLUtil.cs" />
     <Compile Include="BLL\CraftTypeBLL.cs" />
     <Compile Include="BLL\MasterBLL.cs" />
@@ -1022,6 +1023,8 @@
     <Content Include="Areas\Admin\JS\miniui\themes\blue2003\images\tree\Thumbs.db" />
     <Content Include="Areas\Admin\JS\miniui\themes\default\images\tree\Thumbs.db" />
     <Content Include="Areas\Admin\JS\miniui\themes\olive2003\images\tree\Thumbs.db" />
+    <Content Include="Areas\Admin\Views\Manage\UserGroupInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Manage\UserInfo.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\120.jpg" />
     <Content Include="Images\alipay.gif" />

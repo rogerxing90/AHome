@@ -1,0 +1,236 @@
+﻿@model AHome.Models.Web_UserGroup
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>用户组管理</title>
+    <link href="~/Areas/Admin/CSS/demo.css" rel="stylesheet" type="text/css" />
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Areas/Admin/JS/miniui/miniui.js" type="text/javascript"></script>
+    <link href="~/Areas/Admin/JS/miniui/themes/default/miniui.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/JS/miniui/themes/icons.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .New_Button, .Edit_Button, .Delete_Button, .Update_Button, .Cancel_Button
+        {
+            font-size: 11px;
+            color: #1B3F91;
+            font-family: Verdana;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mini-toolbar">
+        <h1>用户组管理</h1>
+        <a class="mini-button" iconcls="icon-add" href="javascript:newRow()">新建用户组</a>
+
+        <span class="separator"></span>
+    </div>
+
+    <!-- style="width:700px;height:250px;" -->
+    <div id="datagrid1" class="mini-datagrid" style="width: 100%"
+        url="/Admin/Manage/SearchUserGroup" idfield="ID"
+        onselectionchanged="onSelectionChanged">
+        <div property="columns">
+            <div name="action" width="50" headeralign="center" align="center" renderer="onActionRenderer" cellstyle="padding:0;">操作</div>
+            <div field="USERGROUP" width="120" headeralign="center" allowsort="true">用户组</div>
+            <div field="DESCRIPTION" width="100">备注</div>
+
+        </div>
+    </div>
+    <br />
+    <fieldset style="width: 50%; border: solid 1px #aaa; position: relative;">
+        <legend>用户组详情</legend>
+        <div id="editForm1" style="padding: 10px;">
+            <input class="mini-hidden" name="ID" />
+            <table style="width: 50%;">
+                <tr>
+                    <td style="width: 80px;">用户组：</td>
+                    <td colspan="4">
+                        <input name="USERGROUP" class="mini-textbox" /></td>
+
+                </tr>
+                <tr>
+                    <td style="width: 80px;">备注：</td>
+                    <td style="" colspan="4">
+                        <input name="DESCRIPTION" class="mini-textbox" style="width: 200px" /></td>
+                </tr>
+                <tr>
+                    @*@Html.DropDownList("ID", "All");*@
+                    @*<li><span>民族：</span><select id="selNational"></select></li>*@
+                </tr>
+                <tr>
+                    <td colspan="3" style="padding-left: 100px">
+                        <a class="mini-button" iconcls="icon-edit" href="javascript:updateRow();">更新</a>
+                    </td>
+                    <td colspan="2"><a class="mini-button mini-button-iconRight" iconcls="icon-cancel" href="javascript:cancelRow();">取消</a>    </td>
+                </tr>
+            </table>
+        </div>
+    </fieldset>
+
+    @using (Html.BeginForm())
+    {  
+        @Html.ValidationSummary(true)  
+        <fieldset>
+            <legend>News</legend>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.USERGROUP)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.USERGROUP)
+                @Html.ValidationMessageFor(model => model.USERGROUP)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DESCRIPTION)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DESCRIPTION)
+                @Html.ValidationMessageFor(model => model.DESCRIPTION)
+            </div>
+
+            <div class="editor-label">
+                @Html.Label("Functions")
+            </div>
+            <div class="editor-field">
+                <ul>
+                    @foreach (var item in @ViewBag.Functions)
+                    {  
+                        <li>
+                            <label for="@item.ID">@item.NAME</label>
+                            <input type="checkbox" name="FunctionId" value="@item.ID" id="@item.ID"/>
+                        </li>          
+                    }
+                </ul>
+            </div>
+            <p>
+                <input type="submit" value="添加" />
+            </p>
+        </fieldset>  
+    }
+
+
+    <script type="text/javascript">
+        $(function () {
+
+        });
+
+
+        mini.parse();
+
+        var editForm = document.getElementById("editForm1");
+        var form = new mini.Form("editForm1");
+
+        var grid = mini.get("datagrid1");
+        // grid.load();
+        grid.sortBy("USERGROUP", "asc");
+
+        ///////////////////////////////////////////////////////       
+
+        function onActionRenderer(e) {
+            var grid = e.sender;
+            var record = e.record;
+            var uid = record._uid;
+            var rowIndex = e.rowIndex;
+            //class="mini-button" iconCls="icon-edit" href="javascript:updateRow();
+            var s = '<a class="Delete_Button"  href="javascript:delRow(\'' + uid + '\')">删除</a>';
+
+            return s;
+        }
+
+        function onSelectionChanged(e) {
+            var grid = e.sender;
+            var record = grid.getSelected();
+            if (record) {
+                editRow(record._uid);
+            } else {
+                form.reset();
+            }
+        }
+
+        function newRow() {
+            var row = {};
+            grid.addRow(row, 0);
+
+            editRow(row._uid);
+        }
+        function editRow(row_uid) {
+            var row = grid.getRowByUID(row_uid);
+            if (row) {
+
+
+                //表单加载员工信息
+                var form = new mini.Form("editForm1");
+                if (grid.isNewRow(row)) {
+
+                    form.reset();
+                } else {
+                    form.loading();
+                    $.ajax({
+                        url: "/Admin/Manage/GetUserGroup",
+                        data: { "id": row.ID },
+                        success: function (text) {
+                            var o = mini.decode(text);
+                            form.setData(o);
+
+
+
+                            form.unmask();
+                        }
+                    });
+                }
+
+                grid.doLayout();
+            }
+        }
+        function cancelRow() {
+            grid.reload();
+        }
+        function delRow(row_uid) {
+            var row = grid.getRowByUID(row_uid);
+            if (row) {
+                if (confirm("确定删除此记录？")) {
+                    grid.loading("删除中，请稍后......");
+                    $.ajax({
+                        url: "/Admin/Manage/RemoveUserGroup",
+                        data: { id: row.ID },
+                        success: function (text) {
+                            grid.reload();
+                        },
+                        error: function () {
+                        }
+                    });
+                }
+            }
+        }
+
+        function updateRow() {
+            var form = new mini.Form("editForm1");
+
+            var o = form.getData();
+
+
+            grid.loading("保存中，请稍后......");
+            var json = mini.encode([o]);
+            $.ajax({
+                url: "/Admin/Manage/SaveUserGroup",
+                data: { UserGroup: json },
+                success: function (text) {
+                    grid.reload();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                }
+            });
+
+        }
+    </script>
+
+</body>
+</html>

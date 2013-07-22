@@ -24,10 +24,10 @@
                     if (action == "ok") {
                         $.ajax({
                             type: "POST",
-                            url: "/Home/DealExit",
+                            url: "/Admin/Home/DealExit",
                             success: function (msg) {
                                 alert(msg);
-                                window.location.href = "/Home/Login";
+                                window.location.href = "/Admin/Home/Login";
                             }
                         });
                     }

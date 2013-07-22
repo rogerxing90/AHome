@@ -38,7 +38,7 @@ namespace AHome.BLL
         {
             //这里要获取功能表中,一级菜单
             IEnumerable<Web_Sys_Function> functions = new Web_Sys_FunctionDAL().ListAllTopMenu();
-            List<Web_Sys_Function> userGroupFunctions = new Web_UserGroupDAL().GetUserGroupFunction(user.GROUP.ID);
+            List<Web_Sys_Function> userGroupFunctions = new Web_UserGroupDAL().GetUserGroupFunction(user.GROUP.Group_ID);
             StringBuilder Json = new StringBuilder();
             StringWriter sw = new StringWriter(Json);
             using (JsonWriter jsonWriter = new JsonTextWriter(sw))

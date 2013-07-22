@@ -26,6 +26,16 @@ namespace AHome.Models
         public DbSet<Web_UserGroup> Web_UserGroups { get; set; }
         public DbSet<Web_Sys_Function> Web_Sys_Functions { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            modelBuilder.Entity<Web_UserGroup>()
+                .HasMany(c => c.Web_Sys_Functions).WithMany(i => i.GROUPS)
+                .Map(t => t.MapLeftKey("Group_ID")
+                    .MapRightKey("ID"));
+
+        }
 
 
     }
