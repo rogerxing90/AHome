@@ -24,6 +24,11 @@ namespace AHome.BLL
             return dal.ListByPagination("WEB_USERGROUP", "", "*", sortId, PageSize, PageIndex, OrderType, strWhere);
         }
 
+        public IEnumerable<Web_UserGroup> ListAll()
+        {
+            return dal.ListAll();
+        }
+
 
         /// <summary>
         ///分页获取数据
@@ -38,9 +43,9 @@ namespace AHome.BLL
         /// </summary>
         /// <param name="model">tableName实体</param>
         /// <returns>执行状态</returns>
-        public int AddNew(Web_UserGroup model)
+        public int AddNew(Web_UserGroup model, RogerContext dbParam = null)
         {
-            return dal.AddNew(model);
+            return dal.AddNew(model,dbParam);
         }
 
         /// <summary>
@@ -58,9 +63,9 @@ namespace AHome.BLL
         /// </summary>
         /// <param name="id">id</param>
         /// <returns>执行状态</returns>
-        public Web_UserGroup Get(int id)
+        public Web_UserGroup Get(int id, RogerContext dbParm=null)
         {
-            return dal.Get(id);
+            return dal.Get(id,dbParm);
         }
 
         /// <summary>

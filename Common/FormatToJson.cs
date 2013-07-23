@@ -87,9 +87,16 @@ namespace Common
                         else
                         {
                             Type type = pi[j].GetValue(list[i], null).GetType();
-                            Json.Append("\"" + pi[j].Name.ToString() + "\":" + StringFormat(pi[j].GetValue(list[i], null).ToString(), type));
+                            //List类型的不需要序列化
+                            if (!pi[j].PropertyType.FullName.Contains("List"))
+                            {
+                                Json.Append("\"" + pi[j].Name.ToString() + "\":" + StringFormat(pi[j].GetValue(list[i], null).ToString(),
+    type));
+                            }
                         }
-                        if (j < pi.Length - 1)
+                        //去掉多余, 只算非List类型的数量
+                        int count = pi.Where(p => !p.PropertyType.FullName.Contains("List")).Count();
+                        if (j < count - 1)
                         {
                             Json.Append(",");
                         }

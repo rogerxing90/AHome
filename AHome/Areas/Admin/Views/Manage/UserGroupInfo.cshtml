@@ -29,6 +29,9 @@
     <div class="mini-toolbar">
         <h1>用户组管理</h1>
         <a class="mini-button" iconcls="icon-add" href="javascript:newRow()">新建用户组</a>
+        <a class="mini-button" iconcls="icon-add" onclick="add">增加</a>
+        <span class="separator"></span>
+        <a class="mini-button" iconcls="icon-edit" onclick="edit">修改</a>
 
         <span class="separator"></span>
     </div>
@@ -62,10 +65,6 @@
                         <input name="DESCRIPTION" class="mini-textbox" style="width: 200px" /></td>
                 </tr>
                 <tr>
-                    @*@Html.DropDownList("ID", "All");*@
-                    @*<li><span>民族：</span><select id="selNational"></select></li>*@
-                </tr>
-                <tr>
                     <td colspan="3" style="padding-left: 100px">
                         <a class="mini-button" iconcls="icon-edit" href="javascript:updateRow();">更新</a>
                     </td>
@@ -75,7 +74,7 @@
         </div>
     </fieldset>
 
-    @using (Html.BeginForm())
+@*    @using (Html.BeginForm())
     {  
         @Html.ValidationSummary(true)  
         <fieldset>
@@ -113,7 +112,7 @@
                 <input type="submit" value="添加" />
             </p>
         </fieldset>  
-    }
+    }*@
 
 
     <script type="text/javascript">
@@ -174,7 +173,7 @@
                     form.loading();
                     $.ajax({
                         url: "/Admin/Manage/GetUserGroup",
-                        data: { "id": row.ID },
+                        data: { "id": row.Group_ID },
                         success: function (text) {
                             var o = mini.decode(text);
                             form.setData(o);
@@ -199,7 +198,7 @@
                     grid.loading("删除中，请稍后......");
                     $.ajax({
                         url: "/Admin/Manage/RemoveUserGroup",
-                        data: { id: row.ID },
+                        data: { id: row.Group_ID },
                         success: function (text) {
                             grid.reload();
                         },
@@ -228,6 +227,68 @@
                     alert(jqXHR.responseText);
                 }
             });
+
+        }
+
+
+        //新加 弹窗Add Edit
+        function add(e) {
+            $.ajax({
+                url: "/Admin/Manage/SaveEditGroupId2Cache",
+                data: { "id": "" },
+                success: function (text) {
+                    mini.openTop({
+                        url: "/Admin/Manage/AddGroup",
+                        title: "新增员工", width: 600, height: 360,
+                        onload: function () {
+                            var iframe = this.getIFrameEl();
+                            //var data = { action: "new" };
+                            //iframe.contentWindow.SetData(data);
+                        },
+                        ondestory: function (action) {
+                            grid.reload();
+                        }
+                    });
+                },
+                error: function () {
+                }
+            });
+
+
+            
+        }
+
+        function edit(e) {
+            var row = grid.getSelected();
+            if (row) {
+                //*****************
+                //由于下面mini.openTop的url直接调页面，无法像ajax一样传data，所以此处先将groupId传到Server，存起来
+                $.ajax({
+                    url: "/Admin/Manage/SaveEditGroupId2Cache",
+                    data: { "id": row.Group_ID },
+                    success: function (text) {
+                        mini.openTop({
+                            url: "/Admin/Manage/AddGroup",
+                            title: "编辑组", width: 600, height: 360,
+                            onload: function () {
+                                var iframe = this.getIFrameEl();
+                                //var data = { action: "edit", id: row.id };
+                                //iframe.contentWindow.SetData(data);
+                            },
+                            ondestory: function (action) {
+                                grid.reload();
+                            }
+                        });
+                    },
+                    error: function () {
+                    }
+                });
+                //******************
+
+
+            } else {
+                alert("请选中一条记录");
+            }
 
         }
     </script>

@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>管理员面板</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Areas/Admin/JS/miniui/miniui.js" type="text/javascript"></script>
+    <link href="~/Areas/Admin/JS/miniui/themes/default/miniui.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/JS/miniui/themes/icons.css" rel="stylesheet" type="text/css" />
+
+    <style type="text/css">
+        html, body
+        {
+            font-size: 12px;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" method="post">
+        <fieldset style="border: solid 1px #aaa; padding: 5px; width: 550px; height: 250px">
+            <legend>基本信息</legend>
+            <table>
+                <tr>
+                    <td style="width: 80px;">帐号：</td>
+                    <td style="width: 150px;">
+                        <input name="LOGNAME" class="mini-textbox" onvalidation="onPwdValidation" requirederrortext="帐号不能为空" required="true" />
+                    </td>
+                    <td style="width: 80px;">所属用户组：</td>
+                    <td style="width: 150px;">
+                        <input name="USERGROUPID" id="USERGROUPID" class="mini-combobox" valuefield="Group_ID" textfield="USERGROUP"
+                            url="/Admin/Manage/GetAllUserGroup"
+                            required="true" requirederrortext="用户组不能为空" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>密码：</td>
+                    <td>
+                        <input name="PASSWORD" onvalidation="onPwdValidation" class="mini-password" requirederrortext="密码不能为空" required="true" />
+                    </td>
+                    <td>姓名：</td>
+                    <td>
+                        <input name="REALNAME" class="mini-textbox" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>备注：</td>
+                    <td colspan="3">
+                        <input name="MEMO" class="mini-textarea" style="width: 360px;" />
+                    </td>
+                </tr>
+            </table>
+            <div style="padding: 8px; text-align: left; width: 600px;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+            
+        <a class="mini-button" onclick="onOk" style="width: 60px; margin-right: 20px;">确定</a>
+                <a class="mini-button" onclick="onCancel" style="width: 60px;">取消</a>
+            </div>
+        </fieldset>
+
+    </form>
+
+    <script type="text/javascript">
+
+        var form = new mini.Form("form1");
+
+        var formData = {};
+
+
+
+
+        function SaveData() {
+            var o = form.getData();
+            o.id = formData.id;
+
+            form.validate();
+            if (form.isValid() == false) return;
+
+            var json = mini.encode([o]);
+            $.ajax({
+                url: "/Admin/Manage/SaveUserInfo",
+                data: { UserInfo: json },
+                cache: false,
+                success: function (text) {
+
+                    CloseWindow("save");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR.responseText);
+                    CloseWindow();
+                }
+            });
+        }
+
+        ////////////////////
+        //标准方法接口定义
+        function SetData(data) {
+            if (data.action == "edit") {
+                //跨页面传递的数据对象，克隆后才可以安全使用
+                data = mini.clone(data);
+
+                formData.id = data.id;
+                //$("#USERGROUPID").val(data.USERGROUP);
+                $.ajax({
+                    url: "/Admin/Manage/GetUserInfo",
+                    data: { "id": data.id },
+                    cache: false,
+                    success: function (text) {
+                        var o = mini.decode(text);
+                        form.setData(o);
+
+                    }
+                });
+            }
+        }
+        function GetData() {
+            var o = form.getData();
+            return o;
+        }
+        function CloseWindow(action) {
+            if (window.CloseOwnerWindow) window.CloseOwnerWindow(action);
+            else window.close();
+
+        }
+
+        function onOk(e) {
+            SaveData();
+        }
+        function onCancel(e) {
+            CloseWindow("cancel");
+        }
+        //////////////////////////////////
+        function onPwdValidation(e) {
+            if (e.isValid) {
+                if (e.value.length < 6) {
+                    e.errorText = "帐号密码不能少于6个字符";
+                    e.isValid = false;
+                }
+            }
+        }
+
+
+    </script>
+</body>
+</html>

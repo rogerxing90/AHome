@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Web;
+using AHome.BLL;
 using Common;
 
 namespace AHome.Models
@@ -95,6 +96,18 @@ namespace AHome.Models
             }
             context.SaveChanges();
 
+            //Manage Group  中Web_Sys_Functions必须从数据库中取出来已经有的，不能new一个一样的加进去，会导致PK重复报错
+            Web_UserGroup manageGroup = new Web_UserGroup() { Group_ID = 2, USERGROUP = "普通管理员", DESCRIPTION = "Manager", Web_Sys_Functions = new List<Web_Sys_Function>() };
+
+            var manageGroupFuncs = new Web_Sys_FunctionBLL().GetAllFunctions(context).Where(p => p.ID==101||p.ID==201).ToList();
+            foreach (Web_Sys_Function item in manageGroupFuncs)
+            {
+                manageGroup.Web_Sys_Functions.Add(item);
+            }
+            context.Web_UserGroups.Add(manageGroup);
+            context.SaveChanges();
+
+
             //初始化Functions
             var Web_Sys_Functions = GetFunctionsByGroupType(GroupType.All);
             foreach (Web_Sys_Function func in Web_Sys_Functions)
@@ -106,12 +119,6 @@ namespace AHome.Models
             }
 
             context.SaveChanges();
-
-            
-
-            //Web_UserGroups[0].Web_Sys_Functions = GetFunctionsByGroupType(GroupType.SuperAdministrator);
-            //Web_UserGroups[1].Web_Sys_Functions = GetFunctionsByGroupType(GroupType.Manager);
-            //context.SaveChanges();
 
             
         }

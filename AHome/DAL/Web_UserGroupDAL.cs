@@ -22,6 +22,11 @@ namespace AHome.DAL
         }
         #endregion
 
+        public IEnumerable<Web_UserGroup> ListAll()
+        {
+            return db.Web_UserGroups.ToList();
+        }
+
         /// <summary>
         ///分页获取数据
         /// </summary>
@@ -49,7 +54,7 @@ namespace AHome.DAL
                 (DbParameter)new SqlParameter("@strWhere", strWhere),
             };
 
-            list =  db.Database.SqlQuery <Web_UserGroup>("exec[pagination]  @tableName,@InnerJoin,@strGetFields,@sortId,@PageSize,@PageIndex,@doCount,@OrderType,@strWhere", paras);
+            list = db.Database.SqlQuery<Web_UserGroup>("exec[pagination]  @tableName,@InnerJoin,@strGetFields,@sortId,@PageSize,@PageIndex,@doCount,@OrderType,@strWhere", paras);
 
             //此处分页存储过程pagination未找到
 
@@ -74,7 +79,7 @@ namespace AHome.DAL
         /// </summary>
         /// <param name="model">tableName实体</param>
         /// <returns>执行状态</returns>
-        public int AddNew(Web_UserGroup model,RogerContext dbParam=null)
+        public int AddNew(Web_UserGroup model, RogerContext dbParam = null)
         {
             if (dbParam == null)
             {
@@ -91,8 +96,9 @@ namespace AHome.DAL
         /// <returns>执行状态</returns>
         public int Update(Web_UserGroup model)
         {
-            Web_UserGroup oldGroup = GetGroupInfoById(model.Group_ID);
-            oldGroup = model;
+            //Web_UserGroup oldGroup = GetGroupInfoById(model.Group_ID);
+            //oldGroup = model;
+            db.Entry(model).State = System.Data.EntityState.Modified;
             return db.SaveChanges();
         }
 
@@ -101,9 +107,13 @@ namespace AHome.DAL
             return db.Web_UserGroups.First(s => s.Group_ID == id);
         }
 
-        public Web_UserGroup Get(int id)
+        public Web_UserGroup Get(int id, RogerContext dbParm = null)
         {
-            return db.Web_UserGroups.First(s => s.Group_ID == id);
+            if (dbParm == null)
+            {
+                dbParm = db;
+            }
+            return dbParm.Web_UserGroups.First(s => s.Group_ID == id);
         }
 
         /// <summary>

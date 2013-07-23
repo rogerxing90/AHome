@@ -96,7 +96,7 @@
         }
         function add(e) {
             mini.openTop({
-                url: mini_JSPath + "../../Manage/AddUserInfo.html",
+                url: "/Admin/Manage/AddUser",
                 title: "新增员工", width: 600, height: 360,
                 onload: function () {
                     var iframe = this.getIFrameEl();
@@ -112,7 +112,7 @@
             var row = grid.getSelected();
             if (row) {
                 mini.openTop({
-                    url: mini_JSPath + "../../Manage/AddUserInfo.html",
+                    url: "/Admin/Manage/AddUser",
                     title: "编辑员工", width: 600, height: 360,
                     onload: function () {
                         var iframe = this.getIFrameEl();
@@ -141,7 +141,8 @@
                     var id = ids.join(',');
                     grid.loading("操作中，请稍后......");
                     $.ajax({
-                        url: "Data/GetUserInfoData.ashx?method=RemoveUserInfo&id=" + id,
+                        url: "/Admin/Manage/RemoveUserInfo",
+                        data:{"id":id},
                         success: function (text) {
                             grid.reload();
                         },
