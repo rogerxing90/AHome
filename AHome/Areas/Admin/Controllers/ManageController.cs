@@ -13,7 +13,7 @@ namespace AHome.Areas.Admin.Controllers
 {
     public class ManageController : Controller
     {
-        
+
         private Web_UserGroupBLL groupBLL = new Web_UserGroupBLL();
         private Web_UserBLL userBLL = new Web_UserBLL();
 
@@ -54,7 +54,7 @@ namespace AHome.Areas.Admin.Controllers
                 ViewBag.EditFunctions = model.Web_Sys_Functions;
                 return View(model);
             }
-            
+
         }
 
         [HttpPost]
@@ -63,30 +63,47 @@ namespace AHome.Areas.Admin.Controllers
             ViewBag.ALLFunctions = new Web_Sys_FunctionBLL().GetAllFunctions(dbParm);
             try
             {
-                var t = Request["FunctionId"];//获取选中的分类ID格式为("1，2，3”)不包含括号。
+                string t = Request["FunctionId"].ToString();//获取选中的分类ID格式为("1，2，3”)不包含括号。
                 List<Int32> idlist = new List<int>();
-                foreach (var each in t.Split(',').ToList())
+                if (!string.IsNullOrEmpty(t))
                 {
-                    idlist.Add(Convert.ToInt32(each));
+                    if (t.Contains(","))
+                    {
+                        foreach (var each in t.Split(',').ToList())
+                        {
+                            idlist.Add(Convert.ToInt32(each));
+                        }
+                    }
+                    else
+                    {
+                        idlist.Add(Convert.ToInt32(t));
+                    }
                 }
-                var cate = new Web_Sys_FunctionBLL().GetAllFunctions(dbParm).Where(p => idlist.Contains(p.ID));
-                if (model.Web_Sys_Functions == null)
+                IEnumerable<Web_Sys_Function> selectedFuncs = new Web_Sys_FunctionBLL().GetAllFunctions(dbParm).Where(p => idlist.Contains(p.ID));
+                if (model.Group_ID == 0) //New
                 {
-                    model.Web_Sys_Functions = new List<Web_Sys_Function>();
-                }
-                foreach (var item in cate)
-                {
-                    model.Web_Sys_Functions.Add(item);
-                }
-
-
-                if (model.Group_ID == 0)
-                {
+                    model.Web_Sys_Functions = selectedFuncs.ToList();
+                    //model.Web_Sys_Functions = new List<Web_Sys_Function>();
+                    //selectedFuncs.ToList().ForEach(f => model.Web_Sys_Functions.Add(f));
                     groupBLL.AddNew(model, dbParm);
                 }
-                else
+                else                    //Edit
                 {
-                    groupBLL.Update(model);
+                    List<Web_Sys_Function> originalFuncs = groupBLL.Get(model.Group_ID, dbParm).Web_Sys_Functions;
+                    model.Web_Sys_Functions = originalFuncs;
+                    //要删除的function  
+                    var dlist = originalFuncs.Where(p => !selectedFuncs.Contains(p)).ToList();
+                    //要添加的function  
+                    var alist = selectedFuncs.Where(p => !originalFuncs.Contains(p)).ToList();
+                    foreach (var item in dlist)
+                    {
+                        model.Web_Sys_Functions.Remove(item);
+                    }
+                    foreach (var item in alist)
+                    {
+                        model.Web_Sys_Functions.Add(item);
+                    }
+                    groupBLL.Update(model, dbParm);
                 }
 
 
@@ -129,7 +146,7 @@ namespace AHome.Areas.Admin.Controllers
                 {
                     model.Web_Sys_Functions.Add(item);
                 }
-                new Web_UserGroupDAL().AddNew(model,dbParm);
+                new Web_UserGroupDAL().AddNew(model, dbParm);
 
                 ViewBag.Functions = new Web_Sys_FunctionBLL().GetAllFunctions(dbParm);
                 return View();
@@ -138,7 +155,7 @@ namespace AHome.Areas.Admin.Controllers
             {
                 var y = ex.InnerException;
                 return View(model);
-            }  
+            }
         }
 
         public ActionResult UserInfo()
@@ -194,7 +211,7 @@ namespace AHome.Areas.Admin.Controllers
             if (o.SelectToken("ID") != null)
             {
                 group.Group_ID = (int)o.SelectToken("ID");
-                groupBLL.Update(group);
+                groupBLL.Update(group, dbParm);
             }
             else
             {
@@ -299,7 +316,7 @@ namespace AHome.Areas.Admin.Controllers
             user.LOGNAME = LOGNAME;
 
             //Group需要特殊处理，从数据库中取出
-            Web_UserGroup group = groupBLL.Get(Convert.ToInt32(USERGROUPID),dbParm);
+            Web_UserGroup group = groupBLL.Get(Convert.ToInt32(USERGROUPID), dbParm);
             user.GROUP = group;
             user.PASSWORD = PASSWORD;
             user.REALNAME = REALNAME;
@@ -311,11 +328,11 @@ namespace AHome.Areas.Admin.Controllers
             if (o.SelectToken("id") != null)
             {
                 user.ID = (int)o.SelectToken("id");
-                userBLL.Update(user,dbParm);
+                userBLL.Update(user, dbParm);
             }
             else
             {
-                userBLL.AddNew(user,dbParm);                
+                userBLL.AddNew(user, dbParm);
             }
         }
 
@@ -337,7 +354,7 @@ namespace AHome.Areas.Admin.Controllers
             if (Common.Tools.IsValidInput(ref idStr, true))
             {
                 userBLL.DeleteMoreID(idStr);
-            }  
+            }
         }
 
         /// <summary>
@@ -357,7 +374,7 @@ namespace AHome.Areas.Admin.Controllers
             return string.Empty;
         }
 
-        
+
         #endregion
     }
 }

@@ -11,7 +11,7 @@ using Common;
 
 namespace AHome.Models
 {
-    public class RogerInitializer : DropCreateDatabaseAlways<RogerContext>
+    public class RogerInitializer : DropCreateDatabaseIfModelChanges<RogerContext>
     {
         private RogerContext _context = new RogerContext();
 

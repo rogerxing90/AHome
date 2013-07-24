@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using AHome.Models.Base;
 
 namespace AHome.Models
 {
-    public class VProductCraftType
+    public class VProductCraftType : IEntity
     {
         public System.Int64? Id { get; set; }
         //CraftType的

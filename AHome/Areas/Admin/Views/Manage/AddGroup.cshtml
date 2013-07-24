@@ -23,7 +23,10 @@
 <body>
     <div>
         <form action="/Admin/Manage/AddGroup" method="post" id="AddGroupInfoForm">
-            @Html.ValidationSummary(true)
+            @Html.ValidationSummary(true) 
+            @*//隐藏域保存Group_ID 和Web_Sys_Functions*@
+            @Html.HiddenFor(model => model.Group_ID)
+            @Html.HiddenFor(model => model.Web_Sys_Functions)
             <fieldset>
                 <legend>News</legend>
                 <div class="editor-label">
@@ -58,7 +61,7 @@
                         </ul>
                     </div>
                     <p>
-                        <input type="submit" value="添加" />
+                        <input type="submit" onclick="onOk" value="添加" />
                     </p>
                 }
                 else
@@ -86,12 +89,25 @@
                         </ul>
                     </div>
                     <p>
-                        <input type="submit" value="修改" />
+                        <input type="submit" onclick="onOk" value="修改" />
                     </p>
                 }
 
             </fieldset>
         </form>
     </div>
+
+    <script>
+        var form = new mini.Form("AddGroupInfoForm");
+
+        var formData = {};
+
+        function onOk(e) {
+            CloseWindow("save");
+        }
+        function onCancel(e) {
+            CloseWindow("cancel");
+        }
+    </script>
 </body>
 </html>

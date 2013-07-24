@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using AHome.Models.Base;
 
 namespace AHome.Models
 {
-    public class VMasterType
+    public class VMasterType : IEntity
     {
         public System.Int32 Id { get; set; }
         public System.String TypeName { get; set; }

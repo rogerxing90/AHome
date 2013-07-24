@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using AHome.Models.Base;
 
 namespace AHome.Models
 {
-    public class Master
+    public class Master : IEntity
     {
         public System.Int32 Id { get; set; }
         public System.String Username { get; set; }

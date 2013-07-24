@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using AHome.Models.Base;
 
 namespace AHome.Models
 {
-    public class Web_UserGroup
+    public class Web_UserGroup : IEntity
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public System.Int32 Group_ID { get; set; }

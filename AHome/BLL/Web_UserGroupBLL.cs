@@ -53,9 +53,9 @@ namespace AHome.BLL
         /// </summary>
         /// <param name="model">tableName实体</param>
         /// <returns>执行状态</returns>
-        public int Update(Web_UserGroup model)
+        public int Update(Web_UserGroup model, RogerContext dbParm)
         {
-            return dal.Update(model);
+            return dal.Update(model, dbParm);
         }
 
         /// <summary>

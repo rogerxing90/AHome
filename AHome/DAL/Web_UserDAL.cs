@@ -60,17 +60,17 @@ namespace AHome.DAL
         /// <summary>
         public int GetCount(string realName)
         {
-            if(string.IsNullOrEmpty(realName))
+            if (string.IsNullOrEmpty(realName))
             {
                 return db.Web_Users.Count();
             }
             else
             {
-                return db.Web_Users.Count(s=>s.REALNAME.Contains(realName));
+                return db.Web_Users.Count(s => s.REALNAME.Contains(realName));
             }
         }
 
-        public bool AddNew(Web_User model, RogerContext dbParm=null)
+        public bool AddNew(Web_User model, RogerContext dbParm = null)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace AHome.DAL
 
         }
 
-        
+
         public bool DeleteMoreID(string strID)
         {
             try
@@ -132,27 +132,20 @@ namespace AHome.DAL
         }
 
 
-        public bool Update(Web_User model, RogerContext dbParm = null)
+        public int Update(Web_User model, RogerContext dbParm = null)
         {
-            try
-            {
-                if (dbParm == null)
-                {
-                    dbParm = db;
-                }
-                dbParm.Entry(model).State = System.Data.EntityState.Modified;
-                dbParm.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return base.Update<Web_User>(model, model.ID, dbParm);
+            //if (dbParm == null)
+            //{
+            //    dbParm = db;
+            //}
+            //dbParm.Entry(model).State = System.Data.EntityState.Modified;
+            //return dbParm.SaveChanges();
         }
 
         public Web_User Get(int id)
         {
-            return db.Web_Users.First(s=>s.ID==id);
+            return db.Web_Users.First(s => s.ID == id);
         }
 
         #region 更新状态信息

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
@@ -94,12 +95,9 @@ namespace AHome.DAL
         /// </summary>
         /// <param name="model">tableName实体</param>
         /// <returns>执行状态</returns>
-        public int Update(Web_UserGroup model)
+        public int Update(Web_UserGroup model, RogerContext dbParm=null)
         {
-            //Web_UserGroup oldGroup = GetGroupInfoById(model.Group_ID);
-            //oldGroup = model;
-            db.Entry(model).State = System.Data.EntityState.Modified;
-            return db.SaveChanges();
+            return base.Update<Web_UserGroup>(model,model.Group_ID, dbParm);
         }
 
         public Web_UserGroup GetGroupInfoById(int id)

@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using AHome.Models.Base;
 
 namespace AHome.Models
 {
-    public class Web_Sys_Function
+    public class Web_Sys_Function :IEntity
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public System.Int32 ID { get; set; }

@@ -198,6 +198,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Base\IEntity.cs" />
     <Compile Include="Models\CraftType.cs" />
     <Compile Include="Models\Master.cs" />
     <Compile Include="Models\Master_cert.cs" />
@@ -206,8 +207,8 @@
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsType.cs" />
     <Compile Include="Models\Province.cs" />
-    <Compile Include="Models\RogerContext.cs" />
-    <Compile Include="Models\RogerInitializer.cs" />
+    <Compile Include="Models\Base\RogerContext.cs" />
+    <Compile Include="Models\Base\RogerInitializer.cs" />
     <Compile Include="Models\VMasterType.cs" />
     <Compile Include="Models\VProductCraftType.cs" />
     <Compile Include="Models\Web_Sys_Function.cs" />
