@@ -70,9 +70,14 @@ namespace AHome.DAL
         {
             try
             {
-                string sql = ("delete from @table where AddTime < dateadd(DAY,-3,GETDATE())");
-                DbParameter[] paras = new DbParameter[] { new SqlParameter("table", "SystemLogs") };
-                db.Database.ExecuteSqlCommand(sql, paras);
+
+                DateTime date = DateTime.Now.AddDays(-3);
+                db.SystemLogs.Where(s => s.AddTime < date).ToList().ForEach(each=>db.SystemLogs.Remove(each));
+                
+                //表不可以用parameter@
+                //DbParameter[] paras = new DbParameter[] { new SqlParameter("table", "SystemLogs") };
+                //string sql = ("delete from @table where AddTime < dateadd(DAY,-3,GETDATE())");
+                //db.Database.ExecuteSqlCommand(sql, paras);
                 return true;
             }
             catch
