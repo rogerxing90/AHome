@@ -28,6 +28,11 @@ namespace AHome.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult SystemLogInfo()
+        {
+            return View();
+        }
+
         public ActionResult AddUser()
         {
             return View();
@@ -373,6 +378,48 @@ namespace AHome.Areas.Admin.Controllers
             }
             return string.Empty;
         }
+
+
+        #endregion
+
+        #region [== SystemLogInfo ==]
+
+        public string SearchSystemLog()
+        {
+            //查询条件
+            string key = Request["key"];
+            //分页
+            int pageIndex = Convert.ToInt32(Request["pageIndex"]);
+            int pageSize = Convert.ToInt32(Request["pageSize"]);
+            //字段排序
+            String sortField = Request["sortField"];
+            String sortOrder = Request["sortOrder"];
+            string strCondition = "";
+            //对搜索内容进行验证
+            if (!Common.Tools.IsValidInput(ref key, false))
+            {
+                return string.Empty;
+            }
+            else
+                strCondition = SystemLogBLL.ConfirmCondition(key);//判断查询条件
+            SystemLogBLL bll = new SystemLogBLL();
+            //分页数据读取
+            IEnumerable<SystemLog> list = bll.ListByPagination(sortField, pageSize, pageIndex + 1, sortOrder == "asc" ? "0" : "1", strCondition);
+            //获取总页数
+            int totalPage = bll.GetCount(strCondition);
+            //JSON 序列化
+            string json = SystemLogBLL.MiniUiListToJson(list, totalPage, "");
+
+
+            return json;
+        }
+
+        public void RemoveSystemLog()
+        {
+            //清空三天前的日志
+            new SystemLogBLL().ClearSystemLog();
+        }
+
 
 
         #endregion

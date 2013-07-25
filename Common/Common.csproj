@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -53,6 +56,7 @@
     <Compile Include="pic_zip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexHelper.cs" />
+    <Compile Include="RogerLogger.cs" />
     <Compile Include="RogerSMTP.cs" />
     <Compile Include="SMTP.cs" />
     <Compile Include="Tools.cs" />

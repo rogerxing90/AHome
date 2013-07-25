@@ -25,6 +25,7 @@ namespace AHome.Models
         public DbSet<Web_User> Web_Users { get; set; }
         public DbSet<Web_UserGroup> Web_UserGroups { get; set; }
         public DbSet<Web_Sys_Function> Web_Sys_Functions { get; set; }
+        public DbSet<SystemLog> SystemLogs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

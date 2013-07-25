@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -170,6 +173,7 @@
     <Compile Include="BLL\MemberBLL.cs" />
     <Compile Include="BLL\NewsTypeBLL.cs" />
     <Compile Include="BLL\ProvinceBLL.cs" />
+    <Compile Include="BLL\SystemLogBLL.cs" />
     <Compile Include="BLL\VProductCraftTypeBLL.cs" />
     <Compile Include="BLL\Web_Sys_FunctionBLL.cs" />
     <Compile Include="BLL\Web_UserBLL.cs" />
@@ -188,6 +192,7 @@
     <Compile Include="DAL\MemberDAL.cs" />
     <Compile Include="DAL\NewsTypeDAL.cs" />
     <Compile Include="DAL\ProvinceDAL.cs" />
+    <Compile Include="DAL\SystemLogDAL.cs" />
     <Compile Include="DAL\VMasterTypeDAL.cs" />
     <Compile Include="DAL\VProductCraftTypeDAL.cs" />
     <Compile Include="DAL\Web_Sys_FunctionDAL.cs" />
@@ -209,6 +214,7 @@
     <Compile Include="Models\Province.cs" />
     <Compile Include="Models\Base\RogerContext.cs" />
     <Compile Include="Models\Base\RogerInitializer.cs" />
+    <Compile Include="Models\SystemLog.cs" />
     <Compile Include="Models\VMasterType.cs" />
     <Compile Include="Models\VProductCraftType.cs" />
     <Compile Include="Models\Web_Sys_Function.cs" />
@@ -1028,6 +1034,7 @@
     <Content Include="Areas\Admin\Views\Manage\UserInfo.cshtml" />
     <Content Include="Areas\Admin\Views\Manage\AddUser.cshtml" />
     <Content Include="Areas\Admin\Views\Manage\AddGroup.cshtml" />
+    <Content Include="Areas\Admin\Views\Manage\SystemLogInfo.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\120.jpg" />
     <Content Include="Images\alipay.gif" />
@@ -1287,6 +1294,7 @@
     <Folder Include="Areas\Admin\JS\miniui\themes\gray\images\layout\" />
     <Folder Include="Areas\Admin\JS\miniui\themes\gray\images\splitter\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="LogFile\" />
     <Folder Include="Pictures\Master\MainMasterPic\small\" />
   </ItemGroup>
   <ItemGroup>

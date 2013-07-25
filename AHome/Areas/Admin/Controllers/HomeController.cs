@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Reflection;
 using AHome.BLL;
 using AHome.Models;
 using Common;
+using log4net;
 
 namespace AHome.Areas.Admin.Controllers
 {
     public class HomeController : Controller
     {
         private CacheStorage.ICacheStorage Cache = CacheStorage.CacheFactory.CreateCacheFactory();
-
+        private ILog logger = RogerLogger.GetInstance(MethodBase.GetCurrentMethod().DeclaringType);
         //
         // GET: /Admin/Home/
 
@@ -34,7 +36,7 @@ namespace AHome.Areas.Admin.Controllers
 
         public ActionResult DealLogin()
         {
-            //string LoginIp = Request.UserHostAddress;//获取用户ip地址
+            string LoginIp = Request.UserHostAddress;//获取用户ip地址
             //string checkcode = Request["vdcode"];
             Web_User user = new Web_User();
             try
@@ -55,12 +57,17 @@ namespace AHome.Areas.Admin.Controllers
                         user.GROUP = new Web_UserGroup();
                         user.GROUP.Group_ID = groupID;
                         Session["User"] = user;
-                        //new czcraft.BLL.SystemLogBLL().SaveSystemLog("登录成功!");
+                        new SystemLogBLL().SaveSystemLog("登录成功!");
 
-                        //logger.Info(user.LOGNAME + "登录成功!");
+                        for (int i = 0; i < 1000; i++)
+                        {
+                            logger.Info(user.LOGNAME + " Test Log File");
+                        }
+
+
+                            logger.Info("用户： "+ user.LOGNAME + " 登录成功!");
                         //  WriteSysLog log = new WriteSysLog();
                         // log.WriteSystemLog(LoginIp+"于"+DateTime.Now.ToString ()+"以"+user.LOGNAME+"帐号登录系统");
-                        //JScript.JavaScriptLocationHref("../main.htm");
                         return RedirectToAction("Main", "Home");
                     }
                     else if (Cache.Get(sUser).ToString() == user.LOGNAME)//如果这个账号已经登录
@@ -76,13 +83,10 @@ namespace AHome.Areas.Admin.Controllers
                 {
                     JScript.Alert("帐号或密码错误,或者用户组被禁用!");
                 }
-                //}
-                //else
-                //    JScript.Alert("验证码出错!!");
             }
             catch (Exception ex)
             {
-                //logger.Error("登录出错!登录ip:" + LoginIp + "登录时间:" + DateTime.Now.ToString(), ex);
+                logger.Error("登录出错!登录ip:" + LoginIp + "登录时间:" + DateTime.Now.ToString(), ex);
 
                 JScript.Alert("系统出错!");
             }

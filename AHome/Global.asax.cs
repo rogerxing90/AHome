@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using AHome.Models;
+using log4net;
 
 namespace AHome
 {
@@ -16,9 +18,14 @@ namespace AHome
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        private ILog logger = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         protected void Application_Start()
         {
             Database.SetInitializer<RogerContext>(new RogerInitializer());
+            //此处必须初始化
+            log4net.Config.XmlConfigurator.Configure();
+
 
             AreaRegistration.RegisterAllAreas();
 

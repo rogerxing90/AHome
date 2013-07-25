@@ -159,6 +159,7 @@ namespace AHome.Models
 
                 new Web_Sys_Function() { ID = 101, NAME = "管理员信息管理", URL = "/Admin/Manage/UserInfo", FATHER_ID = 1, DESCRIPTION = "二级菜单"},
                 new Web_Sys_Function() { ID = 201, NAME = "系统功能管理", URL = "Manage/UserInfo.html", FATHER_ID = 2, DESCRIPTION = "二级菜单" },
+                new Web_Sys_Function() { ID = 202, NAME = "日志信息管理", URL = "/Admin/Manage/SystemLogInfo", FATHER_ID = 2, DESCRIPTION = "二级菜单" },
                 new Web_Sys_Function() { ID = 301, NAME = "用户组管理", URL = "/Admin/Manage/UserGroupInfo", FATHER_ID = 3, DESCRIPTION = "二级菜单" },
                 new Web_Sys_Function() { ID = 401, NAME = "用户组功能管理", URL = "Manage/UserInfo.html", FATHER_ID = 4, DESCRIPTION = "二级菜单" },
                 new Web_Sys_Function() { ID = 501, NAME = "产品类别管理", URL = "Manage/UserInfo.html", FATHER_ID = 5, DESCRIPTION = "二级菜单"},
