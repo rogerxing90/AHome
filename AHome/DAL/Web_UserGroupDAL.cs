@@ -122,7 +122,6 @@ namespace AHome.DAL
         public int DeleteMoreID(string strID)
         {
 
-            bool status = false;
             string[] IDs = strID.Split(',');
             foreach (string each in IDs)
             {

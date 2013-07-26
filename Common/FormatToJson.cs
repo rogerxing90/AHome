@@ -257,5 +257,19 @@ namespace Common
             return new JavaScriptSerializer().Serialize(obj);
 
         }
+
+        /// <summary>
+        /// 专门为muniUi解析树形的json 
+        /// 大致格式:[{id:"root",text:"总根目录",expanded:false,children:[{id:"xxx",text:"xx"},{id:"xxx",text:"xx"}]}]
+        /// </summary>
+        /// <param name="strMiniUi">传入参数为[{id:"xxx",text:"xx"},{id:"xxx",text:"xx"}]</param>
+        /// <param name="rootName">根标题</param>
+        /// <returns></returns>
+        public static string MiniUiToJsonForTree(string strMiniUi, string rootName)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[{\"id\":\"-1\",\"text\":\"" + rootName + "\",\"children\":" + strMiniUi + "}]");
+            return sb.ToString();
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace AHome.DAL
     {
         public RogerContext db = new RogerContext();
 
-        public int Update<T>(T entity,int id, RogerContext dbParm = null) where T : IEntity
+        public int Update<T>(T entity, int id, RogerContext dbParm = null) where T : IEntity
         {
             if (dbParm == null)
             {

@@ -168,6 +168,11 @@ namespace AHome.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult ProductTypeManage()
+        {
+            return View();
+        }
+
         #region [==UserGroupInfoPage CRUD==]
         public string SearchUserGroup()
         {
@@ -422,6 +427,63 @@ namespace AHome.Areas.Admin.Controllers
 
 
 
+        #endregion
+
+        #region [== ProductTypeManage ==]
+        public string GetProductType()
+        {
+            return new CraftTypeBLL().craftTypeTreeToJson();
+        }
+
+        public bool AddProductType()
+        {
+            CraftType type = new CraftType();
+            string text = Request["text"];
+            string pid = Request["pid"];
+            string IsLeaf = Request["IsLeaf"];
+            if (Tools.IsValidInput(ref text, true) && Tools.IsValidInput(ref pid, true) && Tools.IsValidInput(ref IsLeaf, true))
+            {
+                type.Name = text;
+                type.Belongsid = Convert.ToInt32(pid);
+                type.level = 0;//level基本没什么用,所以给0
+                type.IsLeaf = "1";//初始化新添加的节点都是叶子//(IsLeaf=="true"?"1":"0");
+                return new CraftTypeBLL().AddNewAndUpdateLeaf(type);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool EditProductType()
+        {
+            string id = Request["id"];
+            string text = Request["text"];
+            string pid = Request["pid"];
+            string IsLeaf = Request["IsLeaf"];
+            if (Tools.IsValidInput(ref id, true) && Tools.IsValidInput(ref text, true) && Tools.IsValidInput(ref pid, true) && Tools.IsValidInput(ref IsLeaf, true))
+            {
+                CraftType type = new CraftType();
+                type.ID = Convert.ToInt32(id);
+                type.Name = text;
+                type.Belongsid = Convert.ToInt32(pid);
+                type.IsLeaf = (IsLeaf == "true" ? "1" : "0");
+                type.level = 0; //level没用到,所以随便置0
+                return new CraftTypeBLL().Update(type);
+
+            }
+            return false;
+        }
+
+        public bool RemoveProductType()
+        {
+            string id = Request["id"];
+            if (Tools.IsValidInput(ref id, true))
+            {
+                return new CraftTypeBLL().DeleteMoreID(id);
+            }
+            return false;
+        }
         #endregion
     }
 }

@@ -61,6 +61,7 @@
     <Compile Include="SMTP.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="XMlHelper.cs" />
+    <Compile Include="YZMHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

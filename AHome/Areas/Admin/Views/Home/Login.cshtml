@@ -47,6 +47,33 @@
             }
 
         }
+
+
+        $(function () {
+            $("#loginBtn").click(function()
+            {
+                $.ajax({
+                    url: "/Admin/Home/DealLogin",
+                    type: "post",
+                    //data: Data,
+                    success: function(ReturnData, status) {
+                        //var jsonInfo = $.parseJSON(ReturnData);
+                        //if (jsonInfo.Status) {
+
+                        //    //BUG_1 
+                        //    window.location.href = '/Member/MemberInfo';
+                        //} else {
+                        //    alert("您输入的帐号或密码错误!也有可能您的帐号未邮箱激活!");
+                        //}
+
+                    },
+                    error: function (ReturnData, status)
+                    { }
+
+                });
+            });
+        }
+
     </script>
 </head>
 <body>
@@ -71,9 +98,10 @@
                     <p><strong>联系方式:19591592514 田先生</strong></p>
                 </div>
             </div>
-            @*<form name="form1" method="post" action="DealLogin">*@
-            @using (Html.BeginForm("DealLogin","Home"))
+            <form name="form1">
+                @*@using (Html.BeginForm("DealLogin", "Home"))
             { 
+                *@
                 <input type="hidden" name="gotopage" value="" />
                 <input type="hidden" name="dopost" value="login" />
                 <input name='adminstyle' type='hidden' value='newdedecms' />
@@ -91,23 +119,24 @@
                         <dd><span class="text_input">
                             <input type="password" name="userpass" id="userpass" /></span></dd>
 
-                        @*<dt>
+                        <dt>
                             <label>验证码</label>
                         </dt>
                         <dd><span class="short_input">
                             <input id="vdcode" type="text" style="text-transform: uppercase;" name="vdcode" /></span>
                             <span class="yzm">
-                                <img id="vdimgck" align="absmiddle" onclick="this.src=this.src+'?'" style="cursor: pointer;" alt="看不清？点击更换" src="FileManage/VerifyChars.ashx" /></span>
+                                <img id="vdimgck" align="absmiddle" onclick="this.src=this.src+'?'" style="cursor: pointer;" alt="看不清？点击更换" src="/Admin/Home/VerifyChars" />
+                            </span>
 
-                        </dd>*@
+                        </dd>
 
                         <dd>
-                            <input type="submit" name="sm1" class="login_btn" value="" />
+                            <input id="loginBtn" type="submit" name="sm1" class="login_btn" value="" />
                         </dd>
                     </dl>
                 </fieldset>
-@*</form>*@
-            }
+            </form>
+            @*}*@
         </div>
         <div id="footer"></div>
     </div>

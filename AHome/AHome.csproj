@@ -47,6 +47,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -204,6 +206,8 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Base\IEntity.cs" />
+    <Compile Include="Models\Base\RogerContext.cs" />
+    <Compile Include="Models\Base\RogerInitializer.cs" />
     <Compile Include="Models\CraftType.cs" />
     <Compile Include="Models\Master.cs" />
     <Compile Include="Models\Master_cert.cs" />
@@ -212,8 +216,6 @@
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsType.cs" />
     <Compile Include="Models\Province.cs" />
-    <Compile Include="Models\Base\RogerContext.cs" />
-    <Compile Include="Models\Base\RogerInitializer.cs" />
     <Compile Include="Models\SystemLog.cs" />
     <Compile Include="Models\VMasterType.cs" />
     <Compile Include="Models\VProductCraftType.cs" />
@@ -1035,6 +1037,7 @@
     <Content Include="Areas\Admin\Views\Manage\AddUser.cshtml" />
     <Content Include="Areas\Admin\Views\Manage\AddGroup.cshtml" />
     <Content Include="Areas\Admin\Views\Manage\SystemLogInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\Manage\ProductTypeManage.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\120.jpg" />
     <Content Include="Images\alipay.gif" />
@@ -1309,6 +1312,9 @@
       <Project>{13c7bcdc-cdc5-4354-b3b2-8a93231dc0cc}</Project>
       <Name>Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

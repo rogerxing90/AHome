@@ -44,7 +44,13 @@ namespace AHome.DAL
         public IEnumerable<SystemLog> ListByPagination(string tableName, string InnerJoin, string strGetFields, string sortId, int PageSize, int PageIndex, string OrderType, string strWhere)
         {
             List<SystemLog> list = new List<SystemLog>();
-            list = db.SystemLogs.ToList();
+            //list = db.SystemLogs.ToList();
+            if (!string.IsNullOrEmpty(strWhere))
+            {
+                strWhere = " where " + strWhere;
+            }
+            string sql = ("select * from SystemLogs" + strWhere);
+            list = db.SystemLogs.SqlQuery(sql).ToList();
             return list;
         }
 
@@ -71,13 +77,13 @@ namespace AHome.DAL
             try
             {
 
-                DateTime date = DateTime.Now.AddDays(-3);
-                db.SystemLogs.Where(s => s.AddTime < date).ToList().ForEach(each=>db.SystemLogs.Remove(each));
+                //DateTime date = DateTime.Now.AddDays(-3);
+                //db.SystemLogs.Where(s => s.AddTime < date).ToList().ForEach(each=>db.SystemLogs.Remove(each));
                 
                 //表不可以用parameter@
                 //DbParameter[] paras = new DbParameter[] { new SqlParameter("table", "SystemLogs") };
-                //string sql = ("delete from @table where AddTime < dateadd(DAY,-3,GETDATE())");
-                //db.Database.ExecuteSqlCommand(sql, paras);
+                string sql = ("delete from SystemLogs where AddTime < dateadd(DAY,-3,GETDATE())");
+                db.Database.ExecuteSqlCommand(sql);
                 return true;
             }
             catch

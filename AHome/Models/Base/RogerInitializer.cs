@@ -39,14 +39,9 @@ namespace AHome.Models
 
             var craftTypes = new List<CraftType>
             {
-                new CraftType(){ Name="潮州木雕", level=1,Belongsid=-1, IsLeaf="0", FId ="F01" },
-                new CraftType(){ Name = "花木雕",level =2,Belongsid=1,IsLeaf="0",FId ="F0101" },
-                new CraftType(){ Name = "红花木雕",level =3,Belongsid=2,IsLeaf="0",FId ="F010101" },
-                new CraftType(){ Name = "潮州刺绣",level =1,Belongsid=-1,IsLeaf="1",FId ="F04" },
-                new CraftType(){ Name = "石雕",level =1,Belongsid=-1,IsLeaf="1",FId ="F05" },
-                new CraftType(){ Name = "大吴泥塑",level =1,Belongsid=-1,IsLeaf="1",FId ="F06" },
-                new CraftType(){ Name = "木雕",level =2,Belongsid=1,IsLeaf="0",FId ="F0102" },
-                new CraftType(){ Name = "木雕1",level =3,Belongsid=7,IsLeaf="1",FId ="F010202" },
+                new CraftType(){ Name = "潮州木雕", level=1,Belongsid=-1, IsLeaf="0", FId ="F01" },
+                new CraftType(){ Name = "花木雕",level =2,Belongsid=1,IsLeaf="1",FId ="F0101" },
+                new CraftType(){ Name = "潮州刺绣",level =1,Belongsid=-1,IsLeaf="1",FId ="F02" },
             };
             craftTypes.ForEach(s => context.CraftTypes.Add(s));
 
@@ -99,7 +94,7 @@ namespace AHome.Models
             //Manage Group  中Web_Sys_Functions必须从数据库中取出来已经有的，不能new一个一样的加进去，会导致PK重复报错
             Web_UserGroup manageGroup = new Web_UserGroup() { Group_ID = 2, USERGROUP = "普通管理员", DESCRIPTION = "Manager", Web_Sys_Functions = new List<Web_Sys_Function>() };
 
-            var manageGroupFuncs = new Web_Sys_FunctionBLL().GetAllFunctions(context).Where(p => p.ID==101||p.ID==201).ToList();
+            var manageGroupFuncs = new Web_Sys_FunctionBLL().GetAllFunctions(context).Where(p => p.ID == 101 || p.ID == 201).ToList();
             foreach (Web_Sys_Function item in manageGroupFuncs)
             {
                 manageGroup.Web_Sys_Functions.Add(item);
@@ -120,7 +115,7 @@ namespace AHome.Models
 
             context.SaveChanges();
 
-            
+
         }
 
         private List<Web_UserGroup> GetGroupsByType(GroupType type)
@@ -162,7 +157,7 @@ namespace AHome.Models
                 new Web_Sys_Function() { ID = 202, NAME = "日志信息管理", URL = "/Admin/Manage/SystemLogInfo", FATHER_ID = 2, DESCRIPTION = "二级菜单" },
                 new Web_Sys_Function() { ID = 301, NAME = "用户组管理", URL = "/Admin/Manage/UserGroupInfo", FATHER_ID = 3, DESCRIPTION = "二级菜单" },
                 new Web_Sys_Function() { ID = 401, NAME = "用户组功能管理", URL = "Manage/UserInfo.html", FATHER_ID = 4, DESCRIPTION = "二级菜单" },
-                new Web_Sys_Function() { ID = 501, NAME = "产品类别管理", URL = "Manage/UserInfo.html", FATHER_ID = 5, DESCRIPTION = "二级菜单"},
+                new Web_Sys_Function() { ID = 501, NAME = "产品类别管理", URL = "/Admin/Manage/ProductTypeManage", FATHER_ID = 5, DESCRIPTION = "二级菜单"},
                 new Web_Sys_Function() { ID = 502, NAME = "新闻类别管理", URL = "Manage/UserInfo.html", FATHER_ID = 5, DESCRIPTION = "二级菜单" },
                 new Web_Sys_Function() { ID = 601, NAME = "新闻管理", URL = "Manage/UserInfo.html", FATHER_ID = 6, DESCRIPTION = "二级菜单" },
                 new Web_Sys_Function() { ID = 602, NAME = "工艺知识管理", URL = "Manage/UserInfo.html", FATHER_ID = 6, DESCRIPTION = "二级菜单" },

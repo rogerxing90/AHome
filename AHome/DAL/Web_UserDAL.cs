@@ -109,11 +109,9 @@ namespace AHome.DAL
         {
             try
             {
-                int state = 0;
-                string sql = ("delete from Web_User where ID in (" + strID + ") and STATE=@state");
-                DbParameter[] paras = new DbParameter[] { new SqlParameter("state", state) };
+                string sql = ("delete from Web_User where ID in (" + strID + ")");
                 //注此处parameter没用，但为空时报错
-                db.Database.ExecuteSqlCommand(sql, paras);
+                db.Database.ExecuteSqlCommand(sql);
 
                 //法二
                 //String[] ids = strID.Split(',');
